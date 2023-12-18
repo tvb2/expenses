@@ -2,7 +2,7 @@
 
 ## App features
 ### Users
-* Password-protected accounts
+* ~~Password-protected~~ accounts
 * Combine expenses from several accounts (family expenses)
 
 ### Structure
@@ -17,9 +17,9 @@
 * All settings have default values (except name, password and default currency)
 * First time app start 
   * Select language
-  * Create a local account (pass-protected)
-  * User may choose to enter pass every time or not
-  * Enter pass will be required to change user account or change settings
+  * Create a local account (~~pass-protected~~)
+  * ~~User may choose to enter pass every time or not~~
+  * ~~Enter pass will be required to change user account or change settings~~
 * Settings include:
   * Change default currency
   * Add user currency (with exchange rate to the default one)
