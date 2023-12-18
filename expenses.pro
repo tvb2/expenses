@@ -10,20 +10,20 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    main.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    main.h
+    mainwindow.h
 
 FORMS += \
-    main.ui
+    mainwindow.ui
 
-TRANSLATIONS += \
-    expenses_ru_RU.ts
-CONFIG += lrelease
-CONFIG += embed_translations
+# TRANSLATIONS += \
+#     expenses_ru_RU.ts
+# CONFIG += lrelease
+# CONFIG += embed_translations
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+# qnx: target.path = /tmp/$${TARGET}/bin
+# else: unix:!android: target.path = /opt/$${TARGET}/bin
+# !isEmpty(target.path): INSTALLS += target
