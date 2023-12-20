@@ -30,8 +30,8 @@ DB to a different device or to share it with someone.
   * List of expense categories with edit function
     * add new categories 
       * name
-      * type (income or expense)
-      * regular or one-time
+      * ~~type (income or expense)~~
+      * ~~regular or one-time~~
       * statistics period (weekly, monthly or yearly)
       * limit for the selected period in default currency
     * delete category (only those that have not been used yet)
@@ -60,7 +60,24 @@ DB to a different device or to share it with someone.
   * edit each expense (all fields)
   * delete expense
   * combine expenses by category for the selected period of time
-  
+### Implementation
+* On startup we launch a *startup module class* that checks for existing users and offers to choose user or create new.
+If no user exists, then only create new is available. After startup module completes the task it will transfer the selected user's database to main window 
+* Using SQlite SQL database. Interface is class *SQL handler class name*. It can add, delete and modify fields in the database
+* 
+#### Database structure
+Expense table:
+* Date field (YY-MM-DD). Type:
+* Amount field in default currency. Type: double
+* Category field. Type: Enum
+* Flag income or expense. Type bool. True = expense, False = income
+* Flag regular or one-time. Type bool. True = regular, False = one time
+Category table:
+* Category name
+* Statistics period. Type string ("weekly", "monthly", "yearly")
+* Limit for the selected period. Type: double
+User settings
+
 ### Future development
 * add support of cloud data storage for shared expenses (family)
 * synchronize expenses with cloud DB
