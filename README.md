@@ -4,6 +4,9 @@
 ### Users
 * ~~Password-protected~~ accounts
 * Combine expenses from several accounts (family expenses)
+* allows to backup database and keep BU file in a known location. The feature is also useful to transfer 
+DB to a different device or to share it with someone.
+* using SQLite database
 
 ### Structure
 * Main page ready to type in next expense. A button from every screen leads to this page
