@@ -61,7 +61,8 @@ DB to a different device or to share it with someone.
   * delete expense
   * combine expenses by category for the selected period of time
 ### Implementation
-* On startup we launch a *startup module class* that checks for existing users and offers to choose user or create new.
+* On startup we launch a Startmodule class that checks for existing users and offers to choose user or create new. It then passes selected database file path
+and name to DBManager.
 If no user exists, then only create new is available. After startup module completes the task it will transfer the selected user's database to main window 
 * Using SQlite SQL database. Interface is class *SQL handler class name*. It can add, delete and modify fields in the database
 * 
