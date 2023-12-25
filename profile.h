@@ -2,6 +2,9 @@
 #define PROFILE_H
 
 #include <QtSql>
+#include <QApplication>
+#include <QString>
+
 
 class Profile
 {
@@ -10,7 +13,7 @@ public:
     Profile(QSqlDatabase &db);
 
     QSqlDatabase & selectProfile();
-    QSqlDatabase & createProfile();
+    QString createProfile(QApplication &a);
     void deleteProfile();
     void backupProfile();
 

@@ -12,15 +12,18 @@ SOURCES += \
     dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
-    profile.cpp
+    profile.cpp \
+    startmodule.cpp
 
 HEADERS += \
     dbmanager.h \
     mainwindow.h \
-    profile.h
+    profile.h \
+    startmodule.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    startmodule.ui
 
 # TRANSLATIONS += \
 #     expenses_ru_RU.ts
