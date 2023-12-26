@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql uitools
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,21 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    dbmanager.cpp \
     main.cpp \
-    mainwindow.cpp \
-    profile.cpp \
-    startmodule.cpp
+    profilecreate.cpp \
+    profileselect.cpp
 
 HEADERS += \
-    dbmanager.h \
-    mainwindow.h \
-    profile.h \
-    startmodule.h
+    profilecreate.h \
+    profileselect.h
 
 FORMS += \
-    mainwindow.ui \
-    startmodule.ui
+    profilecreate.ui \
+    profileselect.ui
 
 # TRANSLATIONS += \
 #     expenses_ru_RU.ts

@@ -1,14 +1,12 @@
-#include "mainwindow.h"
-#include "startmodule.h"
+#include "profilecreate.h"
+#include "profileselect.h"
 
 #include <QApplication>
 #include <QObject>
+#include <QLineEdit>
+#include <QPushButton>
 
-#include <QtSql>
-#include <QSqlRecord>
 #include <QDebug>
-#include <QStandardPaths>
-#include <QListWidgetItem>
 
 
 int main(int argc, char *argv[])
@@ -17,11 +15,26 @@ int main(int argc, char *argv[])
 
     //launch start module and hand over selected DB to DB manager
     qDebug("start");
+    a.setOrganizationDomain("github.com/tvb2/expenses");
     a.setApplicationName("expensesApp");
-    Startmodule start;
-    start.show();
 
+    // ProfileCreate createProfile;
+    // createProfile.show();
 
+    ProfileSelect selectedProfile;
+    selectedProfile.show();
+    if (true)
+    {
+        //launch profile creator
+    }
+    else if (true)
+    {
+        //launch profile selector
+    }
+    else
+    {
+        //handover to DBManager
+    }
 
     // creating sqlite database
 /*
@@ -43,10 +56,5 @@ int main(int argc, char *argv[])
         qDebug("DB successfully open!");
     qDebug("end");
 */
-
-
-
-    MainWindow w;
-    //w.show();
     return a.exec();
 }
