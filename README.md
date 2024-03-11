@@ -48,6 +48,7 @@ DB to a different device or to share it with someone.
   * Date of expense (by default set to today)
   * Notes - free text for any notes
   * after expense has been added show average in this category for the configured period (week, month, year)
+  * main page will also show current period's total expenses value
 * Statistics page
   * change settings on the fly
   * show average expenses for the selected period:
@@ -55,6 +56,7 @@ DB to a different device or to share it with someone.
     * by regular/non-regular
     * show total expenses, income and delta (+ or -)
     * show average expenses, income and delta (+ or -)
+  * switch between overall average and sliding average (configurable time span, default is 3 time periods (weeks, months..)) 
 * History page
   * view previous expenses
   * edit each expense (all fields)
