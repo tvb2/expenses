@@ -1,6 +1,3 @@
-#include "profilecreate.h"
-#include "profileselect.h"
-
 #include <QApplication>
 #include <QObject>
 #include <QLineEdit>
@@ -8,6 +5,7 @@
 
 #include <QDebug>
 
+#include "dispatch.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,20 +19,7 @@ int main(int argc, char *argv[])
     // ProfileCreate createProfile;
     // createProfile.show();
 
-    ProfileSelect selectedProfile;
-    selectedProfile.show();
-    if (true)
-    {
-        //launch profile creator
-    }
-    else if (true)
-    {
-        //launch profile selector
-    }
-    else
-    {
-        //handover to DBManager
-    }
+
 
     // creating sqlite database
 /*

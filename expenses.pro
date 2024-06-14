@@ -9,17 +9,15 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    profilecreate.cpp \
-    profileselect.cpp
+    basecomponent.cpp \
+    dispatch.cpp \
+    main.cpp
 
 HEADERS += \
-    profilecreate.h \
-    profileselect.h
+    basecomponent.h \
+    dispatch.h
 
-FORMS += \
-    profilecreate.ui \
-    profileselect.ui
+FORMS +=
 
 # TRANSLATIONS += \
 #     expenses_ru_RU.ts
