@@ -19,19 +19,17 @@ void MainWindow::getDispatch(ConcreteDispatch *d){
     this->dsptch = d;
 }
 
-void MainWindow::getObjects(ConcreteDispatch *d,
-                Profile *p,
-                Database *db,
-                Settings *s){
-    this->dsptch = d;
-    this->profile = p;
-    this->database = db;
-    this->settings = s;
+void MainWindow::on_pushButton_clicked(){
+    this->dsptch->profile->DoA();
+    this->dsptch->db->DoD();
+
 }
 
-void MainWindow::on_pushButton_clicked(){
-    this->profile->DoA();
-    this->database->DoD();
-
+/**
+ * @brief submit expense info to database
+ */
+void MainWindow::on_pB_Submit_clicked()
+{
+    this->dsptch->db->addExpense();
 }
 

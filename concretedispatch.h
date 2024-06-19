@@ -10,11 +10,11 @@
 
 class ConcreteDispatch : public Dispatch
 {
-private:
+public:
     Profile *profile;
     Database *db;
     Settings *settings;
-public:
+
     ConcreteDispatch(Profile *pr, Database *databs, Settings *st) : profile(pr), db(databs), settings(st) {
         this->profile->set_dispatch(this);
         this->db->set_dispatch(this);
@@ -22,7 +22,6 @@ public:
     }
 
 void Notify(BaseComponent *sender, std::string event) const override;
-
 
 };
 

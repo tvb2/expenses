@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     Settings *settings = new Settings;
     ConcreteDispatch *dispatch = new ConcreteDispatch(profile, db, settings);
     MainWindow *w = new MainWindow;
-    w->getObjects(dispatch, profile, db, settings);
+    w->getDispatch(dispatch);
     w->show();
 
 

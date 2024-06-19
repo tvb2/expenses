@@ -8,6 +8,7 @@ class Database : public BaseComponent
 public:
     Database();
     void DoD();
+    void addExpense();
 };
 
 #endif // DATABASE_H
