@@ -4,8 +4,10 @@
 #include <QPushButton>
 
 #include <QDebug>
+#include <memory.h>
 
-#include "dispatch.h"
+#include "concretedispatch.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,8 +18,14 @@ int main(int argc, char *argv[])
     a.setOrganizationDomain("github.com/tvb2/expenses");
     a.setApplicationName("expensesApp");
 
-    // ProfileCreate createProfile;
-    // createProfile.show();
+
+    Profile *profile = new Profile;
+    Database *db = new Database;
+    Settings *settings = new Settings;
+    ConcreteDispatch *dispatch = new ConcreteDispatch(profile, db, settings);
+    MainWindow *w = new MainWindow;
+    w->getObjects(dispatch, profile, db, settings);
+    w->show();
 
 
 

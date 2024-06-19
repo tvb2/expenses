@@ -7,13 +7,13 @@
 
 class BaseComponent {
 protected:
-    Dispatch *dispatch_;
+    Dispatch *dispatch;
 
 public:
-    BaseComponent(Dispatch *dispatch = nullptr) : dispatch_(dispatch) {
+    BaseComponent(Dispatch *disp = nullptr) : dispatch(disp) {
     }
     void set_dispatch(Dispatch *dispatch) {
-        this->dispatch_ = dispatch;
+        this->dispatch = dispatch;
     }
 };
 

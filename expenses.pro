@@ -10,14 +10,25 @@ CONFIG += c++17
 
 SOURCES += \
     basecomponent.cpp \
+    concretedispatch.cpp \
+    database.cpp \
     dispatch.cpp \
-    main.cpp
+    main.cpp \
+    mainwindow.cpp \
+    profile.cpp \
+    settings.cpp
 
 HEADERS += \
     basecomponent.h \
-    dispatch.h
+    concretedispatch.h \
+    database.h \
+    dispatch.h \
+    mainwindow.h \
+    profile.h \
+    settings.h
 
-FORMS +=
+FORMS += \
+    mainwindow.ui
 
 # TRANSLATIONS += \
 #     expenses_ru_RU.ts
