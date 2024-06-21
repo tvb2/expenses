@@ -10,3 +10,7 @@ void Database::DoD() {
 void Database::addExpense(){
     qDebug("Add expenses to database");
 }
+    void Database::setPath(QString &path){
+        this->dbPath = path;
+        qDebug() << "DB path set: " << this->dbPath;
+    }

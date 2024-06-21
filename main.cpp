@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //launch start module and hand over selected DB to DB manager
     qDebug("start");
     a.setOrganizationDomain("github.com/tvb2/expenses");
     a.setApplicationName("expensesApp");
@@ -23,6 +22,10 @@ int main(int argc, char *argv[])
     Database *db = new Database;
     Settings *settings = new Settings;
     ConcreteDispatch *dispatch = new ConcreteDispatch(profile, db, settings);
+
+    //launch start module and hand over selected DB to DB manager
+    dispatch->Launcher();
+
     MainWindow *w = new MainWindow;
     w->getDispatch(dispatch);
     w->show();
