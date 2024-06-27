@@ -20,9 +20,7 @@ void MainWindow::getDispatch(ConcreteDispatch *d){
 }
 
 void MainWindow::on_pushButton_clicked(){
-    this->dsptch->profile->DoA();
-    this->dsptch->db->DoD();
-
+    qDebug("OK pressed");
 }
 
 /**

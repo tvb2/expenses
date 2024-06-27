@@ -9,12 +9,24 @@ class Profile : public BaseComponent
 {
 private:
     QString dbPath;
+    QStringList profiles;
 public:
     Profile();
-    void DoA();
 
-    //set path for database
-    void setPath(QString &path);
+    //set profile path
+    void setPath(QString const &path);
+
+    //search profiles in the dbPath
+    void searchProfiles();
+
+    //this->profiles is empty
+    bool isEmpty();
+    //size of this->profiles
+    int size();
+    //get profiles list
+    QStringList const  & getProfiles();
+    //return current profile
+    QString const & getCurrentProfile();
 };
 
 #endif // PROFILE_H

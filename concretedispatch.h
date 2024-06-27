@@ -15,7 +15,6 @@
 class ConcreteDispatch : public Dispatch
 {
 private:
-    QVector<QString> profiles;
 public:
     Profile *profile;
     Database *db;
@@ -31,9 +30,6 @@ void Notify(BaseComponent *sender, std::string event) const override;
 
 //run when starting the app
 void Launcher();
-
-//search current directory for profiles and populate this.profiles vector
-void searchProfiles();
 
 };
 

@@ -2,18 +2,19 @@
 #define DATABASE_H
 
 #include "basecomponent.h"
+#include <qsqldatabase.h>
+#include <QSqlQuery>
 
 class Database : public BaseComponent
 {
 private:
-    QString dbPath;
+    QSqlDatabase db;
 public:
     Database();
-    void DoD();
     void addExpense();
 
     //set path for database
-    void setPath(QString &path);
+    void setDB(QString const &path);
 };
 
 #endif // DATABASE_H
