@@ -1,4 +1,4 @@
-QT       += core gui sql uitools testlib
+QT       += core gui sql uitools
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
