@@ -3,6 +3,8 @@
 
 *~
 *.autosave
+build/
+Tests/build/
 *.a
 *.core
 *.moc

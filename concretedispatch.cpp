@@ -23,6 +23,8 @@ void ConcreteDispatch::Launcher(){
         qDebug("only one profile is found!");
         this->profile->setPath(this->profile->getProfiles()[0]);
         this->db->setDB(this->profile->getCurrentProfile());
+        this->db->addExpense("test");
+        this->db->printExpenses();
     }
     //multiple profiles found - select profile to be used in current session
     else{
