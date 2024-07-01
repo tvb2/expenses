@@ -1,4 +1,4 @@
-QT       += core gui sql uitools
+QT       += core gui sql uitools testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,7 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     profile.cpp \
-    settings.cpp
+    settings.cpp \
 
 HEADERS += \
     basecomponent.h \
@@ -25,7 +25,7 @@ HEADERS += \
     dispatch.h \
     mainwindow.h \
     profile.h \
-    settings.h
+    settings.h \
 
 FORMS += \
     mainwindow.ui
