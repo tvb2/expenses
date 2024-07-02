@@ -16,6 +16,8 @@ void ConcreteDispatch::Launcher(){
 
     //no profiles found - create profile
     if (this->profile->isEmpty()){
+        CreateProfile *d = new CreateProfile;
+        d->show();
         qDebug("No profiles found");
     }
      //one profile found - select it

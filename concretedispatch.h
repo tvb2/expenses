@@ -11,6 +11,7 @@
 #include "profile.h"
 #include "database.h"
 #include "settings.h"
+#include "widgets/createprofile.h"
 
 class ConcreteDispatch : public Dispatch
 {
