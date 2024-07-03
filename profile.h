@@ -13,8 +13,7 @@ private:
 public:
     Profile();
 
-    //set profile path
-    void setPath(QString const &path);
+
 
     //search profiles in the dbPath
     void searchProfiles();
@@ -27,6 +26,10 @@ public:
     QStringList const  & getProfiles();
     //return current profile
     QString const & getCurrentProfile();
+
+public slots:
+    //set profile path
+    void setPath(QString const &path);
 };
 
 #endif // PROFILE_H

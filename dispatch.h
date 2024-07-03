@@ -11,7 +11,7 @@ class BaseComponent;
  * functions and other classes as needed
  */
 
-class Dispatch {
+class Dispatch{
 public:
     virtual void Notify(BaseComponent *sender, std::string event) const = 0;
 };

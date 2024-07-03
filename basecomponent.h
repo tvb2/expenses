@@ -5,7 +5,8 @@
 #include <QWidget>
 #include "dispatch.h"
 
-class BaseComponent {
+class BaseComponent : public QObject {//inherit from QObject to use singals and slots in child classes
+    Q_OBJECT
 protected:
     Dispatch *dispatch;
 

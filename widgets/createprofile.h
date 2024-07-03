@@ -14,6 +14,8 @@ class CreateProfile : public QDialog
 public:
     explicit CreateProfile(QWidget *parent = nullptr);
     ~CreateProfile();
+signals:
+    void setProfileName(QString &nm);
 
 private slots:
     void on_pbCreateProfile_clicked();

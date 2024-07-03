@@ -16,6 +16,10 @@ CreateProfile::~CreateProfile()
 
 void CreateProfile::on_pbCreateProfile_clicked()
 {
+    QString name = "NewProfile";
+    name = ui->leProfileName->text();
+    name = name.length()>=8?name.mid(0,8):name;
+    emit setProfileName(name);
     qDebug("New profile created!");
 }
 

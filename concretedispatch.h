@@ -15,7 +15,6 @@
 
 class ConcreteDispatch : public Dispatch
 {
-private:
 public:
     Profile *profile;
     Database *db;
