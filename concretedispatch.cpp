@@ -13,10 +13,11 @@ void ConcreteDispatch::Notify(BaseComponent *sender, std::string event) const {
 void ConcreteDispatch::Launcher(){
     //find profiles in current directory
     this->profile->searchProfiles();
+    QStringList names = this->profile->getProfilesNames();
 
     //no profiles found - create profile
     if (this->profile->isEmpty()){
-        CreateProfile *d = new CreateProfile;
+        CreateProfile *d = new CreateProfile(names);
         QObject::connect(d, &CreateProfile::setProfileName, this->profile, &Profile::setPath);
         d->exec();
         qDebug("No profiles found");
@@ -31,6 +32,13 @@ void ConcreteDispatch::Launcher(){
     }
     //multiple profiles found - select profile to be used in current session
     else{
+
+        //temp
+        CreateProfile *d = new CreateProfile(names);
+        QObject::connect(d, &CreateProfile::setProfileName, this->profile, &Profile::setPath);
+        d->exec();
+        qDebug("No profiles found");
+        //
         qDebug("Multiple profiles found. Select one:");
     }
 

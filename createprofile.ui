@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>CreateProfile</class>
- <widget class="QDialog" name="../CreateProfile">
+ <widget class="QDialog" name="CreateProfile">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,8 +16,8 @@
   <widget class="QLineEdit" name="leProfileName">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>20</y>
+     <x>240</x>
+     <y>10</y>
      <width>113</width>
      <height>26</height>
     </rect>
@@ -26,8 +26,8 @@
   <widget class="QLineEdit" name="leCurrency">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>80</y>
+     <x>240</x>
+     <y>50</y>
      <width>113</width>
      <height>26</height>
     </rect>
@@ -44,6 +44,16 @@
    </property>
    <property name="text">
     <string>Create!</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbPeriods">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>130</y>
+     <width>121</width>
+     <height>26</height>
+    </rect>
    </property>
   </widget>
  </widget>

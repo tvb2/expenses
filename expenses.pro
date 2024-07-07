@@ -17,7 +17,7 @@ SOURCES += \
     mainwindow.cpp \
     profile.cpp \
     settings.cpp \
-    widgets/createprofile.cpp \
+    createprofile.cpp \
 
 HEADERS += \
     basecomponent.h \
@@ -27,10 +27,10 @@ HEADERS += \
     mainwindow.h \
     profile.h \
     settings.h \
-    widgets/createprofile.h \
+    createprofile.h \
 
 FORMS += \
-    widgets/createprofile.ui \
+    createprofile.ui \
     mainwindow.ui
 
 # TRANSLATIONS += \

@@ -7,7 +7,6 @@ void Profile::setPath(QString const &path){
     this->dbPath = path;
     qDebug() << "Profile DB path set: " << this->dbPath;
 }
-
 void Profile::searchProfiles(){
     QVector<QString> item;
     QVector<QVector<QString>> profiles;
@@ -21,8 +20,8 @@ void Profile::searchProfiles(){
         qDebug() << "current path: " << thePath;// QDir::currentPath();
     }
     QStringList filter = {"*.sqlite"};
-    QStringList items = d.entryList(filter);
-    for (auto i:items){
+    this->names = d.entryList(filter);
+    for (auto i:names){
         this->profiles.append(d.absoluteFilePath(i));
         qDebug() << i;
     }
@@ -39,4 +38,13 @@ bool Profile::isEmpty(){
 }
 int Profile::size(){
     return this->profiles.size();
+}
+
+QStringList const & Profile::getProfilesNames(){
+    this->searchProfiles();
+    for (int n = 0; n < this->names.size(); ++n){
+        names[n] = names[n].mid(0,names[n].lastIndexOf(".sqlite"));
+
+    }
+    return names;
 }

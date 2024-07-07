@@ -2,6 +2,7 @@
 #define PROFILE_H
 
 #include <QDebug>
+#include <QDir>
 
 #include "basecomponent.h"
 
@@ -9,6 +10,7 @@ class Profile : public BaseComponent
 {
 private:
     QString dbPath;
+    QStringList names;
     QStringList profiles;
 public:
     Profile();
@@ -26,6 +28,10 @@ public:
     QStringList const  & getProfiles();
     //return current profile
     QString const & getCurrentProfile();
+    /*
+    only get names of profiles without path
+    */
+    QStringList const & getProfilesNames();
 
 public slots:
     //set profile path
