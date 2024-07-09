@@ -16,7 +16,6 @@ CreateProfile::CreateProfile( QStringList const &e, QWidget *parent)
                          Qt::CustomizeWindowHint |
                          Qt::WindowTitleHint|
                          Qt::WindowSystemMenuHint);
-    // ui->pbCreateProfile->setEnabled(false);
 }
 
 CreateProfile::~CreateProfile()
@@ -74,5 +73,5 @@ void CreateProfile::on_pbCreateProfile_clicked()
         warn.exec();
     }
     qDebug("End of on click Create PB!");
-}
+    }
 

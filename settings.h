@@ -26,12 +26,17 @@ public:
 public slots:
 
     /*
-     *
+     * create settings file
      */
     void createSettings(QString const &name, QStringList const & data);
 
+    /*
+     * read settings from file
+     */
+    void readSettings(QString const &name);
 private:
-    QJsonArray settings;
+    QJsonObject settings;
+    QJsonDocument config;
 };
 
 #endif // SETTINGS_H

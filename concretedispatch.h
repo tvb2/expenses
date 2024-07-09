@@ -12,6 +12,7 @@
 #include "database.h"
 #include "settings.h"
 #include "createprofile.h"
+#include "selectprofile.h"
 
 class ConcreteDispatch : public Dispatch
 {
@@ -28,9 +29,25 @@ public:
 
 void Notify(BaseComponent *sender, std::string event) const override;
 
-//run when starting the app
+/*
+ * take care of all startup routines
+ */
 void Launcher();
 
+/*
+ * create new profile, settings and database
+ */
+void createNew();
+
+/*
+ * select profile and configure DB and Settings
+ */
+void selectProfile(QString const & p);
+
+/*
+ * overload select profile from multiple choice
+ */
+void selectProfile();
 };
 
 #endif // CONCRETEDISPATCH_H

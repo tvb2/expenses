@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     profile.cpp \
+    selectprofile.cpp \
     settings.cpp \
     createprofile.cpp \
 
@@ -26,12 +27,14 @@ HEADERS += \
     dispatch.h \
     mainwindow.h \
     profile.h \
+    selectprofile.h \
     settings.h \
     createprofile.h \
 
 FORMS += \
     createprofile.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    selectprofile.ui
 
 # TRANSLATIONS += \
 #     expenses_ru_RU.ts

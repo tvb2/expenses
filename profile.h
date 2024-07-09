@@ -21,9 +21,9 @@ public:
 
     /*
      * search profiles in the dbPath
-     * populate member profiles (full path)
-     * populate member files (only filenames with extension)
-     * populate member names (only filenames without extension)
+     * populate members profiles (full path),
+     * files (filenames with ext),
+     * names (filenames w/0 ext)
      */
     void searchProfiles();
 
