@@ -11,16 +11,24 @@ void ConcreteDispatch::Notify(BaseComponent *sender, std::string event) const {
 
 
 void ConcreteDispatch::Launcher(){
-    //find profiles in current directory
+    //find existing profiles in current directory
     this->profile->searchProfiles();
-    QStringList names = this->profile->getProfilesNames();
 
-    //no profiles found - create profile
+    //no profiles found - create new profile
     if (this->profile->isEmpty()){
-        CreateProfile *d = new CreateProfile(names);
+        qDebug("No profiles found - create new profile");
+
+        //create new profile name and settings
+        CreateProfile *d = new CreateProfile();
+
+        QObject::connect(d, &CreateProfile::setProfileName, this->db, &Database::createNewDB);
         QObject::connect(d, &CreateProfile::setProfileName, this->profile, &Profile::setPath);
+        QObject::connect(d, &CreateProfile::setSettings, this->settings, &Settings::createSettings);
+
         d->exec();
-        qDebug("No profiles found");
+
+        //update profile object with newly created database
+        this->profile->searchProfiles();
     }
      //one profile found - select it
     else if(this->profile->size() == 1){
@@ -32,27 +40,15 @@ void ConcreteDispatch::Launcher(){
     }
     //multiple profiles found - select profile to be used in current session
     else{
+        QStringList existingNames = this->profile->getProfileNames();
 
         //temp
-        CreateProfile *d = new CreateProfile(names);
+        CreateProfile *d = new CreateProfile(existingNames);
         QObject::connect(d, &CreateProfile::setProfileName, this->profile, &Profile::setPath);
         d->exec();
         qDebug("No profiles found");
         //
         qDebug("Multiple profiles found. Select one:");
     }
-
-    // creating sqlite database
-
-    // thePath = thePath + "/" + "d.sqlite";
-    // QSqlDatabase db;
-    // db = QSqlDatabase::addDatabase("QSQLITE");
-    // db.setDatabaseName(thePath);
-    // if (!db.open())
-    //     qDebug("problem opening db");
-    // else
-    //     qDebug("DB successfully open!");
-    // qDebug("end");
-
 }
 

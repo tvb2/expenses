@@ -28,6 +28,6 @@ void MainWindow::on_pushButton_clicked(){
  */
 void MainWindow::on_pB_Submit_clicked()
 {
-    this->dsptch->db->addExpense();
+    this->dsptch->db->addExpense("boo");
 }
 

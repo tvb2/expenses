@@ -9,6 +9,7 @@ CreateProfile::CreateProfile( QStringList const &e, QWidget *parent)
 {
     ui->setupUi(this);
     ui->cbPeriods->addItems(this->periods);
+    ui->leCurrency->setText("CAD");//default text in the currency field
 
     //disable default close cross in the title bar
     this->setWindowFlags(Qt::Window |
@@ -35,14 +36,24 @@ bool CreateProfile::isUniq(QString const &name){
 
 void CreateProfile::on_pbCreateProfile_clicked()
 {
-    QString name = "NewProfile";
+    QString name = "profile", currency = "CAD", period = this->periods[0];
+
     //check if profile name is not empty
     if (ui->leProfileName->text().length() > 0){
         name = ui->leProfileName->text();
         name = name.length()>=8?name.mid(0,8):name;
+
         //check that this profile does not already exist
         if (isUniq(name)){
-            emit setProfileName(name);
+            auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+
+            QString fullname = path + "/" + name + ".sqlite";
+            currency = ui->leCurrency->text().isEmpty()?currency:ui->leCurrency->text().mid(0,3).toUpper();
+            period = ui->cbPeriods->currentText();
+            QStringList settings = {currency, period};
+
+            emit setProfileName(fullname);
+            emit setSettings(name, settings);
             this->close();
         }
         else{
@@ -53,6 +64,7 @@ void CreateProfile::on_pbCreateProfile_clicked()
             warn.exec();
         }
     }
+
     //profile name is empty: show warning and return to Create Profile window
     else{
         QMessageBox warn;
@@ -61,6 +73,6 @@ void CreateProfile::on_pbCreateProfile_clicked()
         warn.setWindowTitle("Error");
         warn.exec();
     }
-    qDebug("New profile created!");
+    qDebug("End of on click Create PB!");
 }
 

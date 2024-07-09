@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QStandardPaths>
 
 namespace Ui {
 class CreateProfile;
@@ -22,6 +23,7 @@ public:
 
 signals:
     void setProfileName(QString &nm);
+    void setSettings(QString const & name, QStringList &settings);
 
 private slots:
     void on_pbCreateProfile_clicked();

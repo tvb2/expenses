@@ -9,32 +9,57 @@
 class Profile : public BaseComponent
 {
 private:
-    QString dbPath;
-    QStringList names;
-    QStringList profiles;
+    QString dbPath;//current db path
+    QDir dir;
+    QStringList profiles; //all found profile paths and names in the working dir
+    QStringList files; //all found profile names in the working dir
+    QStringList names; //all found profile names in the working dir
 public:
     Profile();
 
 
 
-    //search profiles in the dbPath
+    /*
+     * search profiles in the dbPath
+     * populate member profiles (full path)
+     * populate member files (only filenames with extension)
+     * populate member names (only filenames without extension)
+     */
     void searchProfiles();
 
     //this->profiles is empty
+
     bool isEmpty();
     //size of this->profiles
+
     int size();
-    //get profiles list
+
+    /*
+     * get list of all profiles with paths
+     */
     QStringList const  & getProfiles();
-    //return current profile
-    QString const & getCurrentProfile();
+
+    /*
+     * get profile filenames with extensions
+     */
+    QStringList const & getProfileFileNames();
+
     /*
     only get names of profiles without path
     */
-    QStringList const & getProfilesNames();
+    QStringList const & getProfileNames();
+
+    /*
+     *return current profile with full path
+     */
+    QString const & getCurrentProfile();
+
 
 public slots:
-    //set profile path
+
+    /*
+     * set path for the current profile
+     */
     void setPath(QString const &path);
 };
 

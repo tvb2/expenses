@@ -1,10 +1,6 @@
 #include "database.h"
 
-Database::Database() {}
-
-void Database::addExpense(){
-    qDebug("Add expenses to database");
-}
+Database::Database(){}
 
 void Database::setDB(QString const &path){
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -28,17 +24,30 @@ void Database::setDB(QString const &path){
     }
 }
 
+void Database::createNewDB(QString const &path){
+    this->db = QSqlDatabase::addDatabase("QSQLITE");//not dbConnection
+    this->db.setDatabaseName(path);
+    this->db.open();
+    QSqlQuery query;
+    query.exec("CREATE TABLE expenses "
+               "(id INT primary key, "
+               "category VARCHAR(20), "
+               "amount FLOAT(4,2), "
+               "currency VARCHAR(3), "
+               "regular BOOL )");
+    qDebug("Database: created new database");
+}
+
 bool Database::addExpense(const QString& cat)
 {
     bool success = false;
     // you should check if args are ok first...
     QSqlQuery query;
-    query.prepare("INSERT INTO expenses (category, amount, currency, reg) "
+    query.prepare("INSERT INTO expenses (category, amount, currency, regular) "
                   "VALUES (:category, :amount, :currency, :reg)");
-    // query.prepare("INSERT INTO expenses (category, amount, currency, regular) "
-    //               "VALUES (:category, :amount, :currency, :reg)");
+
     query.bindValue(":category", "laundry");
-    query.bindValue(":amount", 67.9f);
+    query.bindValue(":amount", 67.987f);
     query.bindValue(":currency", "CAD");
     query.bindValue(":reg", 1);
     if(query.exec())
@@ -66,7 +75,7 @@ QSqlQuery query("SELECT id, category, amount, currency, reg FROM expenses");
                 str.append(query.value("category").toString());
                 str.append(query.value("amount").toString());
                 str.append(query.value("currency").toString());
-                str.append(query.value("reg").toString());
+                str.append(query.value("regular").toString());
                 list.append(str);
                 str.clear();
             }
