@@ -23,6 +23,7 @@ public:
         jsonFile.write(document.toJson());
     }
 
+    //used only for tests
     void jsonTests();
 
     /*
@@ -50,7 +51,7 @@ public:
     }
 
     /*
-     * remove non-regular category (if exists)
+     * remove non-regular category (if exists). Removing is allowed
      */
     void remNonRegCat(QString const &cat){
         if(nonRegCat.contains(cat)){
@@ -79,7 +80,6 @@ private:
     QVariantList regCat;
     QVariantList nonRegCat;
 
-    QJsonDocument config;
     QString fullname;
 };
 

@@ -33,19 +33,23 @@ void Settings::createSettings(QString const &name, QVariantMap const & gen){
     this->settings.insert("Regular",QJsonValue::fromVariant(this->regCat));
 
     this->updateMap("general", gen);
-
-    // saveJson(QJsonDocument(this->settings), this->fullname);
-
 }
 
 void Settings::readSettings(QString const &name){
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     path += "/" + name + ".settings";
-    this->config = loadJson(path);
-    this->settings = this->config.object();
+    QJsonDocument config = loadJson(path);
+    this->settings = config.object();
+    QVariantMap t = this->settings.toVariantMap();
+    this->general  = t["General"].toMap();
+    this->exchRates= t["ExchRates"].toMap();
+    this->regCat = t["Regular"].toList();
+    this->nonRegCat = t["NonRegular"].toList();
+
     qDebug() << "Settings: file loaded: " << path;
 }
 
+//used only for tests
 void Settings::jsonTests(){
     //current path. If folder doesn't exist, create it (supposed to be iterative)
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);

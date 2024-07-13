@@ -25,6 +25,7 @@ void ConcreteDispatch::Launcher(){
         qDebug("only one profile is found!");
         QString p = this->profile->getProfileNames()[0];
         selectProfile(p);
+        this->settings->readSettings(p);
     }
 //multiple profiles found - select profile to be used in current session
     else{
