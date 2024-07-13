@@ -2,53 +2,40 @@
 
 Settings::Settings() {}
 
-void Settings::createSettings(QString const &name, QStringList const &data){
+void Settings::createSettings(QString const &name, QVariantMap const & gen){
+    //current path. If folder doesn't exist, create it (supposed to be iterative)
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QString fullname = path + "/" + name + ".settings";
+    QDir dir(path);
+    if (!dir.exists())
+        dir.mkpath(".");
+    this->fullname = path + "/" + name + ".settings";
 
-    QJsonObject settings
-        {
-            {"currency", data[0]},
-            {"period", data[1]},
-        };
-    /*
-     * add non-regular categories
-     */
-/*
- * how to construct object
- * rates with currency rates for various currencies
-    QJsonObject rates;
-    rates["USD"] = "1.35";
-    rates["RUB"] = "65";
-    QJsonArray r;
-    r.push_back(rates);
-    settings.insert("rates",r);
-*/
-    QJsonObject categories;
-    categories["Grocery"];
-    categories["Fuel"];
-    categories["Cafes, restraurants"];
-    categories["Entertainment"];
-    categories["Public_transport"];
-    categories["Communications"];
-    categories["Utilities"];
-    categories["Kids education/development"];
-    categories["Alcohol"];
-    categories["Car maintenance"];
-    categories["House maintenance"];
-    categories["Insurances"];
-    categories["Medical"];
-    categories["Hygiene"];
-    categories["Detergents"];
-    categories["Clothes"];
-    categories["Presents"];
+    //populate default regular categories first time
+    this->regCat = {
+        "Grocery",
+        "Fuel",
+        "Cafes, restraurants",
+        "Entertainment",
+        "Public_transport",
+        "Communications",
+        "Utilities",
+        "Kids education/development",
+        "Alcohol",
+        "Car maintenance",
+        "House maintenance",
+        "Insurances",
+        "Medical",
+        "Hygiene",
+        "Detergents",
+        "Clothes",
+        "Presents"
+    };
+    this->settings.insert("Regular",QJsonValue::fromVariant(this->regCat));
 
-    QJsonArray cat;
-    cat.push_back(categories);
-    settings.insert("regular",cat);
+    this->updateMap("general", gen);
 
-    QJsonDocument document(settings);
-    saveJson(document, fullname);
+    // saveJson(QJsonDocument(this->settings), this->fullname);
+
 }
 
 void Settings::readSettings(QString const &name){
@@ -57,4 +44,68 @@ void Settings::readSettings(QString const &name){
     this->config = loadJson(path);
     this->settings = this->config.object();
     qDebug() << "Settings: file loaded: " << path;
+}
+
+void Settings::jsonTests(){
+    //current path. If folder doesn't exist, create it (supposed to be iterative)
+    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir dir(path);
+    if (!dir.exists())
+        dir.mkpath(".");
+
+    this->fullname = path + "/" + "test" + ".settings";
+
+    QVariantMap g;
+    g["currency"] = "AED";
+    g["period"] = "weekly";
+    this->updateMap("general",g);
+
+    this->exchRates["USD"] = 3.67;
+    this->exchRates["RUB"] = 0.042;
+    this->exchRates["CAD"] = 2.69;
+    QVariantMap r;
+    r["UAH"] = 0.090;
+    this->updateMap("rates", r);
+
+    this->nonRegCat.push_back("yacht");
+
+    r["USD"] = 3.8;
+    this->updateMap("rates", r);
+
+    this->regCat = {
+        "Grocery",
+        "Fuel",
+        "Cafes, restraurants",
+        "Entertainment",
+        "Public_transport",
+        "Communications",
+        "Utilities",
+        "Kids education/development",
+        "Alcohol",
+        "Car maintenance",
+        "House maintenance",
+        "Insurances",
+        "Medical",
+        "Hygiene",
+        "Detergents",
+        "Clothes",
+        "Presents"
+    };
+    this->settings.insert("Regual",QJsonValue::fromVariant(this->regCat));
+    saveJson(QJsonDocument(this->settings), this->fullname);
+}
+
+void Settings::updateMap(QString section, QVariantMap const &m){
+    for (auto i = m.begin(); i != m.end(); ++i){
+        if (section == "general")
+            this->general[i.key()] = i.value();
+        else if(section == "rates")
+            this->exchRates[i.key()] = i.value();
+    }
+    if (section == "general")
+        this->settings.insert("General",QJsonObject::fromVariantMap(this->general));
+    else if(section == "rates")
+        this->settings.insert("ExchRates",QJsonObject::fromVariantMap(this->exchRates));
+
+    saveJson(QJsonDocument(this->settings), this->fullname);
 }

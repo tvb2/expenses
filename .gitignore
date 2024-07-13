@@ -4,6 +4,7 @@
 *~
 *.autosave
 build/
+Tests/
 Tests/build/
 *.a
 *.core

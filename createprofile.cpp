@@ -49,7 +49,9 @@ void CreateProfile::on_pbCreateProfile_clicked()
             QString fullname = path + "/" + name + ".sqlite";
             currency = ui->leCurrency->text().isEmpty()?currency:ui->leCurrency->text().mid(0,3).toUpper();
             period = ui->cbPeriods->currentText();
-            QStringList settings = {currency, period};
+            QVariantMap settings;
+            settings["currency"] = currency;
+            settings["period"] = period;
 
             emit setProfileName(fullname);
             emit setSettings(name, settings);

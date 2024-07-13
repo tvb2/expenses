@@ -23,20 +23,64 @@ public:
         jsonFile.write(document.toJson());
     }
 
+    void jsonTests();
+
+    /*
+     * update values in corresponding section "rates", "general"
+     */
+    void updateMap(QString section, QVariantMap const &m);
+
+    /*
+     * add single default (regular) category
+     */
+    void addRegCat(QString const &cat){
+        this->regCat.push_back(cat);
+        this->settings.insert("Regual",QJsonValue::fromVariant(this->regCat));
+        saveJson(QJsonDocument(this->settings), this->fullname);
+    }
+
+
+    /*
+     * add single non-regular category
+     */
+    void addNonRegCat(QString const &cat){
+        this->nonRegCat.push_back(cat);
+        this->settings.insert("NonRegular",QJsonValue::fromVariant(this->nonRegCat));
+        saveJson(QJsonDocument(this->settings), this->fullname);
+    }
+
+    /*
+     * remove non-regular category (if exists)
+     */
+    void remNonRegCat(QString const &cat){
+        if(nonRegCat.contains(cat)){
+            nonRegCat.removeOne(cat);
+        }
+    }
+
 public slots:
 
     /*
      * create settings file
      */
-    void createSettings(QString const &name, QStringList const & data);
+    void createSettings(QString const &name, QVariantMap const & gen);
 
     /*
      * read settings from file
      */
     void readSettings(QString const &name);
+
 private:
     QJsonObject settings;
+
+    QVariantMap exchRates;
+    QVariantMap general;
+
+    QVariantList regCat;
+    QVariantList nonRegCat;
+
     QJsonDocument config;
+    QString fullname;
 };
 
 #endif // SETTINGS_H

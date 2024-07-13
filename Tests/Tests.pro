@@ -1,12 +1,14 @@
-QT += core testlib gui widgets sql
-CONFIG += qt warn_on depend_includepath testcase
+QT += core testlib gui widgets sql uitools
+CONFIG += c++17 qt warn_on depend_includepath testcase
 
 TEMPLATE = app
 
 SOURCES += \
 tst_databasetest.cpp \
-../database.cpp
+../database.cpp \
+../settings.cpp \
 
 HEADERS += \
-    ../database.h \
-
+../basecomponent.h \
+../database.h \
+../settings.h \

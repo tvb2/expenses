@@ -1,9 +1,14 @@
+#ifndef TST_DATABASETEST_H
+#define TST_DATABASETEST_H
+
 #include <QCoreApplication>
 #include <QtTest>
 #include <QObject>
+#include <QIODevice>
 
 // add necessary includes here
 #include "../database.h"
+#include "../settings.h"
 
 class databaseTest : public QObject
 {
@@ -16,8 +21,9 @@ public:
 private slots:
     void initTestCase();
     void cleanupTestCase();
-    void test_case1();
-    void test_db_print();
+    void test_database();
+   void test_settings();
+   void test_db_print();
 };
 
 databaseTest::databaseTest() {}
@@ -28,9 +34,15 @@ void databaseTest::initTestCase() {}
 
 void databaseTest::cleanupTestCase() {}
 
-void databaseTest::test_case1() {
+void databaseTest::test_database() {
     QString str = "Hello";
     QVERIFY(str.toUpper() == "HELLO");
+}
+
+void databaseTest::test_settings(){
+    Settings *settings = new Settings;
+    settings->jsonTests();
+    QVERIFY(true == true);
 }
 
 void databaseTest::test_db_print(){
@@ -44,3 +56,4 @@ void databaseTest::test_db_print(){
 QTEST_MAIN(databaseTest)
 
 #include "tst_databasetest.moc"
+#endif

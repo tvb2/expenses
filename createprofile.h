@@ -23,7 +23,7 @@ public:
 
 signals:
     void setProfileName(QString &nm);
-    void setSettings(QString const & name, QStringList &settings);
+    void setSettings(QString const & name, QVariantMap &settings);
 
 private slots:
     void on_pbCreateProfile_clicked();
