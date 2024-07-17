@@ -8,6 +8,7 @@
 
 class Settings : public BaseComponent
 {
+    Q_OBJECT
 public:
     Settings();
 
@@ -58,6 +59,11 @@ public:
             nonRegCat.removeOne(cat);
         }
     }
+signals:
+    /*
+     * data to populate MainW
+     */
+    void basicData(QVariant const &cat, QStringList const &curr);
 
 public slots:
 

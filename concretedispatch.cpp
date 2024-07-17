@@ -9,6 +9,15 @@ void ConcreteDispatch::Notify(BaseComponent *sender, std::string event) const {
     }
 }
 
+void ConcreteDispatch::Notify(QWidget *sender, std::string event) const {
+    if (event == "populate") {
+        qDebug ("Dispatch: Populate from MainWindow");
+    }
+    if (event == "DB") {
+        qDebug ("Dispatch recieves DATABASE and triggers following operations: ");
+    }
+}
+
 
 void ConcreteDispatch::Launcher(){
 //find existing profiles in current directory
@@ -31,13 +40,17 @@ void ConcreteDispatch::Launcher(){
     else{
         selectProfile();
     }
+
+//start Main Window
+    startMainW();
 }
 
 void ConcreteDispatch::createNew(){
     CreateProfile *d = new CreateProfile();
 
-    QObject::connect(d, &CreateProfile::setProfileName, this->db, &Database::createNewDB);
+    QObject::connect(d, &CreateProfile::setDBPath, this->db, &Database::createNewDB);
     QObject::connect(d, &CreateProfile::setProfileName, this->profile, &Profile::setPath);
+    QObject::connect(d, &CreateProfile::setProfileName, this->profile, &Profile::setName);
     QObject::connect(d, &CreateProfile::setSettings, this->settings, &Settings::createSettings);
 
     d->exec();
@@ -54,6 +67,7 @@ void ConcreteDispatch::selectProfile(QString const &p){
             break;
     }
     this->profile->setPath(this->profile->getProfiles()[index]);
+    this->profile->setName(this->profile->getProfileNames()[index]);
     this->db->setDB(this->profile->getCurrentProfile());
     this->settings->readSettings(p);
 }
@@ -63,8 +77,16 @@ void ConcreteDispatch::selectProfile()  {
 
     SelectProfile *s = new SelectProfile(existingNames);
     QObject::connect(s, &SelectProfile::selectProfile, this->profile, &Profile::setPath);
+    QObject::connect(s, &SelectProfile::selectProfile, this->profile, &Profile::setName);
     QObject::connect(s, &SelectProfile::selectProfile, this->db, &Database::setDB);
     QObject::connect(s, &SelectProfile::selectProfile, this->settings, &Settings::readSettings);
     s->exec();
     qDebug("Multiple profiles found");
+}
+
+void ConcreteDispatch::startMainW(){
+    MainWindow *w = new MainWindow;
+    QObject::connect(this->settings, &Settings::basicData, w, &MainWindow::populate);
+    this->settings->readSettings(this->profile->getCurrentProfileName());
+    w->show();
 }

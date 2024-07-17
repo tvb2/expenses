@@ -45,6 +45,8 @@ void Settings::readSettings(QString const &name){
     this->exchRates= t["ExchRates"].toMap();
     this->regCat = t["Regular"].toList();
     this->nonRegCat = t["NonRegular"].toList();
+    QStringList curr = this->exchRates.keys();
+    emit basicData(this->regCat, curr);
 
     qDebug() << "Settings: file loaded: " << path;
 }
@@ -105,11 +107,16 @@ void Settings::updateMap(QString section, QVariantMap const &m){
             this->general[i.key()] = i.value();
         else if(section == "rates")
             this->exchRates[i.key()] = i.value();
+        else
+            qDebug("Settings: wrong name of Section to update!");
     }
+
     if (section == "general")
         this->settings.insert("General",QJsonObject::fromVariantMap(this->general));
     else if(section == "rates")
         this->settings.insert("ExchRates",QJsonObject::fromVariantMap(this->exchRates));
 
+    QStringList curr = this->exchRates.keys();
+    emit basicData(this->regCat, curr);
     saveJson(QJsonDocument(this->settings), this->fullname);
 }

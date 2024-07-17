@@ -46,14 +46,15 @@ void CreateProfile::on_pbCreateProfile_clicked()
         if (isUniq(name)){
             auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
-            QString fullname = path + "/" + name + ".sqlite";
+            QString fullpath = path + "/" + name + ".sqlite";
             currency = ui->leCurrency->text().isEmpty()?currency:ui->leCurrency->text().mid(0,3).toUpper();
             period = ui->cbPeriods->currentText();
             QVariantMap settings;
             settings["currency"] = currency;
             settings["period"] = period;
 
-            emit setProfileName(fullname);
+            emit setDBPath(fullpath);
+            emit setProfileName(name);
             emit setSettings(name, settings);
             this->close();
         }

@@ -3,8 +3,6 @@
 
 #include <QMainWindow>
 
-#include "concretedispatch.h"
-
 namespace Ui {
 class MainWindow;
 }
@@ -12,18 +10,23 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-private:
-    ConcreteDispatch *dsptch;
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr,ConcreteDispatch *d = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void getDispatch(ConcreteDispatch *d = nullptr);
+public slots:
+    /**
+     * populate drop-down lists
+     */
+    void populate(QVariant const &cat, QStringList const & curr);
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pbOK_clicked();
 
+    /**
+    * submit expense info to database
+    */
     void on_pB_Submit_clicked();
 
 private:

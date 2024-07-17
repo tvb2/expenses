@@ -13,6 +13,7 @@
 #include "settings.h"
 #include "createprofile.h"
 #include "selectprofile.h"
+#include "mainwindow.h"
 
 class ConcreteDispatch : public Dispatch
 {
@@ -21,13 +22,18 @@ public:
     Database *db;
     Settings *settings;
 
-    ConcreteDispatch(Profile *pr, Database *databs, Settings *st) : profile(pr), db(databs), settings(st) {
+    ConcreteDispatch(Profile *pr, Database *databs, Settings *st)
+        : profile(pr)
+        , db(databs)
+        , settings(st)
+    {
         this->profile->set_dispatch(this);
         this->db->set_dispatch(this);
         this->settings->set_dispatch(this);
     }
 
 void Notify(BaseComponent *sender, std::string event) const override;
+void Notify(QWidget *sender, std::string event) const override;
 
 /*
  * take care of all startup routines
@@ -48,6 +54,11 @@ void selectProfile(QString const & p);
  * overload select profile from multiple choice
  */
 void selectProfile();
+
+/**
+ * starting main window
+ * */
+void startMainW();
 };
 
 #endif // CONCRETEDISPATCH_H

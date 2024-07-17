@@ -22,7 +22,21 @@ public:
     bool isUniq(QString const &name);
 
 signals:
-    void setProfileName(QString &nm);
+    /**
+     * @brief send only full path
+     * @param path
+     */
+    void setDBPath(QString &path);
+    /**
+     * @brief send only profile name as typed in the field
+     * @param name
+     */
+    void setProfileName(QString &name);
+    /**
+     * @brief send name only; default currency and period
+     * @param name
+     * @param settings
+     */
     void setSettings(QString const & name, QVariantMap &settings);
 
 private slots:

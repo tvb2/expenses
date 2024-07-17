@@ -14,6 +14,7 @@ class BaseComponent;
 class Dispatch{
 public:
     virtual void Notify(BaseComponent *sender, std::string event) const = 0;
+    virtual void Notify(QWidget *sender, std::string event) const = 0;
 };
 
 #endif // DISPATCH_H

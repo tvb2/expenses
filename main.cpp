@@ -3,11 +3,11 @@
 #include <QLineEdit>
 #include <QPushButton>
 
+#include "mainwindow.h"
 #include <QDebug>
 #include <memory.h>
 
 #include "concretedispatch.h"
-#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,31 +26,5 @@ int main(int argc, char *argv[])
     //launch start module and hand over selected DB to DB manager
     dispatch->Launcher();
 
-    MainWindow *w = new MainWindow;
-    w->getDispatch(dispatch);
-    w->show();
-
-
-
-    // creating sqlite database
-/*
-    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    if (path.isEmpty()) qFatal("Cannot determine settings storage location");
-    QDir d{path};
-    QString thePath;
-    if (d.mkpath(d.absolutePath()) && QDir::setCurrent(d.absolutePath())) {
-        thePath = QDir::currentPath();
-        qDebug() << "settings in" << thePath;// QDir::currentPath();
-    }
-    thePath = thePath + "/" + "d.sqlite";
-    QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(thePath);
-    if (!db.open())
-        qDebug("problem opening db");
-    else
-        qDebug("DB successfully open!");
-    qDebug("end");
-*/
     return a.exec();
 }

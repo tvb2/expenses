@@ -7,11 +7,6 @@ Profile::Profile() {
     this->dir = path;
 }
 
-
-void Profile::setPath(QString const &path){
-    this->dbPath = path;
-    qDebug() << "Profile DB path set: " << this->dbPath;
-}
 void Profile::searchProfiles(){
     QString thePath;
     if (this->dir.mkpath(this->dir.absolutePath()) && QDir::setCurrent(this->dir.absolutePath())) {
@@ -38,22 +33,4 @@ void Profile::searchProfiles(){
         this->names.append(i.mid(0,i.lastIndexOf(".sqlite")));
     }
     qDebug("QString list derived");
-}
-QStringList const & Profile::getProfiles(){
-    return this->profiles;
-}
-QStringList const & Profile::getProfileFileNames(){
-    return this->files;
-}
-QStringList const & Profile::getProfileNames(){
-    return this->names;
-}
-QString const & Profile::getCurrentProfile(){
-    return this->dbPath;
-}
-bool Profile::isEmpty(){
-    return this->profiles.isEmpty();
-}
-int Profile::size(){
-    return this->profiles.size();
 }
