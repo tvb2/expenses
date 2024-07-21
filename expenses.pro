@@ -1,4 +1,4 @@
-QT       += core gui sql uitools
+QT       += core gui sql uitools widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,26 +10,24 @@ CONFIG += c++17
 
 SOURCES += \
     basecomponent.cpp \
-    concretedispatch.cpp \
-    database.cpp \
     dispatch.cpp \
     main.cpp \
     mainwindow.cpp \
+    database.cpp \
     profile.cpp \
-    selectprofile.cpp \
     settings.cpp \
     createprofile.cpp \
+    selectprofile.cpp \
 
 HEADERS += \
     basecomponent.h \
-    concretedispatch.h \
-    database.h \
     dispatch.h \
     mainwindow.h \
+    database.h \
     profile.h \
-    selectprofile.h \
     settings.h \
     createprofile.h \
+    selectprofile.h \
 
 FORMS += \
     createprofile.ui \

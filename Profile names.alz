@@ -6,37 +6,175 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node w="272000" x="-707688" y="-399764" h="75000" index="0">
-   <text>working dir "C:/../expenseApp"</text>
+  <node w="491000" x="-417052" y="-873519" h="292000" index="0">
+   <text>struct Account
+{
+    QString path;
+    QString file;
+    QString name;
+};
+
+Private members
+    QVector&lt;Account> accounts;
+    QString path;//current profile path
+    QDir dir; //current app dir
+    QString name; //current profile name without extension</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="290000" x="-381273" y="-276839" h="116000" index="1">
-   <text>Profile::profiles: 
+  <node w="290000" x="-381273" y="-276838" h="116000" index="1">
+   <text>Profile::accounts.profile: 
 "C:/../expenseApp/profile1.sqlite"
 "C:/../expenseApp/profile2.sqlite"
 ....</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-43254" y="-419575" h="75000" index="3">
-   <text>Profile::searchProfiles</text>
-   <color g="255" r="255" b="255"/>
+  <node w="365000" x="-43253" y="-419574" h="94000" index="3">
+   <text>Private:
+Profile::addProfiles (QStringList - full path)
+ (multiple profiles)</text>
+   <color g="0" r="255" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-45141" y="-277783" h="116000" index="6">
-   <text>Profile::files: 
+  <node w="200000" x="-45140" y="-277783" h="116000" index="6">
+   <text>Profile::accounts.file: 
 "profile1.sqlite"
 "profile2.sqlite"
 ....</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="295424" y="-270801" h="116000" index="7">
-   <text>Profile::names:
-profile1.sqlite
-profile2.sqlite
+  <node w="212000" x="299771" y="-276598" h="116000" index="7">
+   <text>Profile::accounts.name:
+profile1
+profile2
 ....</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-43434" y="-558461" h="75000" index="8">
+   <text>Profile::searchProfiles</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="347000" x="-48484" y="-48484" h="75000" index="9">
+   <text>Profile::addProfile (QString - only name)
+ (single profile)</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="236000" x="-457575" y="92929" h="75000" index="10">
+   <text>Profile::profiles -> append</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="216000" x="-46022" y="95062" h="75000" index="11">
+   <text>Profile::files: -> append</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="230000" x="286085" y="99239" h="75000" index="12">
+   <text>Profile::names -> append</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="415000" x="655072" y="98550" h="75000" index="13">
+   <text>Profile::profileName - update current profilename</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="386000" x="-39130" y="281159" h="94000" index="14">
+   <text>Profile::setCurrentProfile (QString only name)
+- check if profile exists in accounts
+- set current path and current name</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-2716747" y="-1437325" h="160000" index="15">
+   <text>ConcreteDispatch
+
+Private:
+profile
+db
+settings</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="313000" x="-2217391" y="-1202898" h="94000" index="16">
+   <text>Launcher
+- profile searches current directory
+- Launcher analyses existing profiles</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="271000" x="-1561071" y="-1462465" h="75000" index="17">
+   <text>ConcreteDispatch::createNew()</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="409000" x="-1493817" y="-1167344" h="75000" index="18">
+   <text>ConcreteDispatch::setProfile(QString name only)</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="283000" x="-1541533" y="-699760" h="75000" index="19">
+   <text>ConcreteDispatch::selectProfile()</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-2383050" y="-293220" h="138000" index="20">
+   <text>Database
+private:
+    QSqlDatabase db;
+    QDir dir;
+    QString path;</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="364000" x="-1881355" y="-291033" h="94000" index="21">
+   <text>Database::createDB(QString const &amp;name)
+Using only name create DB
+create table with default fields</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="391000" x="-1874576" y="-46966" h="116000" index="22">
+   <text>Database::setCurrentDB(QString const &amp;name
+Check db with such name exists
+set db
+set path</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="364000" x="-2470000" y="603000" h="75000" index="24">
+   <text>CreateProfile::on_pbCreateProfile_clicked()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="317000" x="-3215416" y="791527" h="75000" index="25">
+   <text>slot:
+ConcreteDispatch::newProfileCreated</text>
+   <color g="0" r="255" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="271000" x="-3213750" y="360000" h="75000" index="26">
+   <text>ConcreteDispatch::createNew()</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="239000" x="-3752500" y="918750" h="75000" index="27">
+   <text>Database::createDB(name)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="224000" x="-3215000" y="916250" h="75000" index="28">
+   <text>Profile::addProfile(name)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="342000" x="-2803750" y="916250" h="75000" index="29">
+   <text>Settings::createSettings(name, settings)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -47,6 +185,52 @@ profile2.sqlite
    <text></text>
   </edge>
   <edge index0="3" index1="7" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="8" index1="3" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="9" index1="10" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="9" index1="11" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="9" index1="12" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="9" index1="13" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="16" index1="17" reversed="0" arrow-mode="0">
+   <text>No Profiles found</text>
+  </edge>
+  <edge index0="16" index1="18" reversed="0" arrow-mode="0">
+   <text>Only one profile found</text>
+  </edge>
+  <edge index0="16" index1="19" reversed="0" arrow-mode="0">
+   <text>Multiple profiles found</text>
+  </edge>
+  <edge index0="20" index1="21" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="20" index1="22" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="24" index1="25" reversed="0" arrow-mode="0">
+   <text>signals:
+profileCreated (name, settings)</text>
+  </edge>
+  <edge index0="25" index1="27" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="25" index1="28" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="25" index1="29" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="26" index1="24" reversed="0" arrow-mode="0">
    <text></text>
   </edge>
  </graph>

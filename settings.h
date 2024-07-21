@@ -2,13 +2,42 @@
 #define SETTINGS_H
 
 #include "basecomponent.h"
+
+#include <QObject>
 #include <QJsonDocument>
+#include <QVariantMap>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QFile>
+#include <QStandardPaths>
+#include <QDir>
+#include <map>
 
-class Settings : public BaseComponent
+struct SettingsBunlde
+{
+    QJsonObject settings;
+    QVariantMap exchRates;
+    QVariantMap general;
+
+    QVariantList regCat;
+    QVariantList nonRegCat;
+
+};
+
+class Settings : public QObject, public BaseComponent
 {
     Q_OBJECT
+private:
+    std::map<QString, SettingsBunlde> accounts;
+
+    QString fullpath;//full path
+    QString name;
+
+    /*
+     * update values in corresponding section "rates", "general"
+     */
+    void updateMap(QString section, QVariantMap const &m);
+
 public:
     Settings();
 
@@ -27,18 +56,15 @@ public:
     //used only for tests
     void jsonTests();
 
-    /*
-     * update values in corresponding section "rates", "general"
-     */
-    void updateMap(QString section, QVariantMap const &m);
+
 
     /*
      * add single default (regular) category
      */
     void addRegCat(QString const &cat){
-        this->regCat.push_back(cat);
-        this->settings.insert("Regual",QJsonValue::fromVariant(this->regCat));
-        saveJson(QJsonDocument(this->settings), this->fullname);
+        this->accounts[this->name].regCat.push_back(cat);
+        this->accounts[this->name].settings.insert("Regual",QJsonValue::fromVariant(this->accounts[this->name].regCat));
+        saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
     }
 
 
@@ -46,24 +72,24 @@ public:
      * add single non-regular category
      */
     void addNonRegCat(QString const &cat){
-        this->nonRegCat.push_back(cat);
-        this->settings.insert("NonRegular",QJsonValue::fromVariant(this->nonRegCat));
-        saveJson(QJsonDocument(this->settings), this->fullname);
+        this->accounts[this->name].nonRegCat.push_back(cat);
+        this->accounts[this->name].settings.insert("NonRegular",QJsonValue::fromVariant(this->accounts[this->name].nonRegCat));
+        saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
     }
 
     /*
      * remove non-regular category (if exists). Removing is allowed
      */
     void remNonRegCat(QString const &cat){
-        if(nonRegCat.contains(cat)){
-            nonRegCat.removeOne(cat);
+        if(this->accounts[this->name].nonRegCat.contains(cat)){
+            this->accounts[this->name].nonRegCat.removeOne(cat);
         }
     }
 signals:
-    /*
+    /**
      * data to populate MainW
      */
-    void basicData(QVariant const &cat, QStringList const &curr);
+    void transmitSettings(QVariant const &cat, QStringList const &curr);
 
 public slots:
 
@@ -75,18 +101,8 @@ public slots:
     /*
      * read settings from file
      */
-    void readSettings(QString const &name);
+    void readSettings(QString const &newName);
 
-private:
-    QJsonObject settings;
-
-    QVariantMap exchRates;
-    QVariantMap general;
-
-    QVariantList regCat;
-    QVariantList nonRegCat;
-
-    QString fullname;
 };
 
 #endif // SETTINGS_H

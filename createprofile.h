@@ -14,6 +14,10 @@ class CreateProfile;
 class CreateProfile : public QDialog
 {
     Q_OBJECT
+private:
+    Ui::CreateProfile *ui;
+    QStringList existing = {""}; //existing profile names
+    QStringList periods = { "monthly", "weekly"};//default averaging period
 
 public:
     explicit CreateProfile(QStringList const &e = {""}, QWidget *parent = nullptr);
@@ -22,30 +26,16 @@ public:
     bool isUniq(QString const &name);
 
 signals:
+
     /**
-     * @brief send only full path
-     * @param path
-     */
-    void setDBPath(QString &path);
-    /**
-     * @brief send only profile name as typed in the field
-     * @param name
-     */
-    void setProfileName(QString &name);
-    /**
-     * @brief send name only; default currency and period
+     * @brief send name only; send default settings
      * @param name
      * @param settings
      */
-    void setSettings(QString const & name, QVariantMap &settings);
+    void profileCreated(QString const &name, QVariantMap const &settings);
 
 private slots:
     void on_pbCreateProfile_clicked();
-
-private:
-    Ui::CreateProfile *ui;
-    QStringList existing = {""}; //existing profile names
-    QStringList periods = { "monthly", "weekly"};//default averaging period
 };
 
 #endif // CREATEPROFILE_H

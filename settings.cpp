@@ -3,15 +3,22 @@
 Settings::Settings() {}
 
 void Settings::createSettings(QString const &name, QVariantMap const & gen){
+    if (this->accounts.find(name) != this->accounts.end()){
+        qFatal("Settings::createSettings. Profile already exists!");
+        return;
+    }
+
+    this->name = name;
+
     //current path. If folder doesn't exist, create it (supposed to be iterative)
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir dir(path);
     if (!dir.exists())
         dir.mkpath(".");
-    this->fullname = path + "/" + name + ".settings";
+    this->fullpath = path + "/" + name + ".settings";
 
     //populate default regular categories first time
-    this->regCat = {
+    this->accounts[name].regCat= {
         "Grocery",
         "Fuel",
         "Cafes, restraurants",
@@ -30,25 +37,32 @@ void Settings::createSettings(QString const &name, QVariantMap const & gen){
         "Clothes",
         "Presents"
     };
-    this->settings.insert("Regular",QJsonValue::fromVariant(this->regCat));
+    this->accounts[name].settings.insert(
+        "Regular",
+        QJsonValue::fromVariant(this->accounts[name].regCat));
 
     this->updateMap("general", gen);
 }
 
-void Settings::readSettings(QString const &name){
+void Settings::readSettings(QString const &newName){
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    path += "/" + name + ".settings";
-    QJsonDocument config = loadJson(path);
-    this->settings = config.object();
-    QVariantMap t = this->settings.toVariantMap();
-    this->general  = t["General"].toMap();
-    this->exchRates= t["ExchRates"].toMap();
-    this->regCat = t["Regular"].toList();
-    this->nonRegCat = t["NonRegular"].toList();
-    QStringList curr = this->exchRates.keys();
-    emit basicData(this->regCat, curr);
+    if (newName == this->name){
+        qDebug() << "Settings::readSettings. Selected profile is the same as current.";
+    }
+    else{
+        this->fullpath = path + "/" + newName + ".settings";
+        QJsonDocument config = loadJson(this->fullpath);
+        this->accounts[newName].settings = config.object();
 
-    qDebug() << "Settings: file loaded: " << path;
+        QVariantMap t = this->accounts[newName].settings.toVariantMap();
+        this->accounts[newName].general  = t["General"].toMap();
+        this->accounts[newName].exchRates= t["ExchRates"].toMap();
+        this->accounts[newName].regCat = t["Regular"].toList();
+        this->accounts[newName].nonRegCat = t["NonRegular"].toList();
+        QStringList curr = this->accounts[newName].exchRates.keys();
+        emit transmitSettings(this->accounts[newName].regCat, curr);
+    }
+    qDebug() << "Settings::readSettings: file loaded: " << this->fullpath;
 }
 
 //used only for tests
@@ -59,26 +73,26 @@ void Settings::jsonTests(){
     if (!dir.exists())
         dir.mkpath(".");
 
-    this->fullname = path + "/" + "test" + ".settings";
+    this->fullpath = path + "/" + "test" + ".settings";
 
     QVariantMap g;
     g["currency"] = "AED";
     g["period"] = "weekly";
     this->updateMap("general",g);
 
-    this->exchRates["USD"] = 3.67;
-    this->exchRates["RUB"] = 0.042;
-    this->exchRates["CAD"] = 2.69;
+    this->accounts[this->name].exchRates["USD"] = 3.67;
+    this->accounts[this->name].exchRates["RUB"] = 0.042;
+    this->accounts[this->name].exchRates["CAD"] = 2.69;
     QVariantMap r;
     r["UAH"] = 0.090;
     this->updateMap("rates", r);
 
-    this->nonRegCat.push_back("yacht");
+    this->accounts[this->name].nonRegCat.push_back("yacht");
 
     r["USD"] = 3.8;
     this->updateMap("rates", r);
 
-    this->regCat = {
+    this->accounts[this->name].regCat = {
         "Grocery",
         "Fuel",
         "Cafes, restraurants",
@@ -97,26 +111,29 @@ void Settings::jsonTests(){
         "Clothes",
         "Presents"
     };
-    this->settings.insert("Regual",QJsonValue::fromVariant(this->regCat));
-    saveJson(QJsonDocument(this->settings), this->fullname);
+    this->accounts[this->name].settings.insert("Regual",QJsonValue::fromVariant(this->accounts[this->name].regCat));
+    saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
 }
 
 void Settings::updateMap(QString section, QVariantMap const &m){
+
     for (auto i = m.begin(); i != m.end(); ++i){
         if (section == "general")
-            this->general[i.key()] = i.value();
+            this->accounts[this->name].general = m;
         else if(section == "rates")
-            this->exchRates[i.key()] = i.value();
+            this->accounts[this->name].exchRates = m;
         else
             qDebug("Settings: wrong name of Section to update!");
     }
 
     if (section == "general")
-        this->settings.insert("General",QJsonObject::fromVariantMap(this->general));
+        this->accounts[this->name].settings.insert(
+            "General",
+            QJsonObject::fromVariantMap(this->accounts[this->name].general));
     else if(section == "rates")
-        this->settings.insert("ExchRates",QJsonObject::fromVariantMap(this->exchRates));
+        this->accounts[this->name].settings.insert(
+            "ExchRates",
+            QJsonObject::fromVariantMap(this->accounts[name].exchRates));
 
-    QStringList curr = this->exchRates.keys();
-    emit basicData(this->regCat, curr);
-    saveJson(QJsonDocument(this->settings), this->fullname);
+    saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
 }

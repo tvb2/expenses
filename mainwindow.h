@@ -19,7 +19,7 @@ public slots:
     /**
      * populate drop-down lists
      */
-    void populate(QVariant const &cat, QStringList const & curr);
+    void populate(QVariant const &cat, QStringList const &curr);
 
 private slots:
     void on_pbOK_clicked();

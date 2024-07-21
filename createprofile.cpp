@@ -53,9 +53,7 @@ void CreateProfile::on_pbCreateProfile_clicked()
             settings["currency"] = currency;
             settings["period"] = period;
 
-            emit setDBPath(fullpath);
-            emit setProfileName(name);
-            emit setSettings(name, settings);
+            emit profileCreated(name, settings);
             this->close();
         }
         else{

@@ -2,32 +2,33 @@
 #define DATABASE_H
 
 #include "basecomponent.h"
+
 #include <qsqldatabase.h>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QDir>
+#include <QStandardPaths>
 
 class Database : public BaseComponent
 {
-private:
-    QSqlDatabase db;
-    QDir dir;
 public:
     Database();
-
-    /*
-     * set database path
+    //virtual to go around a bug that requires a vtable for this class
+    virtual ~Database() {}
+    /**
+     * create database (name only)
      */
-    void setDB(QString const &path);
+    void createDB(QString const &name);
 
-    /*
-     * create new database with given path & name
-     */
-    void createNewDB(QString const &path);
+    void setCurrentDB(QString const &name);
 
     void printExpenses();
     bool addExpense(const QString &cat);
+private:
+    QSqlDatabase db;
+    QDir dir;
+    QString path;
 };
 
 #endif // DATABASE_H

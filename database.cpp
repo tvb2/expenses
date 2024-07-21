@@ -1,14 +1,24 @@
 #include "database.h"
 
-Database::Database(){}
+Database::Database(){
+    this->path= QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    if (path.isEmpty())
+        qFatal("Database constructor: Cannot determine storage location");
+    this->dir = path;
+}
 
-void Database::setDB(QString const &path){
+void Database::createDB(QString const &name){
     db = QSqlDatabase::addDatabase("QSQLITE");
+    this->path =
+        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
+                 + "/"
+                 + name
+                 + ".sqlite";
     db.setDatabaseName(path);
 
     if (!db.open())
     {
-        qDebug() << "Error: connection with database failed";
+        qDebug() << "Database::createDB. Error: connection with database failed";
     }
     else
     {
@@ -20,22 +30,26 @@ void Database::setDB(QString const &path){
                            "amount float, "
                            "currency text, "
                            "reg int)");
-        qDebug() << "DB path set: " << path;
+        qDebug() << "Database::createDB. DB created: " << this->path;
     }
 }
 
-void Database::createNewDB(QString const &path){
-    this->db = QSqlDatabase::addDatabase("QSQLITE");//not dbConnection
-    this->db.setDatabaseName(path);
-    this->db.open();
-    QSqlQuery query;
-    query.exec("CREATE TABLE expenses "
-               "(category VARCHAR(20), "
-               "amount FLOAT, "
-               "currency VARCHAR(3), "
-               "exch rate FLOAT, "
-               "regular BOOL )");
-    qDebug("Database: created new database");
+void Database::setCurrentDB(QString const &name){
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    this->path =
+        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
+        + "/"
+        + name
+        + ".sqlite";
+    db.setDatabaseName(path);
+    if (!db.open())
+    {
+        qDebug() << "Database::setCurrentDB. Error: connection with database failed";
+    }
+    else
+    {
+        qDebug() << "Database::setCurrentDB. DB connection successful: " << this->path;
+    }
 }
 
 bool Database::addExpense(const QString& cat)

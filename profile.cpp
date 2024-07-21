@@ -8,29 +8,44 @@ Profile::Profile() {
 }
 
 void Profile::searchProfiles(){
-    QString thePath;
     if (this->dir.mkpath(this->dir.absolutePath()) && QDir::setCurrent(this->dir.absolutePath())) {
-        thePath = QDir::currentPath();
-        qDebug() << "Profile: current path: " << thePath;// QDir::currentPath();
+        qDebug() << "Profile: current path: " << QDir::currentPath();// QDir::currentPath();
     }
 
     QStringList filter = {"*.sqlite"};
+    this->accounts.clear();
+    addProfiles(filter);
+}
 
-    //update filenames member (with extension)
-    this->files.clear();
-    this->files = this->dir.entryList(filter);
+/**
+ * @brief multiple profiles as a QStringList of full path
+ * @param profiles
+ */
+void Profile::addProfiles(QStringList const & profiles){
+    //update files member (*.sqlite files with extensions)
+    QStringList fileList = this->dir.entryList(profiles);
 
-    //update profiles member (full paths)
-    this->profiles.clear();
-    for (auto i:this->files){
-        this->profiles.append(this->dir.absoluteFilePath(i));
-        qDebug() << "found file: " << i ;
+    foreach (auto i, fileList) {
+        QString name = i.mid(0,i.lastIndexOf(".sqlite"));
+        QString prof = this->dir.absoluteFilePath(i);
+        accounts[name].file = i;
+        accounts[name].fullPath = prof;
+        accounts[name].name = name;
     }
+}
 
-    //update names member (no extension)
-    this->names.clear();
-    foreach(auto i, this->files){
-        this->names.append(i.mid(0,i.lastIndexOf(".sqlite")));
-    }
-    qDebug("QString list derived");
+/**
+ * @brief add single profile. Update current profile name and path
+ * @param profile
+ */
+void Profile::addProfile(QString const &newProfileName){
+    this->accounts[newProfileName].name = newProfileName;
+    this->profileName = newProfileName;
+    QString newFile = newProfileName + ".sqlite";
+    this->accounts[newProfileName].file = newFile;
+    this->accounts[newProfileName].fullPath =
+        this->dir.absolutePath()
+        + "/"
+        + newFile;
+    this->path = this->accounts[newProfileName].fullPath;
 }
