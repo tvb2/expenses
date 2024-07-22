@@ -36,6 +36,19 @@
     <string>OK</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>50</y>
+     <width>161</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Please select profile</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

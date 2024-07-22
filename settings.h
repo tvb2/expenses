@@ -89,7 +89,7 @@ signals:
     /**
      * data to populate MainW
      */
-    void transmitSettings(QVariant const &cat, QStringList const &curr);
+    void transmitSettings(QVariant const &RegCat, QVariant const &nonRegCat, QStringList const &curr);
 
 public slots:
 

@@ -19,7 +19,7 @@ public slots:
     /**
      * populate drop-down lists
      */
-    void populate(QVariant const &cat, QStringList const &curr);
+    void populate(QVariant const &regCat, QVariant const &nonRegCat, QStringList const &curr);
 
 private slots:
     void on_pbOK_clicked();
@@ -28,6 +28,8 @@ private slots:
     * submit expense info to database
     */
     void on_pB_Submit_clicked();
+
+    void on_chboxReg_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

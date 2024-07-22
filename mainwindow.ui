@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Expenses under control</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pbOK">
@@ -60,7 +60,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cbReg">
+   <widget class="QCheckBox" name="chboxReg">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -86,7 +86,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lbCategory">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -99,7 +99,7 @@
      <string>category</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="lbAmount">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -112,7 +112,7 @@
      <string>amount</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="lbCurrency">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -133,6 +133,32 @@
       <width>171</width>
       <height>26</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbAddCat">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>111</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add category</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>130</y>
+      <width>101</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add currency</string>
     </property>
    </widget>
   </widget>

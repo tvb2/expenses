@@ -66,7 +66,10 @@ void Settings::readSettings(QString const &newName){
         QStringList curr = this->accounts[newName].exchRates.keys();
         //add default currency to the list
         curr.append(this->accounts[newName].general.value("currency").toString());
-        emit transmitSettings(this->accounts[newName].regCat, curr);
+        emit transmitSettings(
+            this->accounts[newName].regCat
+            , this->accounts[newName].nonRegCat
+            , curr);
     qDebug() << "Settings::readSettings: file loaded: " << this->fullpath;
 }
 

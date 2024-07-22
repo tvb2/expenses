@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->cbCategory->setEditable(true);
+    ui->cbCategory->setEditable(false);
+    ui->cbNonRegCat->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -23,7 +24,27 @@ void MainWindow::on_pB_Submit_clicked()
     qDebug("MainW: Submit button pressed");
 }
 
-void MainWindow::populate(QVariant const &cat, QStringList const &curr){
-    ui->cbCategory->addItems(cat.toStringList());
+void MainWindow::populate(QVariant const &regCat, QVariant const &nonRegCat, QStringList const &curr){
+    ui->cbCategory->addItems(regCat.toStringList());
     ui->cbCurrency->addItems(curr);
+    ui->cbNonRegCat->addItems(nonRegCat.toStringList());
 }
+
+void MainWindow::on_chboxReg_stateChanged(int arg1)
+{
+    if (ui->chboxReg->checkState()){
+        ui->cbNonRegCat->setEnabled(true);
+        ui->cbNonRegCat->setEditable(true);
+        ui->cbCategory->setVisible(false);
+        ui->lbCategory->setVisible(false);
+        ui->pbAddCat->setVisible(false);
+    }
+    if (!ui->chboxReg->checkState()){
+        ui->cbNonRegCat->clearEditText();
+        ui->cbNonRegCat->setEnabled(false);
+        ui->cbCategory->setVisible(true);
+        ui->lbCategory->setVisible(true);
+        ui->pbAddCat->setVisible(true);
+    }
+}
+
