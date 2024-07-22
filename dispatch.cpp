@@ -21,8 +21,6 @@ void Dispatch::Launcher(){
     else{
         selectProfile();
     }
-
-//start Main Window
 }
 
 void Dispatch::createNew(){
@@ -30,8 +28,6 @@ void Dispatch::createNew(){
     QObject::connect(d, &CreateProfile::profileCreated, this, &Dispatch::newProfileCreated);
 
     d->exec();
-    //update profile object with newly created database
-    this->profile->searchProfiles();
 }
 
 void Dispatch::setProfile(QString const &name){
@@ -46,9 +42,11 @@ void Dispatch::setProfile(QString const &name){
 }
 
 void Dispatch::selectProfile()  {
-    QStringList existingNames;// = this->profile->getProfileNames();
+    QStringList existingNames;
+    this->profile->getProfileNames(existingNames);
 
     SelectProfile *s = new SelectProfile(existingNames);
+    QObject::connect(s, &SelectProfile::selectProfile, this, &Dispatch::setProfile);
     s->exec();
 }
 
@@ -59,6 +57,8 @@ void Dispatch::startMainW(QVariant const &cat, QStringList const &curr){
 
 void Dispatch::newProfileCreated(QString const &name, QVariantMap const &settings){
     this->db->createDB(name);
-    this->profile->addProfile(name);
+    this->profile->createProfile(name);
     this->settings->createSettings(name, settings);
+
+    setProfile(name);
 }

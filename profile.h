@@ -34,7 +34,7 @@ public:
      * @brief add a single profile
      * @param profiles
      */
-    void addProfile(QString const & newProfileName);
+    void createProfile(QString const & newProfileName);
 
     /**
      * this->profiles is empty

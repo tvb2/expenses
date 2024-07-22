@@ -92,7 +92,7 @@ profile2
    <text-color g="0" r="0" b="0"/>
   </node>
   <node w="200000" x="-2716747" y="-1437325" h="160000" index="15">
-   <text>ConcreteDispatch
+   <text>Dispatch
 
 Private:
 profile
@@ -108,18 +108,18 @@ settings</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="271000" x="-1561071" y="-1462465" h="75000" index="17">
-   <text>ConcreteDispatch::createNew()</text>
+  <node w="202000" x="-1561071" y="-1462465" h="75000" index="17">
+   <text>Dispatch::createNew()</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="409000" x="-1493817" y="-1167344" h="75000" index="18">
-   <text>ConcreteDispatch::setProfile(QString name only)</text>
+  <node w="340000" x="-1493817" y="-1167344" h="75000" index="18">
+   <text>Dispatch::setProfile(QString name only)</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="283000" x="-1541533" y="-699760" h="75000" index="19">
-   <text>ConcreteDispatch::selectProfile()</text>
+  <node w="214000" x="-1541533" y="-699760" h="75000" index="19">
+   <text>Dispatch::selectProfile()</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -152,14 +152,14 @@ set path</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="317000" x="-3215416" y="791527" h="75000" index="25">
+  <node w="248000" x="-3215416" y="791527" h="75000" index="25">
    <text>slot:
-ConcreteDispatch::newProfileCreated</text>
+Dispatch::newProfileCreated</text>
    <color g="0" r="255" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="271000" x="-3213750" y="360000" h="75000" index="26">
-   <text>ConcreteDispatch::createNew()</text>
+  <node w="202000" x="-3213750" y="360000" h="75000" index="26">
+   <text>Dispatch::createNew()</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -168,14 +168,82 @@ ConcreteDispatch::newProfileCreated</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="224000" x="-3215000" y="916250" h="75000" index="28">
-   <text>Profile::addProfile(name)</text>
+  <node w="242000" x="-3215000" y="916250" h="75000" index="28">
+   <text>Profile::createProfile(name)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
   <node w="342000" x="-2803750" y="916250" h="75000" index="29">
    <text>Settings::createSettings(name, settings)</text>
    <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="367000" x="-1650000" y="350000" h="75000" index="30">
+   <text>Dispatch::setProfile(QString const &amp; name)</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="292000" x="-2033333" y="602500" h="75000" index="31">
+   <text>Profile::setCurrentProfile(name)
+set current profile name and path</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="273000" x="-1661666" y="601666" h="75000" index="32">
+   <text>Database::setCurrentDB(name)
+set current db path</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="257000" x="-1282500" y="597500" h="75000" index="33">
+   <text>Settings::readSettings(name)
+read settings from file</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="208000" x="-1697500" y="877500" h="94000" index="34">
+   <text>MainWindow::populate
+- regular categories list
+- currencies list</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-3214047" y="193333" h="75000" index="35">
+   <text>Launcher
+No profiles found:</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-1649684" y="153018" h="75000" index="36">
+   <text>Launcher
+One profile found</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="204000" x="-4766216" y="114864" h="75000" index="37">
+   <text>Launcher
+Multiple profiles found</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="214000" x="-4764864" y="240878" h="75000" index="38">
+   <text>Dispatch::selectProfile()</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="343000" x="-4764864" y="486824" h="75000" index="39">
+   <text>Profile::getProfileNames(existingNames)</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="250000" x="-4282432" y="239527" h="75000" index="40">
+   <text>SelectProfile(existingNames)</text>
+   <color g="255" r="170" b="0"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-4279729" y="481418" h="75000" index="41">
+   <text>Dispatch::setProfile</text>
+   <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
   <edge index0="3" index1="1" reversed="0" arrow-mode="0">
@@ -218,7 +286,7 @@ ConcreteDispatch::newProfileCreated</text>
    <text></text>
   </edge>
   <edge index0="24" index1="25" reversed="0" arrow-mode="0">
-   <text>signals:
+   <text>signal:
 profileCreated (name, settings)</text>
   </edge>
   <edge index0="25" index1="27" reversed="0" arrow-mode="0">
@@ -232,6 +300,37 @@ profileCreated (name, settings)</text>
   </edge>
   <edge index0="26" index1="24" reversed="0" arrow-mode="0">
    <text></text>
+  </edge>
+  <edge index0="30" index1="31" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="30" index1="32" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="30" index1="33" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="33" index1="34" reversed="0" arrow-mode="0">
+   <text>signal transmitSettings(regular categories, currencies)</text>
+  </edge>
+  <edge index0="35" index1="26" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="36" index1="30" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="37" index1="38" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="38" index1="39" reversed="0" arrow-mode="1">
+   <text>1. QString existingNames</text>
+  </edge>
+  <edge index0="38" index1="40" reversed="0" arrow-mode="0">
+   <text>2. existingNames</text>
+  </edge>
+  <edge index0="40" index1="41" reversed="0" arrow-mode="0">
+   <text>signal
+selectProfile(QString profile)</text>
   </edge>
  </graph>
 </design>

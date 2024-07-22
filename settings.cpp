@@ -2,23 +2,25 @@
 
 Settings::Settings() {}
 
-void Settings::createSettings(QString const &name, QVariantMap const & gen){
-    if (this->accounts.find(name) != this->accounts.end()){
+void Settings::createSettings(QString const &newName, QVariantMap const & gen){
+    //check the profile doesn't exist yet
+    if (this->accounts.find(newName) != this->accounts.end()){
         qFatal("Settings::createSettings. Profile already exists!");
         return;
     }
 
-    this->name = name;
-
-    //current path. If folder doesn't exist, create it (supposed to be iterative)
+    //current application path. If folder doesn't exist, create it (supposed to be iterative)
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir dir(path);
     if (!dir.exists())
         dir.mkpath(".");
-    this->fullpath = path + "/" + name + ".settings";
+
+    //new profile becomes current one
+    this->name = newName;
+    this->fullpath = path + "/" + newName + ".settings";
 
     //populate default regular categories first time
-    this->accounts[name].regCat= {
+    this->accounts[newName].regCat= {
         "Grocery",
         "Fuel",
         "Cafes, restraurants",
@@ -37,9 +39,9 @@ void Settings::createSettings(QString const &name, QVariantMap const & gen){
         "Clothes",
         "Presents"
     };
-    this->accounts[name].settings.insert(
+    this->accounts[newName].settings.insert(
         "Regular",
-        QJsonValue::fromVariant(this->accounts[name].regCat));
+        QJsonValue::fromVariant(this->accounts[newName].regCat));
 
     this->updateMap("general", gen);
 }
@@ -55,13 +57,16 @@ void Settings::readSettings(QString const &newName){
         this->accounts[newName].settings = config.object();
 
         QVariantMap t = this->accounts[newName].settings.toVariantMap();
-        this->accounts[newName].general  = t["General"].toMap();
         this->accounts[newName].exchRates= t["ExchRates"].toMap();
+        this->accounts[newName].general  = t["General"].toMap();
         this->accounts[newName].regCat = t["Regular"].toList();
         this->accounts[newName].nonRegCat = t["NonRegular"].toList();
-        QStringList curr = this->accounts[newName].exchRates.keys();
-        emit transmitSettings(this->accounts[newName].regCat, curr);
     }
+        //populate currency list
+        QStringList curr = this->accounts[newName].exchRates.keys();
+        //add default currency to the list
+        curr.append(this->accounts[newName].general.value("currency").toString());
+        emit transmitSettings(this->accounts[newName].regCat, curr);
     qDebug() << "Settings::readSettings: file loaded: " << this->fullpath;
 }
 

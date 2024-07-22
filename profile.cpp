@@ -9,7 +9,7 @@ Profile::Profile() {
 
 void Profile::searchProfiles(){
     if (this->dir.mkpath(this->dir.absolutePath()) && QDir::setCurrent(this->dir.absolutePath())) {
-        qDebug() << "Profile: current path: " << QDir::currentPath();// QDir::currentPath();
+        qDebug() << "Profile::searchProfiles. Current path: " << QDir::currentPath();
     }
 
     QStringList filter = {"*.sqlite"};
@@ -38,7 +38,12 @@ void Profile::addProfiles(QStringList const & profiles){
  * @brief add single profile. Update current profile name and path
  * @param profile
  */
-void Profile::addProfile(QString const &newProfileName){
+void Profile::createProfile(QString const &newProfileName){
+    //check that profile does not exist yet:
+    if (this->accounts.find(newProfileName) != this->accounts.end())
+        qFatal("Profile::createProfile. Such profile already exists!");
+
+    else{
     this->accounts[newProfileName].name = newProfileName;
     this->profileName = newProfileName;
     QString newFile = newProfileName + ".sqlite";
@@ -48,4 +53,5 @@ void Profile::addProfile(QString const &newProfileName){
         + "/"
         + newFile;
     this->path = this->accounts[newProfileName].fullPath;
+    }
 }

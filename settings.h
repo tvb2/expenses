@@ -96,7 +96,7 @@ public slots:
     /*
      * create settings file
      */
-    void createSettings(QString const &name, QVariantMap const & gen);
+    void createSettings(QString const &newName, QVariantMap const & gen);
 
     /*
      * read settings from file
