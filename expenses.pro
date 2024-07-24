@@ -1,4 +1,4 @@
-QT       += core gui sql uitools widgets
+QT       += core gui sql uitools widgets qml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,6 +18,7 @@ SOURCES += \
     settings.cpp \
     createprofile.cpp \
     selectprofile.cpp \
+    validator.cpp
 
 HEADERS += \
     basecomponent.h \
@@ -28,6 +29,7 @@ HEADERS += \
     settings.h \
     createprofile.h \
     selectprofile.h \
+    validator.h
 
 FORMS += \
     createprofile.ui \

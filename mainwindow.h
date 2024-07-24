@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QJSEngine>
+#include <QDate>
+#include "validator.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +33,10 @@ private slots:
     void on_pB_Submit_clicked();
 
     void on_chboxReg_stateChanged(int arg1);
+
+    void on_leAmount_textChanged(const QString &arg1);
+
+    void on_chBtoday_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->cbCategory->setEditable(false);
     ui->cbNonRegCat->setEnabled(false);
+    ui->leAmount->setValidator(new Validator);
+
+    ui->date->setDate(QDate::currentDate());
+    ui->date->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -45,6 +49,28 @@ void MainWindow::on_chboxReg_stateChanged(int arg1)
         ui->cbCategory->setVisible(true);
         ui->lbCategory->setVisible(true);
         ui->pbAddCat->setVisible(true);
+    }
+}
+
+void MainWindow::on_leAmount_textChanged(const QString &arg1)
+{
+    QJSEngine jsEngine;
+    QJSValue eval = jsEngine.evaluate(ui->leAmount->displayText());
+    if (eval.isError())
+        ui->pB_Submit->setEnabled(false);
+    else
+        ui->pB_Submit->setEnabled(true);
+    ui->lbAmountEntered->setText("resulting value: " + eval.toString());
+}
+
+void MainWindow::on_chBtoday_clicked()
+{
+    if (!ui->chBtoday->checkState()){
+        ui->date->setEnabled(true);
+    }
+    else{
+        ui->date->setDate(QDate::currentDate());
+        ui->date->setEnabled(false);
     }
 }
 
