@@ -4,7 +4,10 @@
 #include <QMainWindow>
 #include <QJSEngine>
 #include <QDate>
+#include <QVariant>
 #include "validator.h"
+#include "record.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -38,8 +41,14 @@ private slots:
 
     void on_chBtoday_clicked();
 
+    void on_pbAddCat_clicked();
+
+signals:
+    void newRecordAvailable(Record const &record);
+
 private:
     Ui::MainWindow *ui;
+    Record record;
 };
 
 #endif // MAINWINDOW_H

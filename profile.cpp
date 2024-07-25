@@ -45,13 +45,11 @@ void Profile::createProfile(QString const &newProfileName){
 
     else{
     this->accounts[newProfileName].name = newProfileName;
-    this->profileName = newProfileName;
     QString newFile = newProfileName + ".sqlite";
     this->accounts[newProfileName].file = newFile;
     this->accounts[newProfileName].fullPath =
         this->dir.absolutePath()
         + "/"
         + newFile;
-    this->path = this->accounts[newProfileName].fullPath;
     }
 }

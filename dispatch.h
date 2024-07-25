@@ -14,6 +14,7 @@
 #include "createprofile.h"
 #include "selectprofile.h"
 #include "mainwindow.h"
+#include "record.h"
 
 class Dispatch : public QObject
 {
@@ -51,8 +52,6 @@ void setProfile(QString const & name);
  */
 void selectProfile();
 
-
-
 public slots:
 /**
  * @brief perform all routines required when new profile is created
@@ -63,7 +62,7 @@ void newProfileCreated(QString const &name, QVariantMap const &settings);
     /**
     * starting main window
     */
-    void startMainW(QVariant const &cat, QStringList const &curr);
+    void startMainW();
 };
 
 #endif // DISPATCH_H

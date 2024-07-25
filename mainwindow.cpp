@@ -25,6 +25,10 @@ void MainWindow::on_pbOK_clicked(){
 
 void MainWindow::on_pB_Submit_clicked()
 {
+    this->record.date = ui->date->date();
+    this->record.reg = ui->chboxReg;
+    emit newRecordAvailable(this->record);
+
     qDebug("MainW: Submit button pressed");
 }
 
@@ -56,11 +60,15 @@ void MainWindow::on_leAmount_textChanged(const QString &arg1)
 {
     QJSEngine jsEngine;
     QJSValue eval = jsEngine.evaluate(ui->leAmount->displayText());
-    if (eval.isError())
+    if (eval.isError()){
         ui->pB_Submit->setEnabled(false);
-    else
+        ui->lbAmountEntered->setText(" ... ");
+    }
+    else{
         ui->pB_Submit->setEnabled(true);
-    ui->lbAmountEntered->setText("resulting value: " + eval.toString());
+        ui->lbAmountEntered->setText("resulting value: " + eval.toString());
+        this->record.amount = eval.toNumber();
+    }
 }
 
 void MainWindow::on_chBtoday_clicked()
@@ -72,5 +80,10 @@ void MainWindow::on_chBtoday_clicked()
         ui->date->setDate(QDate::currentDate());
         ui->date->setEnabled(false);
     }
+}
+
+void MainWindow::on_pbAddCat_clicked()
+{
+
 }
 

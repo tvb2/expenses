@@ -26,6 +26,7 @@ HEADERS += \
     mainwindow.h \
     database.h \
     profile.h \
+    record.h \
     settings.h \
     createprofile.h \
     selectprofile.h \

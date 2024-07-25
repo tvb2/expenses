@@ -1,6 +1,6 @@
 #include "dispatch.h"
 
-void Dispatch::Launcher(){
+void    Dispatch::Launcher(){
 //find existing profiles in current directory
     this->profile->searchProfiles();
 
@@ -21,6 +21,7 @@ void Dispatch::Launcher(){
     else{
         selectProfile();
     }
+    startMainW();
 }
 
 void Dispatch::createNew(){
@@ -31,14 +32,9 @@ void Dispatch::createNew(){
 }
 
 void Dispatch::setProfile(QString const &name){
-    MainWindow *w = new MainWindow;
-    QObject::connect(this->settings, &Settings::transmitSettings, w, &MainWindow::populate);
-
     this->profile->setCurrentProfile(name);
     this->db->setCurrentDB(name);
-    this->settings->readSettings(name);
-
-    w->show();
+    this->settings->setCurrentSettings(name);
 }
 
 void Dispatch::selectProfile()  {
@@ -50,8 +46,11 @@ void Dispatch::selectProfile()  {
     s->exec();
 }
 
-void Dispatch::startMainW(QVariant const &cat, QStringList const &curr){
+void Dispatch::startMainW(){
     MainWindow *w = new MainWindow;
+    QObject::connect(this->settings, &Settings::transmitSettings, w, &MainWindow::populate);
+    this->settings->readSettings(this->profile->getCurrentProfileName());
+
     w->show();
 }
 

@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include "basecomponent.h"
+#include "record.h"
 
 #include <qsqldatabase.h>
 #include <QSqlQuery>

@@ -24,11 +24,12 @@ void Database::createDB(QString const &name){
     {
         QSqlQuery databaseQuery(this->db);
         databaseQuery.exec("CREATE TABLE expenses "
-                           "(id int primary key, "
-                           "data date,"
+                           "(data date,"
                            "category text, "
                            "amount float, "
                            "currency text, "
+                           "exchRate float, "
+                           "finalAmount float, "
                            "reg int)");
         qDebug() << "Database::createDB. DB created: " << this->path;
     }

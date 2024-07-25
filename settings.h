@@ -15,7 +15,8 @@
 
 struct SettingsBunlde
 {
-    QJsonObject settings;
+    QJsonObject settings; //all json fields to be written to file
+
     QVariantMap exchRates;
     QVariantMap general;
 
@@ -36,7 +37,7 @@ private:
     /*
      * update values in corresponding section "rates", "general"
      */
-    void updateMap(QString section, QVariantMap const &m);
+    void updateMap(QString const & profile, QString section, QVariantMap const &m);
 
 public:
     Settings();
@@ -85,6 +86,13 @@ public:
             this->accounts[this->name].nonRegCat.removeOne(cat);
         }
     }
+
+    /**
+     * Name of profile only
+     * @param name
+     */
+    void setCurrentSettings(QString const &newName);
+
 signals:
     /**
      * data to populate MainW
