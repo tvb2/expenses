@@ -49,6 +49,7 @@ void Dispatch::selectProfile()  {
 void Dispatch::startMainW(){
     MainWindow *w = new MainWindow;
     QObject::connect(this->settings, &Settings::transmitSettings, w, &MainWindow::populate);
+    QObject::connect(w, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
     this->settings->readSettings(this->profile->getCurrentProfileName());
 
     w->show();
@@ -60,4 +61,9 @@ void Dispatch::newProfileCreated(QString const &name, QVariantMap const &setting
     this->settings->createSettings(name, settings);
 
     setProfile(name);
+}
+
+void Dispatch::newRecordRequest(Record const &record){
+    qDebug("Dispatch::newRecordRequest recieved signal");
+    this->db->addRecord(record);
 }

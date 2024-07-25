@@ -25,7 +25,7 @@ public:
     void setCurrentDB(QString const &name);
 
     void printExpenses();
-    bool addExpense(const QString &cat);
+    bool addRecord(Record const &record);
 private:
     QSqlDatabase db;
     QDir dir;

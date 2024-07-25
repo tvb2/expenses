@@ -58,11 +58,13 @@ public slots:
  * @param name
  * @param settings
  */
-void newProfileCreated(QString const &name, QVariantMap const &settings);
+    void newProfileCreated(QString const &name, QVariantMap const &settings);
     /**
     * starting main window
     */
     void startMainW();
+
+    void newRecordRequest(Record const &record);
 };
 
 #endif // DISPATCH_H

@@ -53,8 +53,13 @@ void Database::setCurrentDB(QString const &name){
     }
 }
 
-bool Database::addExpense(const QString& cat)
+bool Database::addRecord(Record const &record)
 {
+    qDebug("Databse::addRecord recieved signal");
+    qDebug() << record.amount << "amount recieved";
+    qDebug() << record.date << "date recieved";
+    qDebug() << record.reg << " regular recieved";
+
     bool success = false;
     // // you should check if args are ok first...
     // QSqlQuery query;
