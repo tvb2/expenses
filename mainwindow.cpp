@@ -25,17 +25,36 @@ void MainWindow::on_pbOK_clicked(){
 
 void MainWindow::on_pB_Submit_clicked()
 {
-    this->record.date = ui->date->date();
+    if (ui->chboxReg->checkState() == 0)
+        this->record.cat = ui->cbCategory->currentText();
+    else
+        this->record.cat = ui->cbNonRegCat->currentText();
+    this->record.date = ui->date->date().toString("yyyy.MM.dd");
+    this->record.currency = ui->cbCurrency->currentText();
     this->record.reg = ui->chboxReg;
     emit newRecordAvailable(this->record);
 
     qDebug("MainW: Submit button pressed");
 }
 
-void MainWindow::populate(QVariant const &regCat, QVariant const &nonRegCat, QStringList const &curr){
-    ui->cbCategory->addItems(regCat.toStringList());
-    ui->cbCurrency->addItems(curr);
-    ui->cbNonRegCat->addItems(nonRegCat.toStringList());
+void MainWindow::populate(SettingsBunlde const &settings){
+    this->setBundle = settings;
+    QStringList regC;
+    foreach (auto i, this->setBundle.regCat) {
+        regC.append(i.toStringList());
+    }
+    ui->cbCategory->addItems(regC);
+
+    ui->cbCurrency->addItems(this->setBundle.exchRates.keys());
+    QStringList nonR;
+    foreach (auto i, this->setBundle.nonRegCat) {
+        nonR.append(i.toStringList());
+    }
+    ui->cbNonRegCat->addItems(nonR);
+    // qDebug() << "Selected currency: " << this->setBundle.exchRates.firstKey();
+    qDebug() << "Selected currency: " << ui->cbCurrency->currentText();
+    ui->lbRate->setText(this->setBundle.exchRates.value( ui->cbCurrency->currentText()).toString());
+    qDebug() << "hmm...";
 }
 
 void MainWindow::on_chboxReg_stateChanged(int arg1)
@@ -84,6 +103,13 @@ void MainWindow::on_chBtoday_clicked()
 
 void MainWindow::on_pbAddCat_clicked()
 {
+
+}
+
+
+void MainWindow::on_cbCurrency_currentTextChanged(const QString &arg1)
+{
+    ui->lbRate->setText(this->setBundle.exchRates.value( ui->cbCurrency->currentText()).toString());
 
 }
 

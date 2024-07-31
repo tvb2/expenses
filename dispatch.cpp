@@ -35,6 +35,7 @@ void Dispatch::setProfile(QString const &name){
     this->profile->setCurrentProfile(name);
     this->db->setCurrentDB(name);
     this->settings->setCurrentSettings(name);
+    this->settings->jsonTests();
 }
 
 void Dispatch::selectProfile()  {

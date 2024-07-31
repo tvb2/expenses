@@ -59,6 +59,7 @@ public slots:
  * @param settings
  */
     void newProfileCreated(QString const &name, QVariantMap const &settings);
+
     /**
     * starting main window
     */

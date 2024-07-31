@@ -22,9 +22,14 @@ public:
      */
     void createDB(QString const &name);
 
+    /**
+     * set current profile
+     * @param name
+     */
     void setCurrentDB(QString const &name);
 
     void printExpenses();
+
     bool addRecord(Record const &record);
 private:
     QSqlDatabase db;

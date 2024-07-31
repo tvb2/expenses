@@ -12,18 +12,8 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <map>
+#include "settingsbundle.h"
 
-struct SettingsBunlde
-{
-    QJsonObject settings; //all json fields to be written to file
-
-    QVariantMap exchRates;
-    QVariantMap general;
-
-    QVariantList regCat;
-    QVariantList nonRegCat;
-
-};
 
 class Settings : public QObject, public BaseComponent
 {
@@ -97,7 +87,7 @@ signals:
     /**
      * data to populate MainW
      */
-    void transmitSettings(QVariant const &RegCat, QVariant const &nonRegCat, QStringList const &curr);
+    void transmitSettings(SettingsBunlde const &settings);
 
 public slots:
 

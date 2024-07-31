@@ -4,7 +4,9 @@
 #include <QDAte>
 
 struct Record{
-    QDate date;
+    QString cat;
+    QString currency;
+    QString date;
     double amount;
     bool reg;
 

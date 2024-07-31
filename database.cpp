@@ -61,24 +61,25 @@ bool Database::addRecord(Record const &record)
     qDebug() << record.reg << " regular recieved";
 
     bool success = false;
-    // // you should check if args are ok first...
-    // QSqlQuery query;
-    // query.prepare("INSERT INTO expenses (category, amount, currency, regular) "
-    //               "VALUES (:category, :amount, :currency, :reg)");
+    // you should check if args are ok first...
+    QSqlQuery query;
+    query.prepare("INSERT INTO expenses (data, category, amount, currency, exchRate, finalAmount, reg) "
+                  "VALUES (:data, :category, :amount, :currency, :exchRate, :finalAmount, :reg)");
 
-    // query.bindValue(":category", "laundry");
-    // query.bindValue(":amount", 67.987f);
-    // query.bindValue(":currency", "CAD");
-    // query.bindValue(":reg", 1);
-    // if(query.exec())
-    // {
-    //     success = true;
-    // }
-    // else
-    // {
-    //     qDebug() << "addExpense error:"
-    //              << query.lastError();
-    // }
+    query.bindValue(":data", record.date);
+    query.bindValue(":category", record.cat);
+    query.bindValue(":amount", record.amount);
+    query.bindValue(":currency", record.currency);
+    query.bindValue(":reg", record.reg);
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "addExpense error:"
+                 << query.lastError();
+    }
 
     return success;
 }

@@ -30,6 +30,7 @@ HEADERS += \
     settings.h \
     createprofile.h \
     selectprofile.h \
+    settingsbundle.h \
     validator.h
 
 FORMS += \

@@ -7,6 +7,7 @@
 #include <QVariant>
 #include "validator.h"
 #include "record.h"
+#include "settingsbundle.h"
 
 
 namespace Ui {
@@ -25,7 +26,7 @@ public slots:
     /**
      * populate drop-down lists
      */
-    void populate(QVariant const &regCat, QVariant const &nonRegCat, QStringList const &curr);
+    void populate(SettingsBunlde const &settings);
 
 private slots:
     void on_pbOK_clicked();
@@ -43,12 +44,15 @@ private slots:
 
     void on_pbAddCat_clicked();
 
+    void on_cbCurrency_currentTextChanged(const QString &arg1);
+
 signals:
     void newRecordAvailable(Record const &record);
 
 private:
     Ui::MainWindow *ui;
     Record record;
+    SettingsBunlde setBundle;
 };
 
 #endif // MAINWINDOW_H

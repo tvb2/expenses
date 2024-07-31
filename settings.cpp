@@ -33,7 +33,8 @@ void Settings::createSettings(QString const &newName, QVariantMap const & gen){
         "Hygiene",
         "Detergents",
         "Clothes",
-        "Presents"
+        "Presents",
+        "Income"
     };
     this->accounts[newName].settings.insert(
         "Regular",
@@ -64,10 +65,7 @@ void Settings::readSettings(QString const &newName){
     QStringList curr = this->accounts[newName].exchRates.keys();
     //add default currency to the list
     curr.append(this->accounts[newName].general.value("currency").toString());
-    emit transmitSettings(
-        this->accounts[newName].regCat
-        , this->accounts[newName].nonRegCat
-        , curr);
+    emit transmitSettings(this->accounts[newName]);
     qDebug() << "Settings::readSettings: file loaded: " << this->fullpath;
 }
 
@@ -84,18 +82,18 @@ void Settings::jsonTests(){
     QVariantMap g;
     g["currency"] = "AED";
     g["period"] = "weekly";
-    this->updateMap(this->name,"general",g);
 
-    this->accounts[this->name].exchRates["USD"] = 3.67;
-    this->accounts[this->name].exchRates["RUB"] = 0.042;
-    this->accounts[this->name].exchRates["CAD"] = 2.69;
+
     QVariantMap r;
     r["UAH"] = 0.090;
+    r["USD"] = 3.67;
+    r["RUB"] = 0.042;
+    r["CAD"] = 1.560;
+    this->accounts[this->name].exchRates.insert(r);
     this->updateMap(this->name,"rates", r);
 
     this->accounts[this->name].nonRegCat.push_back("yacht");
 
-    r["USD"] = 3.8;
     this->updateMap(this->name,"rates", r);
 
     this->accounts[this->name].regCat = {
@@ -117,7 +115,8 @@ void Settings::jsonTests(){
         "Clothes",
         "Presents"
     };
-    this->accounts[this->name].settings.insert("Regual",QJsonValue::fromVariant(this->accounts[this->name].regCat));
+    this->accounts[this->name].settings.insert("Regular",QJsonValue::fromVariant(this->accounts[this->name].regCat));
+    this->updateMap(this->name,"general",g);
     saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
 }
 
