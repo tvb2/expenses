@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     basecomponent.cpp \
     dispatch.cpp \
+    editcurrency.cpp \
     main.cpp \
     mainwindow.cpp \
     database.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 HEADERS += \
     basecomponent.h \
     dispatch.h \
+    editcurrency.h \
     mainwindow.h \
     database.h \
     profile.h \
@@ -35,6 +37,7 @@ HEADERS += \
 
 FORMS += \
     createprofile.ui \
+    editcurrency.ui \
     mainwindow.ui \
     selectprofile.ui
 

@@ -4,12 +4,13 @@
 #include <QDAte>
 
 struct Record{
-    QString cat;
-    QString currency;
     QString date;
+    QString cat;
     double amount;
+    QString currency;
+    double rate;
+    double finalAmnt;
     bool reg;
-
 };
 
 #endif // RECORD_H

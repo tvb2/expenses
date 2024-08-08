@@ -6,212 +6,460 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>385</width>
-    <height>729</height>
+    <width>739</width>
+    <height>695</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Expenses under control</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pbOK">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>590</y>
-      <width>93</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>OK</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pB_Submit">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>260</y>
-      <width>93</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Submit</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="leAmount">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
-      <width>113</width>
-      <height>26</height>
+      <y>10</y>
+      <width>513</width>
+      <height>418</height>
      </rect>
     </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="7" column="3">
+      <widget class="QPushButton" name="pB_Submit">
+       <property name="text">
+        <string>Submit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="13" column="0" colspan="4">
+      <widget class="QLabel" name="lbLatest4">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="2">
+      <spacer name="horizontalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="3" column="2">
+      <widget class="QDateEdit" name="date"/>
+     </item>
+     <item row="3" column="3">
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="lbRate">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QComboBox" name="cbCurrency"/>
+     </item>
+     <item row="4" column="3">
+      <widget class="QPushButton" name="pbEditCurrency">
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>total amount</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QComboBox" name="cbNonRegCat"/>
+     </item>
+     <item row="10" column="0" colspan="4">
+      <widget class="QLabel" name="lbLatest1">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLabel" name="lbCurrency">
+       <property name="text">
+        <string>currency</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pbAddCat">
+       <property name="text">
+        <string>Add category</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLineEdit" name="leAmount"/>
+     </item>
+     <item row="2" column="2">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="7" column="1">
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="lbCategory">
+       <property name="text">
+        <string>category</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="6" column="3">
+      <spacer name="horizontalSpacer_12">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="lbAmount">
+       <property name="text">
+        <string>amount</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QCheckBox" name="chboxReg">
+       <property name="text">
+        <string>non-regular</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="12" column="0" colspan="4">
+      <widget class="QLabel" name="lbLatest3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="3">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>period average</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Category average amount</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="0">
+      <widget class="QComboBox" name="cbCategory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>190</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="2">
+      <spacer name="horizontalSpacer_9">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="3" column="1">
+      <widget class="QCheckBox" name="chBtoday">
+       <property name="text">
+        <string>Today</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="0" colspan="4">
+      <widget class="QLabel" name="lbLatest2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <spacer name="horizontalSpacer_10">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="lbAmountEntered">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="2">
+      <spacer name="horizontalSpacer_11">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Expense date</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Category</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="2">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Amount</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="3">
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Currency</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1">
+      <widget class="QLabel" name="lbLatest0Cat">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="2">
+      <widget class="QLabel" name="lbLatest0Amount">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="3">
+      <widget class="QLabel" name="lbLatest0Curr">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="lbLatest0Date">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QComboBox" name="cbCategory">
+   <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>151</width>
-      <height>26</height>
+      <x>40</x>
+      <y>440</y>
+      <width>501</width>
+      <height>192</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QCheckBox" name="chboxReg">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>220</y>
-      <width>141</width>
-      <height>24</height>
-     </rect>
+    <property name="editTriggers">
+     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
     </property>
-    <property name="text">
-     <string>non-regular</string>
-    </property>
-    <property name="checked">
+    <property name="showGrid">
      <bool>false</bool>
     </property>
-   </widget>
-   <widget class="QComboBox" name="cbCurrency">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>180</y>
-      <width>80</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbCategory">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>20</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>category</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbAmount">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>80</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>amount</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbCurrency">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>180</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>currency</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="cbNonRegCat">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>220</y>
-      <width>171</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pbAddCat">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>10</y>
-      <width>111</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add category</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>180</y>
-      <width>101</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add currency</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbAmountEntered">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>120</y>
-      <width>171</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QDateEdit" name="date">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>70</y>
-      <width>110</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="chBtoday">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>100</y>
-      <width>91</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Today</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbRate">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>180</y>
-      <width>51</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Date</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Category</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Currency</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -219,7 +467,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>385</width>
+     <width>739</width>
      <height>26</height>
     </rect>
    </property>

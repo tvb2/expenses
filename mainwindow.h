@@ -5,10 +5,11 @@
 #include <QJSEngine>
 #include <QDate>
 #include <QVariant>
+#include <QTableWidget>
+#include <QTableWidgetItem>
 #include "validator.h"
 #include "record.h"
 #include "settingsbundle.h"
-
 
 namespace Ui {
 class MainWindow;
@@ -26,7 +27,13 @@ public slots:
     /**
      * populate drop-down lists
      */
-    void populate(SettingsBunlde const &settings);
+    void populateLists(SettingsBunlde const &settings);
+
+    /**
+     * @brief overload populate last records added
+     * @param settings
+     */
+    void populateRecords(QVector<Record> const & lastRecords);
 
 private slots:
     void on_pbOK_clicked();
@@ -46,8 +53,12 @@ private slots:
 
     void on_cbCurrency_currentTextChanged(const QString &arg1);
 
+    void on_pbEditCurrency_clicked();
+
 signals:
     void newRecordAvailable(Record const &record);
+
+    void editCurrencyPBclicked(SettingsBunlde const &bundle);
 
 private:
     Ui::MainWindow *ui;

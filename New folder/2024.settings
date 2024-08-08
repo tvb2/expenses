@@ -1,0 +1,31 @@
+{
+    "ExchRates": {
+        "CAD": 1,
+        "RUB": 0.042,
+        "UAH": 0.09,
+        "USD": 3.67
+    },
+    "General": {
+        "currency": "AED",
+        "period": "weekly"
+    },
+    "Regular": [
+        "Grocery",
+        "Fuel",
+        "Cafes, restraurants",
+        "Entertainment",
+        "Public_transport",
+        "Communications",
+        "Utilities",
+        "Kids education/development",
+        "Alcohol",
+        "Car maintenance",
+        "House maintenance",
+        "Insurances",
+        "Medical",
+        "Hygiene",
+        "Detergents",
+        "Clothes",
+        "Presents"
+    ]
+}

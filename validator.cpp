@@ -18,13 +18,11 @@ QValidator::State Validator::validate(QString &input, int &pos) const
 
     bool isOk = true;
 
-    // foreach ( QString var, list) {
         int i = 0;
         if(reg.validate(input,i) == QValidator::Invalid)
             return QValidator::Invalid;
         if(reg.validate(input,i) == QValidator::Intermediate)
             isOk = false;
-    // }
     if(isOk)
         return QValidator::Acceptable;
     else

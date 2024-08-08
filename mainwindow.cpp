@@ -25,19 +25,21 @@ void MainWindow::on_pbOK_clicked(){
 
 void MainWindow::on_pB_Submit_clicked()
 {
-    if (ui->chboxReg->checkState() == 0)
+    if (!ui->chboxReg->isChecked())
         this->record.cat = ui->cbCategory->currentText();
     else
         this->record.cat = ui->cbNonRegCat->currentText();
     this->record.date = ui->date->date().toString("yyyy.MM.dd");
     this->record.currency = ui->cbCurrency->currentText();
-    this->record.reg = ui->chboxReg;
+    this->record.reg = !ui->chboxReg->isChecked();
+    this->record.rate = ui->lbRate->text().toDouble();
+    this->record.finalAmnt = this->record.amount*ui->lbRate->text().toDouble();
     emit newRecordAvailable(this->record);
 
     qDebug("MainW: Submit button pressed");
 }
 
-void MainWindow::populate(SettingsBunlde const &settings){
+void MainWindow::populateLists(SettingsBunlde const &settings){
     this->setBundle = settings;
     QStringList regC;
     foreach (auto i, this->setBundle.regCat) {
@@ -51,10 +53,35 @@ void MainWindow::populate(SettingsBunlde const &settings){
         nonR.append(i.toStringList());
     }
     ui->cbNonRegCat->addItems(nonR);
-    // qDebug() << "Selected currency: " << this->setBundle.exchRates.firstKey();
-    qDebug() << "Selected currency: " << ui->cbCurrency->currentText();
     ui->lbRate->setText(this->setBundle.exchRates.value( ui->cbCurrency->currentText()).toString());
-    qDebug() << "hmm...";
+}
+
+void MainWindow::populateRecords(QVector<Record> const & lastRecords){
+    auto rec = lastRecords.begin();
+    for( int row = 0; row < 5; row++ ){
+        QStringList itemList;
+        itemList.append(rec->date);
+        itemList.append(rec->cat);
+        itemList.append(QString::number(rec->amount));
+        itemList.append(rec->currency);
+        auto itemListIt = itemList.begin();
+        for( int column = 0; column < 4; column++ ){
+            QString item = QString(itemListIt->data());
+            QVariant oVariant(item);
+            ++itemListIt;
+            // allocate the widget item
+            QTableWidgetItem * poItem = new QTableWidgetItem();
+            poItem->setData( Qt::DisplayRole, oVariant );
+            ui->tableWidget->setItem( row, column, poItem );
+        }
+        ++rec;
+    }
+    foreach (auto item, lastRecords) {
+        ui->lbLatest0Date->setText(item.date);
+        ui->lbLatest0Cat->setText(item.cat);
+        ui->lbLatest0Amount->setText(QString::number(item.amount));
+        ui->lbLatest0Curr->setText(item.currency);
+    }
 }
 
 void MainWindow::on_chboxReg_stateChanged(int arg1)
@@ -106,10 +133,14 @@ void MainWindow::on_pbAddCat_clicked()
 
 }
 
-
 void MainWindow::on_cbCurrency_currentTextChanged(const QString &arg1)
 {
     ui->lbRate->setText(this->setBundle.exchRates.value( ui->cbCurrency->currentText()).toString());
 
+}
+
+void MainWindow::on_pbEditCurrency_clicked()
+{
+    emit editCurrencyPBclicked(this->setBundle);
 }
 

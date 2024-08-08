@@ -88,7 +88,7 @@ void Settings::jsonTests(){
     r["UAH"] = 0.090;
     r["USD"] = 3.67;
     r["RUB"] = 0.042;
-    r["CAD"] = 1.560;
+    r["CAD"] = 1.0;
     this->accounts[this->name].exchRates.insert(r);
     this->updateMap(this->name,"rates", r);
 

@@ -15,6 +15,8 @@
 #include "selectprofile.h"
 #include "mainwindow.h"
 #include "record.h"
+#include "settingsbundle.h"
+#include "editcurrency.h"
 
 class Dispatch : public QObject
 {
@@ -62,8 +64,13 @@ public slots:
 
     /**
     * starting main window
+    * - populate MainW with info from Settings (categories, currencies etc)
+    * - when new expense record is available, send it to Database
+    * - manage currency edits
     */
     void startMainW();
+
+    void editCurrency(SettingsBunlde const &bundle);
 
     void newRecordRequest(Record const &record);
 };
