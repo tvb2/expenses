@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     basecomponent.cpp \
+    calc.cpp \
     dispatch.cpp \
     editcurrency.cpp \
     main.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 
 HEADERS += \
     basecomponent.h \
+    calc.h \
     dispatch.h \
     editcurrency.h \
     mainwindow.h \
