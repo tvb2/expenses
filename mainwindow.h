@@ -23,6 +23,12 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    /**
+     * @brief average expenses for the default period
+     * @param avg
+     */
+    void updateAVG(double avg);
+
 public slots:
     /**
      * populate drop-down lists

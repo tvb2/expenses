@@ -20,6 +20,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updateAVG(double avg){
+    QString periodAVG =
+        QString::number(avg) + " " +
+        setBundle.general.value("currency").toString() + " avg " +
+        setBundle.general.value("period").toString();
+    ui->lbPeriodAVG->setText(periodAVG);
+}
+
 void MainWindow::on_pbOK_clicked(){
     qDebug("MainW: OK pressed");
 }

@@ -118,18 +118,19 @@ QSqlQuery query("SELECT id, category, amount, currency, reg FROM expenses");
 
 }
 
-void Database::getLatest5(){
+void Database::getLatestN(int N){
     this->latest.clear();
     Record record;
     bool success = false;
     // you should check if args are ok first...
     if (!this->db.open())
     {
-        qDebug() << "Database::getLatest5. Error: connection with database failed";
+        qDebug() << "Database::getLatestN. Error: connection with database failed";
     }
     else{
+        QString an = QString::number(N);
         QSqlQuery query;
-        query.prepare("SELECT * FROM expenses ORDER BY lastChangeDateTime DESC LIMIT 5");
+        query.prepare("SELECT * FROM expenses ORDER BY lastChangeDateTime DESC LIMIT " + an);
 
         if(query.exec())
         {
@@ -137,7 +138,7 @@ void Database::getLatest5(){
         }
         else
         {
-            qDebug() << "getLatest5 error:"
+            qDebug() << "getLatestN error:"
                      << query.lastError();
         }
         while (query.next()) {
@@ -157,4 +158,28 @@ void Database::getLatest5(){
     }
     if (!this->latest.empty())
         emit getLatest(this->latest);
+}
+
+double Database::getAverage(){
+    bool success = false;
+    // you should check if args are ok first...
+    if (!this->db.open())
+    {
+        qDebug() << "Database::getAverage Error: connection with database failed";
+    }
+    else{
+        QSqlQuery query;
+        query.prepare("SELECT AVG(finalAmount) FROM expenses");
+
+        if(query.exec())
+        {
+            query.next();
+            return query.value(0).toDouble();
+        }
+        else
+        {
+            qDebug() << "getLatestN error:"
+                     << query.lastError();
+        }
+    }
 }

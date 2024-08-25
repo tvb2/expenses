@@ -215,7 +215,7 @@
       </widget>
      </item>
      <item row="1" column="1" colspan="3">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lbPeriodAVG">
        <property name="text">
         <string>period average</string>
        </property>

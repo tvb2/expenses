@@ -80,8 +80,8 @@ void Settings::jsonTests(){
     this->fullpath = path + "/" + "test" + ".settings";
 
     QVariantMap g;
-    g["currency"] = "AED";
-    g["period"] = "weekly";
+    g["currency"] = "CAD";
+    g["period"] = "monthly";
 
 
     QVariantMap r;

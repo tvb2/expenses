@@ -48,14 +48,14 @@ void Dispatch::selectProfile()  {
 }
 
 void Dispatch::startMainW(){
-    MainWindow *w = new MainWindow;
     this->mW = new MainWindow;
     QObject::connect(this->settings, &Settings::transmitSettings, mW, &MainWindow::populateLists);
     QObject::connect(mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
     QObject::connect(mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
     QObject::connect(this->db, &Database::getLatest, mW, &MainWindow::populateRecords);
     this->settings->readSettings(this->profile->getCurrentProfileName());
-    this->db->getLatest5();
+    this->db->getLatestN(5);
+    mW->updateAVG(this->db->getAverage());
 
     mW->show();
 }
@@ -72,7 +72,7 @@ void Dispatch::newRecordRequest(Record const &record){
     qDebug("Dispatch::newRecordRequest recieved signal");
     this->db->addRecord(record);
     QObject::connect(this->db, &Database::getLatest, this->mW, &MainWindow::populateRecords);
-    this->db->getLatest5();
+    this->db->getLatestN(5);
 
 }
 

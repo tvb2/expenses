@@ -39,7 +39,13 @@ public:
      * @brief get latest 5 records submitted
      * @return vector of Records
      */
-    void getLatest5();
+    void getLatestN(int N);
+
+    /**
+     * @brief average expense for the default period
+     * @return avg
+     */
+    double getAverage();
 
 signals:
 
