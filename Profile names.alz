@@ -53,7 +53,7 @@ profile2
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-43434" y="-558461" h="75000" index="8">
+  <node w="200000" x="-43433" y="-558461" h="75000" index="8">
    <text>Profile::searchProfiles</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
@@ -64,34 +64,34 @@ profile2
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="236000" x="-457575" y="92929" h="75000" index="10">
+  <node w="236000" x="-457574" y="92929" h="75000" index="10">
    <text>Profile::profiles -> append</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="216000" x="-46022" y="95062" h="75000" index="11">
+  <node w="216000" x="-46021" y="95061" h="75000" index="11">
    <text>Profile::files: -> append</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="230000" x="286085" y="99239" h="75000" index="12">
+  <node w="230000" x="286084" y="99239" h="75000" index="12">
    <text>Profile::names -> append</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="415000" x="655072" y="98550" h="75000" index="13">
+  <node w="415000" x="655072" y="98549" h="75000" index="13">
    <text>Profile::profileName - update current profilename</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="386000" x="-39130" y="281159" h="94000" index="14">
+  <node w="386000" x="-39130" y="281158" h="94000" index="14">
    <text>Profile::setCurrentProfile (QString only name)
 - check if profile exists in accounts
 - set current path and current name</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-2716747" y="-1437325" h="160000" index="15">
+  <node w="200000" x="-2716746" y="-1437325" h="160000" index="15">
    <text>Dispatch
 
 Private:
@@ -101,14 +101,14 @@ settings</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="313000" x="-2217391" y="-1202898" h="94000" index="16">
+  <node w="313000" x="-2217391" y="-1202897" h="94000" index="16">
    <text>Launcher
 - profile searches current directory
 - Launcher analyses existing profiles</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="202000" x="-1561071" y="-1462465" h="75000" index="17">
+  <node w="202000" x="-1561070" y="-1462464" h="75000" index="17">
    <text>Dispatch::createNew()</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
@@ -118,7 +118,7 @@ settings</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="214000" x="-1541533" y="-699760" h="75000" index="19">
+  <node w="214000" x="-1541532" y="-699759" h="75000" index="19">
    <text>Dispatch::selectProfile()</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
@@ -147,12 +147,12 @@ set path</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="364000" x="-2460909" y="487090" h="75000" index="24">
+  <node w="364000" x="-2460909" y="487089" h="75000" index="24">
    <text>CreateProfile::on_pbCreateProfile_clicked()</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="248000" x="-3206325" y="675618" h="75000" index="25">
+  <node w="248000" x="-3206324" y="675618" h="75000" index="25">
    <text>slot:
 Dispatch::newProfileCreated</text>
    <color g="0" r="255" b="0"/>
@@ -168,12 +168,12 @@ Dispatch::newProfileCreated</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="242000" x="-3242946" y="822563" h="75000" index="28">
+  <node w="242000" x="-3242945" y="822562" h="75000" index="28">
    <text>Profile::createProfile(name)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="342000" x="-3205770" y="1107748" h="75000" index="29">
+  <node w="342000" x="-3205769" y="1107748" h="75000" index="29">
    <text>Settings::createSettings(name, settings)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -183,7 +183,7 @@ Dispatch::newProfileCreated</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="292000" x="-1275520" y="1175937" h="75000" index="31">
+  <node w="292000" x="-1275519" y="1175936" h="75000" index="31">
    <text>Profile::setCurrentProfile(name)
 set current profile name and path</text>
    <color g="255" r="170" b="0"/>
@@ -195,46 +195,46 @@ set current db path</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="304000" x="-524687" y="1170937" h="75000" index="33">
+  <node w="304000" x="-524687" y="1170936" h="75000" index="33">
    <text>Settings::setCurrentSettings(name)
 set current settings to name</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-3207229" y="88787" h="75000" index="35">
+  <node w="200000" x="-3207228" y="88787" h="75000" index="35">
    <text>Launcher
 No profiles found:</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-1649684" y="153018" h="75000" index="36">
+  <node w="200000" x="-1649683" y="153018" h="75000" index="36">
    <text>Launcher
 One profile found</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="204000" x="-2300307" y="1230773" h="75000" index="37">
+  <node w="204000" x="-2300306" y="1230772" h="75000" index="37">
    <text>Launcher
 Multiple profiles found</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="214000" x="-2298955" y="1356787" h="75000" index="38">
+  <node w="214000" x="-2298954" y="1356787" h="75000" index="38">
    <text>Dispatch::selectProfile()</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="343000" x="-2298955" y="1602733" h="75000" index="39">
+  <node w="343000" x="-2298954" y="1602732" h="75000" index="39">
    <text>Profile::getProfileNames(existingNames)</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="250000" x="-1816523" y="1355436" h="75000" index="40">
+  <node w="250000" x="-1816522" y="1355435" h="75000" index="40">
    <text>SelectProfile(existingNames)</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-2233353" y="936885" h="138000" index="41">
+  <node w="200000" x="-2233353" y="936884" h="138000" index="41">
    <text>Dispatch::setProfile
 set current 
  - db, 
@@ -243,16 +243,37 @@ set current
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="207000" x="-5804201" y="768627" h="75000" index="42">
+  <node w="207000" x="-5804201" y="768626" h="75000" index="42">
    <text>Dispatch::Launcher
 search existing profiles</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="257000" x="-5805882" y="1347794" h="94000" index="43">
+  <node w="257000" x="-5805881" y="1347794" h="94000" index="43">
    <text>Dispatch::startMainW
 Settings::readSettings(name)
 populate MainWindow</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="318000" x="-5622500" y="2342500" h="75000" index="44">
+   <text>MainWindow::on_pB_Submit_clicked
+</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="439000" x="-4625000" y="2338750" h="75000" index="45">
+   <text>Dispatch::newRecordRequest(Record const &amp;record)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="208000" x="-4622500" y="2598750" h="75000" index="46">
+   <text>Database::getLatest5()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="284000" x="-5631250" y="2597500" h="75000" index="47">
+   <text>MainWindow::populateRecords()</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -356,6 +377,15 @@ selectProfile(QString profile)</text>
   </edge>
   <edge index0="42" index1="43" reversed="0" arrow-mode="0">
    <text></text>
+  </edge>
+  <edge index0="44" index1="45" reversed="0" arrow-mode="0">
+   <text>emit updateLast5()</text>
+  </edge>
+  <edge index0="45" index1="46" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="46" index1="47" reversed="0" arrow-mode="0">
+   <text>emit getLatest(QVector&lt;Record> &amp; latestRecords)</text>
   </edge>
  </graph>
 </design>

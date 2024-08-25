@@ -49,14 +49,15 @@ void Dispatch::selectProfile()  {
 
 void Dispatch::startMainW(){
     MainWindow *w = new MainWindow;
-    QObject::connect(this->settings, &Settings::transmitSettings, w, &MainWindow::populateLists);
-    QObject::connect(w, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
-    QObject::connect(w, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
-    QObject::connect(this->db, &Database::getLatest, w, &MainWindow::populateRecords);
+    this->mW = new MainWindow;
+    QObject::connect(this->settings, &Settings::transmitSettings, mW, &MainWindow::populateLists);
+    QObject::connect(mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
+    QObject::connect(mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
+    QObject::connect(this->db, &Database::getLatest, mW, &MainWindow::populateRecords);
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatest5();
 
-    w->show();
+    mW->show();
 }
 
 void Dispatch::newProfileCreated(QString const &name, QVariantMap const &settings){
@@ -70,6 +71,9 @@ void Dispatch::newProfileCreated(QString const &name, QVariantMap const &setting
 void Dispatch::newRecordRequest(Record const &record){
     qDebug("Dispatch::newRecordRequest recieved signal");
     this->db->addRecord(record);
+    QObject::connect(this->db, &Database::getLatest, this->mW, &MainWindow::populateRecords);
+    this->db->getLatest5();
+
 }
 
 void Dispatch::editCurrency(SettingsBunlde const &bundle){

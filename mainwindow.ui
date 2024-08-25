@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
-    <height>695</height>
+    <width>541</width>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -400,8 +400,8 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>440</y>
+      <x>10</x>
+      <y>430</y>
       <width>501</width>
       <height>192</height>
      </rect>
@@ -452,12 +452,17 @@
     </column>
     <column>
      <property name="text">
-      <string>Amount</string>
+      <string>Local Curr</string>
      </property>
     </column>
     <column>
      <property name="text">
       <string>Currency</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Amount</string>
      </property>
     </column>
    </widget>
@@ -467,7 +472,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>739</width>
+     <width>541</width>
      <height>26</height>
     </rect>
    </property>

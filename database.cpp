@@ -37,7 +37,7 @@ void Database::createDB(QString const &name){
 }
 
 void Database::setCurrentDB(QString const &name){
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    this->db = QSqlDatabase::addDatabase("QSQLITE");
     this->path =
         QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
         + "/"
@@ -61,7 +61,7 @@ bool Database::addRecord(Record const &record)
     qDebug() << record.date << "date recieved";
     qDebug() << record.reg << " regular recieved";
 
-    QString dateNow=QDateTime::currentDateTime().toString();
+    QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));
     bool success = false;
     // you should check if args are ok first...
     QSqlQuery query;
@@ -123,29 +123,38 @@ void Database::getLatest5(){
     Record record;
     bool success = false;
     // you should check if args are ok first...
-    QSqlQuery query;
-    query.prepare("SELECT * FROM expenses ORDER BY lastChangeDateTime DESC LIMIT 5");
+    if (!this->db.open())
+    {
+        qDebug() << "Database::getLatest5. Error: connection with database failed";
+    }
+    else{
+        QSqlQuery query;
+        query.prepare("SELECT * FROM expenses ORDER BY lastChangeDateTime DESC LIMIT 5");
 
-    if(query.exec())
-    {
-        success = true;
+        if(query.exec())
+        {
+            success = true;
+        }
+        else
+        {
+            qDebug() << "getLatest5 error:"
+                     << query.lastError();
+        }
+        while (query.next()) {
+            this->latest.append(record);
+            this->latest[this->latest.size() - 1].date = query.value(0).toString();
+            this->latest[this->latest.size() - 1].cat = query.value(1).toString();
+            this->latest[this->latest.size() - 1].amount = query.value(2).toDouble();
+            this->latest[this->latest.size() - 1].currency = query.value(3).toString();
+            this->latest[this->latest.size() - 1].rate = query.value(4).toDouble();
+            this->latest[this->latest.size() - 1].finalAmnt = query.value(5).toDouble();
+            this->latest[this->latest.size() - 1].chngDate = query.value(7).toString();
+            qDebug() << this->latest[this->latest.size() - 1].date << " " << this->latest[this->latest.size() - 1].cat << " "
+                     <<this->latest[this->latest.size() - 1].amount << " " << this->latest[this->latest.size() - 1].currency << " "
+                     <<this->latest[this->latest.size() - 1].rate << " " << this->latest[this->latest.size() - 1].finalAmnt << " "
+                     <<this->latest[this->latest.size() - 1].chngDate;
+        }
     }
-    else
-    {
-        qDebug() << "getLatest5 error:"
-                 << query.lastError();
-    }
-    while (query.next()) {
-        this->latest.append(record);
-        this->latest[this->latest.size() - 1].date = query.value(0).toString();
-        this->latest[this->latest.size() - 1].cat = query.value(1).toString();
-        this->latest[this->latest.size() - 1].amount = query.value(2).toDouble();
-        this->latest[this->latest.size() - 1].currency = query.value(3).toString();
-        this->latest[this->latest.size() - 1].rate = query.value(4).toDouble();
-        this->latest[this->latest.size() - 1].finalAmnt = query.value(5).toDouble();
-        qDebug() << this->latest[this->latest.size() - 1].date << " " << this->latest[this->latest.size() - 1].cat << " "
-                 <<this->latest[this->latest.size() - 1].amount << " " << this->latest[this->latest.size() - 1].currency << " "
-                 <<this->latest[this->latest.size() - 1].rate << " " << this->latest[this->latest.size() - 1].finalAmnt;
-    }
-    emit getLatest(this->latest);
+    if (!this->latest.empty())
+        emit getLatest(this->latest);
 }

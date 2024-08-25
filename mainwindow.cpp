@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->cbCategory->setEditable(false);
     ui->cbNonRegCat->setEnabled(false);
     ui->leAmount->setValidator(new Validator);
+    ui->pB_Submit->setEnabled(false);
 
     ui->date->setDate(QDate::currentDate());
     ui->date->setEnabled(false);
@@ -37,6 +38,7 @@ void MainWindow::on_pB_Submit_clicked()
     emit newRecordAvailable(this->record);
 
     qDebug("MainW: Submit button pressed");
+    ui->pB_Submit->setEnabled(false);
 }
 
 void MainWindow::populateLists(SettingsBunlde const &settings){
@@ -57,15 +59,17 @@ void MainWindow::populateLists(SettingsBunlde const &settings){
 }
 
 void MainWindow::populateRecords(QVector<Record> const & lastRecords){
+    if (!lastRecords.isEmpty()){
     auto rec = lastRecords.begin();
-    for( int row = 0; row < 5; row++ ){
+    for( int row = 0; row < lastRecords.size(); row++ ){
         QStringList itemList;
         itemList.append(rec->date);
         itemList.append(rec->cat);
         itemList.append(QString::number(rec->amount));
         itemList.append(rec->currency);
+        itemList.append(QString::number(rec->finalAmnt));
         auto itemListIt = itemList.begin();
-        for( int column = 0; column < 4; column++ ){
+        for( int column = 0; column < 5; column++ ){
             QString item = QString(itemListIt->data());
             QVariant oVariant(item);
             ++itemListIt;
@@ -82,7 +86,8 @@ void MainWindow::populateRecords(QVector<Record> const & lastRecords){
         ui->lbLatest0Amount->setText(QString::number(item.amount));
         ui->lbLatest0Curr->setText(item.currency);
     }
-}
+    }
+    }
 
 void MainWindow::on_chboxReg_stateChanged(int arg1)
 {
@@ -106,7 +111,7 @@ void MainWindow::on_leAmount_textChanged(const QString &arg1)
 {
     QJSEngine jsEngine;
     QJSValue eval = jsEngine.evaluate(ui->leAmount->displayText());
-    if (eval.isError()){
+    if (eval.isError() || ui->leAmount->text().isEmpty()){
         ui->pB_Submit->setEnabled(false);
         ui->lbAmountEntered->setText(" ... ");
     }

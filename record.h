@@ -11,6 +11,7 @@ struct Record{
     double rate;
     double finalAmnt;
     bool reg;
+    QString chngDate;
 };
 
 #endif // RECORD_H

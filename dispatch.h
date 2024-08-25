@@ -25,6 +25,7 @@ public:
     Profile *profile;
     Database *db;
     Settings *settings;
+    MainWindow *mW;
 
     Dispatch(Profile *pr, Database *databs, Settings *st)
         : profile(pr)
