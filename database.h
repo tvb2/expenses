@@ -45,7 +45,7 @@ public:
      * @brief average expense for the default period
      * @return avg
      */
-    double getAverage();
+    double getAverage(QString period);
 
 signals:
 

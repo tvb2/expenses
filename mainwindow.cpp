@@ -38,7 +38,7 @@ void MainWindow::on_pB_Submit_clicked()
         this->record.cat = ui->cbCategory->currentText();
     else
         this->record.cat = ui->cbNonRegCat->currentText();
-    this->record.date = ui->date->date().toString("yyyy.MM.dd");
+    this->record.date = ui->date->date().toString("yyyy-MM-dd");
     this->record.currency = ui->cbCurrency->currentText();
     this->record.reg = !ui->chboxReg->isChecked();
     this->record.rate = ui->lbRate->text().toDouble();

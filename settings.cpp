@@ -120,6 +120,10 @@ void Settings::jsonTests(){
     saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
 }
 
+QString Settings::getDefaultPeriod(){
+    return this->accounts[this->name].general.value("period").toString();
+}
+
 void Settings::updateMap(QString const & profile, QString section, QVariantMap const &m){
 
     for (auto i = m.begin(); i != m.end(); ++i){

@@ -61,7 +61,7 @@ bool Database::addRecord(Record const &record)
     qDebug() << record.date << "date recieved";
     qDebug() << record.reg << " regular recieved";
 
-    QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));
+    QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));//2024-08-25T10:30:51
     bool success = false;
     // you should check if args are ok first...
     QSqlQuery query;
@@ -160,7 +160,7 @@ void Database::getLatestN(int N){
         emit getLatest(this->latest);
 }
 
-double Database::getAverage(){
+double Database::getAverage(QString period){
     bool success = false;
     // you should check if args are ok first...
     if (!this->db.open())
@@ -168,8 +168,15 @@ double Database::getAverage(){
         qDebug() << "Database::getAverage Error: connection with database failed";
     }
     else{
+        QString condition;
+        if (period == "weekly"){
+//to be completed
+        }
+        else if (period == "monthly"){
+
+        }
         QSqlQuery query;
-        query.prepare("SELECT AVG(finalAmount) FROM expenses");
+        query.prepare("SELECT AVG(finalAmount) FROM expenses WHERE data>'2024-08-25' ");
 
         if(query.exec())
         {

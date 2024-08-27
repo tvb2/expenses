@@ -47,6 +47,12 @@ public:
     //used only for tests
     void jsonTests();
 
+    /**
+     * @brief get default period for statistics
+     * @return default period for statistics
+     */
+    QString getDefaultPeriod();
+
 
 
     /*

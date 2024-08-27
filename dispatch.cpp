@@ -55,7 +55,7 @@ void Dispatch::startMainW(){
     QObject::connect(this->db, &Database::getLatest, mW, &MainWindow::populateRecords);
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
-    mW->updateAVG(this->db->getAverage());
+    mW->updateAVG(this->db->getAverage(this->settings->getDefaultPeriod()));
 
     mW->show();
 }
@@ -73,7 +73,7 @@ void Dispatch::newRecordRequest(Record const &record){
     this->db->addRecord(record);
     QObject::connect(this->db, &Database::getLatest, this->mW, &MainWindow::populateRecords);
     this->db->getLatestN(5);
-
+    mW->updateAVG(this->db->getAverage(this->settings->getDefaultPeriod()));
 }
 
 void Dispatch::editCurrency(SettingsBunlde const &bundle){
