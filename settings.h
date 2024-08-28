@@ -53,8 +53,6 @@ public:
      */
     QString getDefaultPeriod();
 
-
-
     /*
      * add single default (regular) category
      */
@@ -63,7 +61,6 @@ public:
         this->accounts[this->name].settings.insert("Regual",QJsonValue::fromVariant(this->accounts[this->name].regCat));
         saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
     }
-
 
     /*
      * add single non-regular category
@@ -88,6 +85,15 @@ public:
      * @param name
      */
     void setCurrentSettings(QString const &newName);
+
+    /**
+     * @brief getRegCats
+     * @return a list of regular categories
+     */
+    QVariantList const & getRegCats(){
+
+        return this->accounts[this->name].regCat;
+    }
 
 signals:
     /**

@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
     Profile *profile = new Profile;
     Database *db = new Database;
     Settings *settings = new Settings;
-    Dispatch *dispatch = new Dispatch(profile, db, settings);
+    Statistics *stats = new Statistics;
+    Dispatch *dispatch = new Dispatch(profile, db, settings, stats);
 
     //launch start module and hand over selected DB to DB manager
     dispatch->Launcher();

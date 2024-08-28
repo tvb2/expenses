@@ -11,6 +11,7 @@
 #include "profile.h"
 #include "database.h"
 #include "settings.h"
+#include "statistics.h"
 #include "createprofile.h"
 #include "selectprofile.h"
 #include "mainwindow.h"
@@ -25,12 +26,14 @@ public:
     Profile *profile;
     Database *db;
     Settings *settings;
+    Statistics *stats;
     MainWindow *mW;
 
-    Dispatch(Profile *pr, Database *databs, Settings *st)
+    Dispatch(Profile *pr, Database *databs, Settings *st, Statistics *statistics)
         : profile(pr)
         , db(databs)
         , settings(st)
+        , stats(statistics)
     {
 
     }
@@ -54,6 +57,8 @@ void setProfile(QString const & name);
  * overload select profile from multiple choice
  */
 void selectProfile();
+
+void updateTotals();
 
 public slots:
 /**

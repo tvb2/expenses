@@ -156,5 +156,8 @@ void Settings::setCurrentSettings(QString const &newName){
     else{
         this->name = newName;
         this->fullpath = path + "/" + newName + ".settings";
+        readSettings(newName);
+        qDebug() << "Settings::setCurrentSettings. Settings selected" << " name: " << this->name << ", path: " << this->fullpath;
+
     }
 }

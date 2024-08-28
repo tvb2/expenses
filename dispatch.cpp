@@ -35,7 +35,10 @@ void Dispatch::setProfile(QString const &name){
     this->profile->setCurrentProfile(name);
     this->db->setCurrentDB(name);
     this->settings->setCurrentSettings(name);
-    this->settings->jsonTests();
+    QObject::connect(this->db, &Database::getTotal, stats, &Statistics::addTot);
+
+    updateTotals();
+    qDebug() << "Dispatch::setProfile complete";
 }
 
 void Dispatch::selectProfile()  {
@@ -45,6 +48,13 @@ void Dispatch::selectProfile()  {
     SelectProfile *s = new SelectProfile(existingNames);
     QObject::connect(s, &SelectProfile::selectProfile, this, &Dispatch::setProfile);
     s->exec();
+}
+
+void Dispatch::updateTotals(){
+    QVariantList cats = this->settings->getRegCats();
+    foreach (auto cat, cats) {
+        this->db->getTotals(cat.toString());
+    }
 }
 
 void Dispatch::startMainW(){

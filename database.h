@@ -47,9 +47,13 @@ public:
      */
     double getAverage(QString period);
 
+    void getTotals(QString const & cat);
+
 signals:
 
     void getLatest(QVector<Record> & latestRecords);
+
+    void getTotal(QString const & cat, double tot);
 
 private:
     QSqlDatabase db;

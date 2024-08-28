@@ -19,6 +19,7 @@ SOURCES += \
     settings.cpp \
     createprofile.cpp \
     selectprofile.cpp \
+    statistics.cpp \
     validator.cpp
 
 HEADERS += \
@@ -33,6 +34,7 @@ HEADERS += \
     createprofile.h \
     selectprofile.h \
     settingsbundle.h \
+    statistics.h \
     validator.h
 
 FORMS += \

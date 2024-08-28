@@ -234,12 +234,13 @@ Multiple profiles found</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-2233353" y="936884" h="138000" index="41">
+  <node w="312000" x="-2233353" y="936884" h="160000" index="41">
    <text>Dispatch::setProfile
 set current 
  - db, 
- - settings and 
- - profile</text>
+ - settings 
+ - profile
+Calc totals for each regular category</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>

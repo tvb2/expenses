@@ -190,3 +190,29 @@ double Database::getAverage(QString period){
         }
     }
 }
+
+void Database::getTotals(QString const & cat){
+    bool success = false;
+    // you should check if args are ok first...
+    if (!this->db.open())
+    {
+        qDebug() << "Database::getTotals. Error: connection with database failed";
+    }
+    else{
+        QSqlQuery query;
+        query.prepare("SELECT SUM(finalAmount) FROM expenses WHERE category = '" + cat + "'");
+
+        if(query.exec())
+        {
+            success = true;
+        }
+        else
+        {
+            qDebug() << "getTotals error:"
+                     << query.lastError();
+        }
+        while (query.next()) {
+            emit getTotal(cat, query.value(0).toDouble());
+        }
+    }
+}
