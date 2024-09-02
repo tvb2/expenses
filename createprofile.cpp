@@ -52,6 +52,7 @@ void CreateProfile::on_pbCreateProfile_clicked()
             QVariantMap settings;
             settings["currency"] = currency;
             settings["period"] = period;
+            settings["startDate"] = QDate::currentDate();
 
             emit profileCreated(name, settings);
             this->close();

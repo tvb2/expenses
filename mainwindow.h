@@ -29,6 +29,8 @@ public:
      */
     void updateAVG(double avg);
 
+    void updateCatAv(double avg);
+
 public slots:
     /**
      * populate drop-down lists
@@ -61,10 +63,14 @@ private slots:
 
     void on_pbEditCurrency_clicked();
 
+    void on_cbCategory_currentTextChanged(const QString &arg1);
+
 signals:
     void newRecordAvailable(Record const &record);
 
     void editCurrencyPBclicked(SettingsBunlde const &bundle);
+
+    void requestCatAverage(const QString cat);
 
 private:
     Ui::MainWindow *ui;

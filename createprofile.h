@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QStandardPaths>
+#include <QDate>
 
 namespace Ui {
 class CreateProfile;

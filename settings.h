@@ -40,8 +40,12 @@ public:
 
     void saveJson(QJsonDocument document, QString const &fileName) {
         QFile jsonFile(fileName);
-        jsonFile.open(QFile::WriteOnly);
-        jsonFile.write(document.toJson());
+        if (jsonFile.open(QFile::WriteOnly)){
+            qDebug() << "Settings::saveJson file successfully opened";
+        }
+        if (jsonFile.write(document.toJson())){
+            qDebug() << "Settings::saveJson file successfully written";
+        }
     }
 
     //used only for tests
@@ -95,6 +99,9 @@ public:
         return this->accounts[this->name].regCat;
     }
 
+    QDate getStartDate(){
+        return this->accounts[name].general["startDate"].toDate();
+    }
 signals:
     /**
      * data to populate MainW
@@ -113,6 +120,7 @@ public slots:
      */
     void readSettings(QString const &newName);
 
+    void setStartDate(QDate const &sDate);
 };
 
 #endif // SETTINGS_H

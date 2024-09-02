@@ -6,8 +6,8 @@
         "USD": 3.67
     },
     "General": {
-        "currency": "AED",
-        "period": "weekly"
+        "currency": "CAD",
+        "period": "monthly"
     },
     "Regular": [
         "Grocery",

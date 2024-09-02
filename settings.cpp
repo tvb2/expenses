@@ -161,3 +161,11 @@ void Settings::setCurrentSettings(QString const &newName){
 
     }
 }
+
+void Settings::setStartDate(QDate const & sDate){
+    this->accounts[this->name].general["startDate"] = sDate.toString("yyyy-MM-dd");
+    this->accounts[this->name].settings.insert(
+        "General",
+        QJsonObject::fromVariantMap(this->accounts[this->name].general));
+    saveJson(QJsonDocument(this->accounts[this->name].settings),this->fullpath);
+}

@@ -3,6 +3,7 @@
 
 #include "QJsonObject"
 #include "QVariant"
+#include <QDate>
 
 struct SettingsBunlde
 {

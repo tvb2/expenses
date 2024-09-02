@@ -12,6 +12,7 @@
 #include <QDir>
 #include <QStandardPaths>
 #include <QDateTime>
+#include <QDate>
 
 class Database : public QObject, public BaseComponent
 {
@@ -49,17 +50,26 @@ public:
 
     void getTotals(QString const & cat);
 
+    void setStartDate(QDate const & sDate){
+        this->startDate = sDate;
+    }
+
 signals:
 
     void getLatest(QVector<Record> & latestRecords);
 
     void getTotal(QString const & cat, double tot);
 
+    void getStartDate(QDate const & startDate);
+
+    void updateStartDate(QDate const & sDate);
+
 private:
     QSqlDatabase db;
     QDir dir;
     QString path;
     QVector<Record> latest;
+    QDate startDate;
     long int index;
 };
 

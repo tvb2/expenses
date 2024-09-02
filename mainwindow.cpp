@@ -43,7 +43,9 @@ void MainWindow::on_pB_Submit_clicked()
     this->record.reg = !ui->chboxReg->isChecked();
     this->record.rate = ui->lbRate->text().toDouble();
     this->record.finalAmnt = this->record.amount*ui->lbRate->text().toDouble();
+
     emit newRecordAvailable(this->record);
+    emit requestCatAverage(this->record.cat);
 
     qDebug("MainW: Submit button pressed");
     ui->pB_Submit->setEnabled(false);
@@ -87,12 +89,6 @@ void MainWindow::populateRecords(QVector<Record> const & lastRecords){
             ui->tableWidget->setItem( row, column, poItem );
         }
         ++rec;
-    }
-    foreach (auto item, lastRecords) {
-        ui->lbLatest0Date->setText(item.date);
-        ui->lbLatest0Cat->setText(item.cat);
-        ui->lbLatest0Amount->setText(QString::number(item.amount));
-        ui->lbLatest0Curr->setText(item.currency);
     }
     }
     }
@@ -157,3 +153,15 @@ void MainWindow::on_pbEditCurrency_clicked()
     emit editCurrencyPBclicked(this->setBundle);
 }
 
+void MainWindow::on_cbCategory_currentTextChanged(const QString &arg1)
+{
+    emit requestCatAverage(arg1);
+}
+
+void MainWindow::updateCatAv(double avg){
+    QString catAVG =
+        QString::number(avg) + " " +
+        setBundle.general.value("currency").toString() + " avg " +
+        setBundle.general.value("period").toString();
+    ui->lbCatAvg->setText(catAVG);
+}

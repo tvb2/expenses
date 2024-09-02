@@ -34,6 +34,7 @@ void Database::createDB(QString const &name){
                            "lastChangeDateTime text)");
         qDebug() << "Database::createDB. DB created: " << this->path;
     }
+    emit getStartDate(this->startDate);
 }
 
 void Database::setCurrentDB(QString const &name){
@@ -60,6 +61,12 @@ bool Database::addRecord(Record const &record)
     qDebug() << record.amount << "amount recieved";
     qDebug() << record.date << "date recieved";
     qDebug() << record.reg << " regular recieved";
+
+    //check if expense date is before global startDate, then update global startDate
+    if (QDate::fromString(record.date,"yyyy-MM-dd") < this->startDate){
+        this->startDate = QDate::fromString(record.date,"yyyy-MM-dd");
+        emit updateStartDate(this->startDate);
+    }
 
     QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));//2024-08-25T10:30:51
     bool success = false;

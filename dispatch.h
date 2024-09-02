@@ -79,6 +79,8 @@ public slots:
     void editCurrency(SettingsBunlde const &bundle);
 
     void newRecordRequest(Record const &record);
+
+    void catAverage(QString const &cat);
 };
 
 #endif // DISPATCH_H

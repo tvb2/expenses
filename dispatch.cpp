@@ -37,6 +37,9 @@ void Dispatch::setProfile(QString const &name){
     this->settings->setCurrentSettings(name);
     QObject::connect(this->db, &Database::getTotal, stats, &Statistics::addTot);
 
+    qDebug() << "Start date: " << this->settings->getStartDate();
+    this->db->setStartDate(this->settings->getStartDate());
+
     updateTotals();
     qDebug() << "Dispatch::setProfile complete";
 }
@@ -63,6 +66,8 @@ void Dispatch::startMainW(){
     QObject::connect(mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
     QObject::connect(mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
     QObject::connect(this->db, &Database::getLatest, mW, &MainWindow::populateRecords);
+    QObject::connect(mW, &MainWindow::requestCatAverage, this, &Dispatch::catAverage);
+
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
     mW->updateAVG(this->db->getAverage(this->settings->getDefaultPeriod()));
@@ -71,6 +76,8 @@ void Dispatch::startMainW(){
 }
 
 void Dispatch::newProfileCreated(QString const &name, QVariantMap const &settings){
+    // QObject::connect(this->db, &Database::getStartDate, this->settings, &Settings::createSettings);
+
     this->db->createDB(name);
     this->profile->createProfile(name);
     this->settings->createSettings(name, settings);
@@ -80,8 +87,10 @@ void Dispatch::newProfileCreated(QString const &name, QVariantMap const &setting
 
 void Dispatch::newRecordRequest(Record const &record){
     qDebug("Dispatch::newRecordRequest recieved signal");
-    this->db->addRecord(record);
+    QObject::connect(this->db, &Database::updateStartDate, this->settings, &Settings::setStartDate);
     QObject::connect(this->db, &Database::getLatest, this->mW, &MainWindow::populateRecords);
+
+    this->db->addRecord(record);
     this->db->getLatestN(5);
     mW->updateAVG(this->db->getAverage(this->settings->getDefaultPeriod()));
 }
@@ -90,4 +99,8 @@ void Dispatch::editCurrency(SettingsBunlde const &bundle){
     EditCurrency *ec = new EditCurrency;
     ec->populate(bundle);
     ec->show();
+}
+
+void Dispatch::catAverage(QString const &cat){
+    this->mW->updateCatAv(this->stats->getCatAv(cat));
 }

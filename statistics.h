@@ -16,6 +16,9 @@ class Statistics : public QObject
 public:
     explicit Statistics(QObject *parent = nullptr);
 
+    double getCatAv(QString const &category){
+        return this->cat[category];
+    }
 
 signals:
 public slots:
