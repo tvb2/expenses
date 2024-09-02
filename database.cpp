@@ -34,7 +34,6 @@ void Database::createDB(QString const &name){
                            "lastChangeDateTime text)");
         qDebug() << "Database::createDB. DB created: " << this->path;
     }
-    emit getStartDate(this->startDate);
 }
 
 void Database::setCurrentDB(QString const &name){
@@ -63,9 +62,10 @@ bool Database::addRecord(Record const &record)
     qDebug() << record.reg << " regular recieved";
 
     //check if expense date is before global startDate, then update global startDate
-    if (QDate::fromString(record.date,"yyyy-MM-dd") < this->startDate){
-        this->startDate = QDate::fromString(record.date,"yyyy-MM-dd");
-        emit updateStartDate(this->startDate);
+    if (QDate::fromString(record.date,"yyyy-MM-dd") < this->sDate){
+        QDate newStartDate = QDate::fromString(record.date,"yyyy-MM-dd");
+        startDate(newStartDate);
+        emit updateStartDate(this->sDate);
     }
 
     QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));//2024-08-25T10:30:51
@@ -93,7 +93,7 @@ bool Database::addRecord(Record const &record)
         qDebug() << "addExpense error:"
                  << query.lastError();
     }
-
+    emit total(record.cat,record.finalAmnt);
     return success;
 }
 
@@ -157,7 +157,8 @@ void Database::getLatestN(int N){
             this->latest[this->latest.size() - 1].rate = query.value(4).toDouble();
             this->latest[this->latest.size() - 1].finalAmnt = query.value(5).toDouble();
             this->latest[this->latest.size() - 1].chngDate = query.value(7).toString();
-            qDebug() << this->latest[this->latest.size() - 1].date << " " << this->latest[this->latest.size() - 1].cat << " "
+            qDebug() << "Latest transactions: \n"
+                    << this->latest[this->latest.size() - 1].date << " " << this->latest[this->latest.size() - 1].cat << " "
                      <<this->latest[this->latest.size() - 1].amount << " " << this->latest[this->latest.size() - 1].currency << " "
                      <<this->latest[this->latest.size() - 1].rate << " " << this->latest[this->latest.size() - 1].finalAmnt << " "
                      <<this->latest[this->latest.size() - 1].chngDate;
@@ -165,37 +166,6 @@ void Database::getLatestN(int N){
     }
     if (!this->latest.empty())
         emit getLatest(this->latest);
-}
-
-double Database::getAverage(QString period){
-    bool success = false;
-    // you should check if args are ok first...
-    if (!this->db.open())
-    {
-        qDebug() << "Database::getAverage Error: connection with database failed";
-    }
-    else{
-        QString condition;
-        if (period == "weekly"){
-//to be completed
-        }
-        else if (period == "monthly"){
-
-        }
-        QSqlQuery query;
-        query.prepare("SELECT AVG(finalAmount) FROM expenses WHERE data>'2024-08-25' ");
-
-        if(query.exec())
-        {
-            query.next();
-            return query.value(0).toDouble();
-        }
-        else
-        {
-            qDebug() << "getLatestN error:"
-                     << query.lastError();
-        }
-    }
 }
 
 void Database::getTotals(QString const & cat){
@@ -215,11 +185,50 @@ void Database::getTotals(QString const & cat){
         }
         else
         {
-            qDebug() << "getTotals error:"
+            qDebug() << "Database::getTotals error:"
                      << query.lastError();
         }
         while (query.next()) {
-            emit getTotal(cat, query.value(0).toDouble());
+            qDebug() << "Cat: " << cat << " total = " << query.value(0).toDouble();
+            emit total(cat, query.value(0).toDouble());
         }
     }
+}
+
+double Database::periodTotal(QString period){
+    bool success = false;
+    // you should check if args are ok first...
+    QString start = QDate::currentDate().toString("yyyy-MM-dd");
+    if (!this->db.open())
+    {
+        qDebug() << "Database::periodTotal. Error: connection with database failed";
+    }
+    else{
+        if (period == "weekly"){
+        }
+        else if (period == "monthly"){
+            QDate targetStart = QDate(QDate::currentDate().year(),QDate::currentDate().month(),1);
+            start = targetStart.toString("yyyy-MM-dd");
+        }
+        else
+            qDebug() << "Database::periodTotal. Something wrong with default period!";
+
+        QSqlQuery query;
+        query.prepare("SELECT SUM(finalAmount) FROM expenses WHERE data >= '" + start + "'");
+
+        if(query.exec())
+        {
+            success = true;
+        }
+        else
+        {
+            qDebug() << "Database::getTotals error:"
+                     << query.lastError();
+        }
+        while (query.next()) {
+            qDebug() << "Total for this period: " << query.value(0).toDouble();
+            return query.value(0).toDouble();
+        }
+    }
+
 }

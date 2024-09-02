@@ -40,9 +40,7 @@ public:
 
     void saveJson(QJsonDocument document, QString const &fileName) {
         QFile jsonFile(fileName);
-        if (jsonFile.open(QFile::WriteOnly)){
-            qDebug() << "Settings::saveJson file successfully opened";
-        }
+        jsonFile.open(QFile::WriteOnly);
         if (jsonFile.write(document.toJson())){
             qDebug() << "Settings::saveJson file successfully written";
         }
@@ -55,7 +53,9 @@ public:
      * @brief get default period for statistics
      * @return default period for statistics
      */
-    QString getDefaultPeriod();
+    QString getDefaultPeriod(){
+        return this->accounts[this->name].general.value("period").toString();
+    }
 
     /*
      * add single default (regular) category
@@ -99,7 +99,7 @@ public:
         return this->accounts[this->name].regCat;
     }
 
-    QDate getStartDate(){
+    QDate startDate(){
         return this->accounts[name].general["startDate"].toDate();
     }
 signals:
@@ -120,6 +120,7 @@ public slots:
      */
     void readSettings(QString const &newName);
 
+    //overload
     void setStartDate(QDate const &sDate);
 };
 

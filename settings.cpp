@@ -40,7 +40,13 @@ void Settings::createSettings(QString const &newName, QVariantMap const & gen){
         "Regular",
         QJsonValue::fromVariant(this->accounts[newName].regCat));
 
+    //create a template for exch rates and add default currency to it
+    QVariantMap rates;
+    rates[gen["currency"].toString()] = 1.0;
+    this->accounts[newName].exchRates.insert(rates);
+
     this->updateMap(newName, "general", gen);
+    this->updateMap(newName,"rates", rates);
 }
 
 void Settings::readSettings(QString const &newName){
@@ -118,10 +124,6 @@ void Settings::jsonTests(){
     this->accounts[this->name].settings.insert("Regular",QJsonValue::fromVariant(this->accounts[this->name].regCat));
     this->updateMap(this->name,"general",g);
     saveJson(QJsonDocument(this->accounts[this->name].settings), this->fullpath);
-}
-
-QString Settings::getDefaultPeriod(){
-    return this->accounts[this->name].general.value("period").toString();
 }
 
 void Settings::updateMap(QString const & profile, QString section, QVariantMap const &m){

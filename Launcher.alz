@@ -6,76 +6,7 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node w="290000" x="-381273" y="-276838" h="116000" index="1">
-   <text>Profile::accounts.profile: 
-"C:/../expenseApp/profile1.sqlite"
-"C:/../expenseApp/profile2.sqlite"
-....</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="365000" x="-43253" y="-419574" h="94000" index="3">
-   <text>Private:
-Profile::addProfiles (QStringList - full path)
- (multiple profiles)</text>
-   <color g="0" r="255" b="0"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="200000" x="-45140" y="-277783" h="116000" index="6">
-   <text>Profile::accounts.file: 
-"profile1.sqlite"
-"profile2.sqlite"
-....</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="212000" x="299771" y="-276598" h="116000" index="7">
-   <text>Profile::accounts.name:
-profile1
-profile2
-....</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="200000" x="-43432" y="-558461" h="75000" index="8">
-   <text>Profile::searchProfiles</text>
-   <color g="255" r="170" b="0"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="347000" x="-48484" y="-48484" h="75000" index="9">
-   <text>Profile::addProfile (QString - only name)
- (single profile)</text>
-   <color g="255" r="170" b="0"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="236000" x="-457574" y="92929" h="75000" index="10">
-   <text>Profile::profiles -> append</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="216000" x="-46021" y="95061" h="75000" index="11">
-   <text>Profile::files: -> append</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="230000" x="286084" y="99239" h="75000" index="12">
-   <text>Profile::names -> append</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="415000" x="655072" y="98549" h="75000" index="13">
-   <text>Profile::profileName - update current profilename</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="386000" x="-39130" y="281158" h="94000" index="14">
-   <text>Profile::setCurrentProfile (QString only name)
-- check if profile exists in accounts
-- set current path and current name</text>
-   <color g="255" r="170" b="0"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="313000" x="-2217391" y="-1202895" h="94000" index="16">
+  <node w="313000" x="-2217391" y="-1202894" h="94000" index="16">
    <text>Launcher
 - profile searches current directory
 - Launcher analyses existing profiles</text>
@@ -133,7 +64,7 @@ Dispatch::newProfileCreated</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="292000" x="-2822577" y="1375934" h="75000" index="31">
+  <node w="292000" x="-2822577" y="1375933" h="75000" index="31">
    <text>Profile::setCurrentProfile(name)
 set current profile name and path</text>
    <color g="255" r="170" b="0"/>
@@ -145,13 +76,13 @@ set current db path</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="304000" x="-1732529" y="1386622" h="75000" index="33">
+  <node w="304000" x="-1732528" y="1386622" h="75000" index="33">
    <text>Settings::setCurrentSettings(name)
 set current settings to name</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-3203306" y="53491" h="75000" index="35">
+  <node w="200000" x="-3203306" y="53490" h="75000" index="35">
    <text>Launcher
 No profiles found:</text>
    <color g="255" r="255" b="255"/>
@@ -163,18 +94,18 @@ One profile found</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="204000" x="-1539329" y="57600" h="75000" index="37">
+  <node w="204000" x="-1539328" y="57600" h="75000" index="37">
    <text>Launcher
 Multiple profiles found</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="214000" x="-1533577" y="349899" h="75000" index="38">
+  <node w="214000" x="-1533576" y="349899" h="75000" index="38">
    <text>Dispatch::selectProfile()</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="250000" x="-1533078" y="646620" h="75000" index="40">
+  <node w="250000" x="-1533077" y="646620" h="75000" index="40">
    <text>SelectProfile(existingNames)</text>
    <color g="255" r="170" b="0"/>
    <text-color g="0" r="0" b="0"/>
@@ -196,30 +127,6 @@ populate MainWindow</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <edge index0="3" index1="1" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
-  <edge index0="3" index1="6" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
-  <edge index0="3" index1="7" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
-  <edge index0="8" index1="3" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
-  <edge index0="9" index1="10" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
-  <edge index0="9" index1="11" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
-  <edge index0="9" index1="12" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
-  <edge index0="9" index1="13" reversed="0" arrow-mode="0">
-   <text></text>
-  </edge>
   <edge index0="16" index1="17" reversed="0" arrow-mode="0">
    <text>No Profiles found</text>
   </edge>

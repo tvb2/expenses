@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<design version="1.18.0">
+ <color g="189" r="186" b="182"/>
+ <edge-color g="0" r="0" b="0"/>
+ <edge-width>2000</edge-width>
+ <text-size>11000</text-size>
+ <corner-radius>5000</corner-radius>
+ <graph>
+  <node w="318000" x="-5607954" y="1961590" h="75000" index="44">
+   <text>MainWindow::on_pB_Submit_clicked
+</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="439000" x="-4625000" y="2338750" h="75000" index="45">
+   <text>Dispatch::newRecordRequest(Record const &amp;record)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="222000" x="-5018750" y="2598750" h="75000" index="46">
+   <text>Database::getLatestN(N)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="270000" x="-5631250" y="2597500" h="75000" index="47">
+   <text>Dispatch::newRecordRequest()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="318000" x="-5629136" y="2899076" h="75000" index="50">
+   <text>MainWindow::on_pB_Submit_clicked
+</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="270000" x="-4905122" y="2888094" h="75000" index="51">
+   <text>MainWindow::updateAVG(avg)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="243000" x="-5328916" y="1389083" h="75000" index="52">
+   <text>MainWindow::populateLists</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-5712500" y="1196250" h="75000" index="53">
+   <text>Dispatch::startMainW</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="201000" x="-5711666" y="1382500" h="75000" index="54">
+   <text>Settings::readSettings
+read settings from file</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-5330000" y="1190833" h="75000" index="55">
+   <text>Dispatch::startMainW</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-5530000" y="1037500" h="75000" index="56">
+   <text>Populate lists</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="258000" x="-4210000" y="2605000" h="75000" index="57">
+   <text>Database::addRecord(record)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="284000" x="-5631250" y="2742500" h="75000" index="58">
+   <text>MainWindow::populateRecords()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-4211250" y="2821250" h="75000" index="59">
+   <text>Statistics::addTot</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-6190588" y="2330735" h="75000" index="60">
+   <text>Dispatch::startMainW</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-6190588" y="2537794" h="75000" index="61">
+   <text>Dispatch::averages</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="228000" x="-6501176" y="2722500" h="75000" index="62">
+   <text>MainWindow::updateAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="254000" x="-5922352" y="2731911" h="75000" index="63">
+   <text>MainWindow::updateCatAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-4396363" y="1018181" h="75000" index="64">
+   <text>Period total</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="229000" x="-4757333" y="1196000" h="75000" index="65">
+   <text>MainWindow::periodTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <edge index0="44" index1="45" reversed="0" arrow-mode="0">
+   <text>signal 
+newRecordAvailable(record)</text>
+  </edge>
+  <edge index0="44" index1="60" reversed="0" arrow-mode="0">
+   <text>signal
+requestAVG</text>
+  </edge>
+  <edge index0="45" index1="46" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="45" index1="57" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="46" index1="47" reversed="0" arrow-mode="0">
+   <text>signal getLatest</text>
+  </edge>
+  <edge index0="47" index1="58" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="53" index1="54" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="54" index1="55" reversed="0" arrow-mode="0">
+   <text>signal emitSettings</text>
+  </edge>
+  <edge index0="55" index1="52" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="57" index1="59" reversed="0" arrow-mode="0">
+   <text>signal total</text>
+  </edge>
+  <edge index0="60" index1="61" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="61" index1="62" reversed="0" arrow-mode="0">
+   <text>using Statistics</text>
+  </edge>
+  <edge index0="61" index1="63" reversed="0" arrow-mode="0">
+   <text>using Statistics</text>
+  </edge>
+ </graph>
+</design>

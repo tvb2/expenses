@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<design version="1.18.0">
+ <color g="189" r="186" b="182"/>
+ <edge-color g="0" r="0" b="0"/>
+ <edge-width>2000</edge-width>
+ <text-size>11000</text-size>
+ <corner-radius>5000</corner-radius>
+ <graph>
+  <node w="379000" x="-2060" y="-137111" h="75000" index="0">
+   <text>CreateProfile::on_pbCreateProfile_clicked()
+settings["startDate"] = QDate::currentDate()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="262000" x="652576" y="-137500" h="75000" index="1">
+   <text>Dispatch::newProfileCreated()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="290000" x="654394" y="48731" h="75000" index="2">
+   <text>Settings::createSettings
+write settings to JSON and to file</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1041557" y="-138798" h="75000" index="3">
+   <text>Dispatch::setProfile</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1040155" y="45963" h="75000" index="4">
+   <text>Database::startDate</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="318000" x="-28138" y="307790" h="75000" index="5">
+   <text>MainWindow::on_pB_Submit_clicked</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="256000" x="637662" y="309252" h="75000" index="6">
+   <text>Dispatch::newRecordRequest</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="390000" x="1045452" y="310550" h="94000" index="7">
+   <text>Database::addRecord
+check if expense date is before startDate then
+setStartDate</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="256000" x="1044153" y="536524" h="75000" index="8">
+   <text>Dispatch::newRecordRequest</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="764392" y="739014" h="75000" index="9">
+   <text>Settings::setStartDate
+update file</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1378377" y="46283" h="75000" index="10">
+   <text>Statistics::startDate</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1344047" y="731547" h="75000" index="11">
+   <text>Statistics::startDate</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <edge index0="0" index1="1" reversed="0" arrow-mode="0">
+   <text>signal profileCreated</text>
+  </edge>
+  <edge index0="1" index1="2" reversed="0" arrow-mode="0">
+   <text>1</text>
+  </edge>
+  <edge index0="1" index1="3" reversed="0" arrow-mode="0">
+   <text>2</text>
+  </edge>
+  <edge index0="3" index1="4" reversed="0" arrow-mode="0">
+   <text>Settings::startDate</text>
+  </edge>
+  <edge index0="3" index1="10" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="5" index1="6" reversed="0" arrow-mode="0">
+   <text>signal newRecordAvailable</text>
+  </edge>
+  <edge index0="6" index1="7" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="7" index1="8" reversed="0" arrow-mode="0">
+   <text>emit updateStartDate</text>
+  </edge>
+  <edge index0="8" index1="9" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="8" index1="11" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+ </graph>
+</design>

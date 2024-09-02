@@ -10,6 +10,7 @@
 #include "validator.h"
 #include "record.h"
 #include "settingsbundle.h"
+#include "Periods.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,8 @@ public:
     void updateAVG(double avg);
 
     void updateCatAv(double avg);
+
+    void periodTotal(double tot);
 
 public slots:
     /**
@@ -70,7 +73,7 @@ signals:
 
     void editCurrencyPBclicked(SettingsBunlde const &bundle);
 
-    void requestCatAverage(const QString cat);
+    void requestAVG(const QString cat);
 
 private:
     Ui::MainWindow *ui;

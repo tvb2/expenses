@@ -28,6 +28,23 @@ void MainWindow::updateAVG(double avg){
     ui->lbPeriodAVG->setText(periodAVG);
 }
 
+void MainWindow::updateCatAv(double avg){
+    QString catAVG =
+        QString::number(avg) + " " +
+        setBundle.general.value("currency").toString() + " avg " +
+        setBundle.general.value("period").toString();
+    ui->lbCatAvg->setText(catAVG);
+}
+
+void MainWindow::periodTotal(double tot){
+    QString periodTot =
+        QString::number(tot) + " " +
+        setBundle.general.value("currency").toString() + " total this " +
+        setBundle.general.value("period").toString();
+
+    ui->lbperiodTotal->setText(periodTot);
+}
+
 void MainWindow::on_pbOK_clicked(){
     qDebug("MainW: OK pressed");
 }
@@ -45,7 +62,7 @@ void MainWindow::on_pB_Submit_clicked()
     this->record.finalAmnt = this->record.amount*ui->lbRate->text().toDouble();
 
     emit newRecordAvailable(this->record);
-    emit requestCatAverage(this->record.cat);
+    emit requestAVG(this->record.cat);
 
     qDebug("MainW: Submit button pressed");
     ui->pB_Submit->setEnabled(false);
@@ -155,13 +172,5 @@ void MainWindow::on_pbEditCurrency_clicked()
 
 void MainWindow::on_cbCategory_currentTextChanged(const QString &arg1)
 {
-    emit requestCatAverage(arg1);
-}
-
-void MainWindow::updateCatAv(double avg){
-    QString catAVG =
-        QString::number(avg) + " " +
-        setBundle.general.value("currency").toString() + " avg " +
-        setBundle.general.value("period").toString();
-    ui->lbCatAvg->setText(catAVG);
+    emit requestAVG(arg1);
 }

@@ -42,23 +42,19 @@ public:
      */
     void getLatestN(int N);
 
-    /**
-     * @brief average expense for the default period
-     * @return avg
-     */
-    double getAverage(QString period);
-
     void getTotals(QString const & cat);
 
-    void setStartDate(QDate const & sDate){
-        this->startDate = sDate;
+    double periodTotal(QString period);
+
+    void startDate(QDate const & sDate){
+        this->sDate = sDate;
     }
 
 signals:
 
     void getLatest(QVector<Record> & latestRecords);
 
-    void getTotal(QString const & cat, double tot);
+    void total(QString const & cat, double tot);
 
     void getStartDate(QDate const & startDate);
 
@@ -69,7 +65,7 @@ private:
     QDir dir;
     QString path;
     QVector<Record> latest;
-    QDate startDate;
+    QDate sDate;
     long int index;
 };
 

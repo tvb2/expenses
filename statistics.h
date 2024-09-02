@@ -16,8 +16,14 @@ class Statistics : public QObject
 public:
     explicit Statistics(QObject *parent = nullptr);
 
-    double getCatAv(QString const &category){
-        return this->cat[category];
+    double catAVG(QString const &category, QString period);
+
+    double avg(QString period);
+
+    double periodTotal();
+
+    void startDate(QDate const & sDate){
+        this->sDate = sDate;
     }
 
 signals:
@@ -26,6 +32,7 @@ public slots:
 
 private:
     std::map<QString, double> cat;
+    QDate sDate;
 
     void setTotals(QVariantList const &cats, QVariantList const &tots);
 };

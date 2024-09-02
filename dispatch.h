@@ -80,7 +80,7 @@ public slots:
 
     void newRecordRequest(Record const &record);
 
-    void catAverage(QString const &cat);
+    void averages(QString const &cat);
 };
 
 #endif // DISPATCH_H

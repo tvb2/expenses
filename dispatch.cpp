@@ -35,10 +35,10 @@ void Dispatch::setProfile(QString const &name){
     this->profile->setCurrentProfile(name);
     this->db->setCurrentDB(name);
     this->settings->setCurrentSettings(name);
-    QObject::connect(this->db, &Database::getTotal, stats, &Statistics::addTot);
 
-    qDebug() << "Start date: " << this->settings->getStartDate();
-    this->db->setStartDate(this->settings->getStartDate());
+    qDebug() << "Start date: " << this->settings->startDate();
+    this->db->startDate(this->settings->startDate());
+    this->stats->startDate(this->settings->startDate());
 
     updateTotals();
     qDebug() << "Dispatch::setProfile complete";
@@ -54,6 +54,7 @@ void Dispatch::selectProfile()  {
 }
 
 void Dispatch::updateTotals(){
+    QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
     QVariantList cats = this->settings->getRegCats();
     foreach (auto cat, cats) {
         this->db->getTotals(cat.toString());
@@ -66,17 +67,17 @@ void Dispatch::startMainW(){
     QObject::connect(mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
     QObject::connect(mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
     QObject::connect(this->db, &Database::getLatest, mW, &MainWindow::populateRecords);
-    QObject::connect(mW, &MainWindow::requestCatAverage, this, &Dispatch::catAverage);
+    QObject::connect(mW, &MainWindow::requestAVG, this, &Dispatch::averages);
 
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
-    mW->updateAVG(this->db->getAverage(this->settings->getDefaultPeriod()));
+    this->averages(this->settings->getRegCats()[0].toString());
+    this->db->periodTotal("monthly");
 
-    mW->show();
+    this->mW->show();
 }
 
 void Dispatch::newProfileCreated(QString const &name, QVariantMap const &settings){
-    // QObject::connect(this->db, &Database::getStartDate, this->settings, &Settings::createSettings);
 
     this->db->createDB(name);
     this->profile->createProfile(name);
@@ -88,11 +89,12 @@ void Dispatch::newProfileCreated(QString const &name, QVariantMap const &setting
 void Dispatch::newRecordRequest(Record const &record){
     qDebug("Dispatch::newRecordRequest recieved signal");
     QObject::connect(this->db, &Database::updateStartDate, this->settings, &Settings::setStartDate);
+    QObject::connect(this->db, &Database::updateStartDate, this->stats, &Statistics::startDate);
     QObject::connect(this->db, &Database::getLatest, this->mW, &MainWindow::populateRecords);
+    QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
 
     this->db->addRecord(record);
     this->db->getLatestN(5);
-    mW->updateAVG(this->db->getAverage(this->settings->getDefaultPeriod()));
 }
 
 void Dispatch::editCurrency(SettingsBunlde const &bundle){
@@ -101,6 +103,8 @@ void Dispatch::editCurrency(SettingsBunlde const &bundle){
     ec->show();
 }
 
-void Dispatch::catAverage(QString const &cat){
-    this->mW->updateCatAv(this->stats->getCatAv(cat));
+void Dispatch::averages(QString const &cat){
+    this->mW->updateAVG(this->stats->avg(this->settings->getDefaultPeriod()));
+    this->mW->updateCatAv(this->stats->catAVG(cat,this->settings->getDefaultPeriod()));
+    this->mW->periodTotal(this->db->periodTotal(this->settings->getDefaultPeriod()));
 }

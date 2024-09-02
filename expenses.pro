@@ -23,6 +23,7 @@ SOURCES += \
     validator.cpp
 
 HEADERS += \
+    Periods.h \
     basecomponent.h \
     dispatch.h \
     editcurrency.h \

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<design version="1.18.0">
+ <color g="189" r="186" b="182"/>
+ <edge-color g="0" r="0" b="0"/>
+ <edge-width>2000</edge-width>
+ <text-size>11000</text-size>
+ <corner-radius>5000</corner-radius>
+ <graph>
+  <node w="232000" x="-694612" y="-321952" h="75000" index="0">
+   <text>MainWindow::requestAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-86323" y="-322970" h="75000" index="1">
+   <text>Dispatch::startMainW</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="331622" y="-323824" h="75000" index="2">
+   <text>Dispatch::averages</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="575761" y="-110130" h="75000" index="3">
+   <text>Statistics::catAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="238000" x="612224" y="-439285" h="75000" index="4">
+   <text>MainWindown::updateAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-700000" y="-641379" h="75000" index="5">
+   <text>Disptach::setProfile</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="209000" x="-221838" y="-640947" h="75000" index="6">
+   <text>Dispatch::updateTotals</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-220617" y="-490076" h="75000" index="7">
+   <text>Settings::getRegCats</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="348452" y="-640591" h="75000" index="8">
+   <text>Database::getTotals</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="883504" y="-638529" h="75000" index="9">
+   <text>Disptach::setProfile</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="884111" y="-500115" h="75000" index="10">
+   <text>Statistics::addTot</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="80898" y="-115028" h="75000" index="11">
+   <text>Statistics::avg</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="264000" x="619101" y="-234129" h="75000" index="12">
+   <text>MainWindown::updateCatAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <edge index0="0" index1="1" reversed="0" arrow-mode="0">
+   <text>signal requestAVG</text>
+  </edge>
+  <edge index0="1" index1="2" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="3" reversed="0" arrow-mode="0">
+   <text>1</text>
+  </edge>
+  <edge index0="2" index1="4" reversed="0" arrow-mode="0">
+   <text>2</text>
+  </edge>
+  <edge index0="2" index1="11" reversed="0" arrow-mode="0">
+   <text>1</text>
+  </edge>
+  <edge index0="2" index1="12" reversed="0" arrow-mode="0">
+   <text>2</text>
+  </edge>
+  <edge index0="5" index1="6" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="6" index1="7" reversed="0" arrow-mode="0">
+   <text>1</text>
+  </edge>
+  <edge index0="6" index1="8" reversed="0" arrow-mode="0">
+   <text>2
+loop for all categories</text>
+  </edge>
+  <edge index0="8" index1="9" reversed="0" arrow-mode="0">
+   <text>signal getTotal</text>
+  </edge>
+  <edge index0="9" index1="10" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+ </graph>
+</design>
