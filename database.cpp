@@ -93,7 +93,8 @@ bool Database::addRecord(Record const &record)
         qDebug() << "addExpense error:"
                  << query.lastError();
     }
-    emit total(record.cat,record.finalAmnt);
+    if (record.reg)
+        emit total(record.cat,record.finalAmnt);
     return success;
 }
 
@@ -165,7 +166,7 @@ void Database::getLatestN(int N){
         }
     }
     if (!this->latest.empty())
-        emit getLatest(this->latest);
+        emit latestRecords(this->latest);
 }
 
 void Database::getTotals(QString const & cat){
@@ -176,6 +177,7 @@ void Database::getTotals(QString const & cat){
         qDebug() << "Database::getTotals. Error: connection with database failed";
     }
     else{
+        //regular categories
         QSqlQuery query;
         query.prepare("SELECT SUM(finalAmount) FROM expenses WHERE category = '" + cat + "'");
 
@@ -185,36 +187,88 @@ void Database::getTotals(QString const & cat){
         }
         else
         {
-            qDebug() << "Database::getTotals error:"
+            qDebug() << "Database::getTotals (regular) error:"
                      << query.lastError();
         }
         while (query.next()) {
             qDebug() << "Cat: " << cat << " total = " << query.value(0).toDouble();
             emit total(cat, query.value(0).toDouble());
         }
+        success = false;
+        //non-regular categories
+        QSqlQuery queryNonReg;
+        queryNonReg.prepare("SELECT SUM(finalAmount) FROM expenses WHERE reg = 0");
+        if(queryNonReg.exec())
+        {
+            success = true;
+        }
+        else
+        {
+            qDebug() << "Database::getTotals (non-regular) error:"
+                     << queryNonReg.lastError();
+        }
+        while (queryNonReg.next()) {
+            emit totalNonReg(queryNonReg.value(0).toDouble());
+        }
     }
 }
 
+
+//Following functions work together
+
+//private
+QString Database::startDate(QString period){
+    QDate targetStart = QDate::currentDate();
+    if (period == Periods::weekly){
+        qint64 today = QDate::currentDate().dayOfWeek();
+        targetStart = QDate::fromJulianDay(QDate::currentDate().toJulianDay() - today);
+    }
+    else if (period == Periods::monthly){
+        targetStart = QDate(QDate::currentDate().year(),QDate::currentDate().month(),1);
+    }
+    else if (period == Periods::overall){
+        targetStart = this->sDate;
+    }
+    else{
+        qDebug() << "Database::periodRegTotal. Something wrong with default period!";
+        return 0;
+    }
+    return targetStart.toString("yyyy-MM-dd");
+}
+
+double Database::periodRegTotal(QString period){
+        QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE "
+                            "data >= '" + startDate(period) + "'" +
+                      " AND reg = 1";
+        return periodTot(queryText);
+}
+
+double Database::periodNonRegTotal(QString period){
+
+        QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE"
+                        " data >= '" + startDate(period) + "'" +
+                      " AND reg = 0";
+        return periodTot(queryText);
+}
+
 double Database::periodTotal(QString period){
+
+    QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE"
+                        " data >= '" + startDate(period) + "'";
+    return periodTot(queryText);
+}
+
+//private
+double Database::periodTot(QString queryText){
     bool success = false;
-    // you should check if args are ok first...
-    QString start = QDate::currentDate().toString("yyyy-MM-dd");
     if (!this->db.open())
     {
         qDebug() << "Database::periodTotal. Error: connection with database failed";
+        return 0;
     }
     else{
-        if (period == "weekly"){
-        }
-        else if (period == "monthly"){
-            QDate targetStart = QDate(QDate::currentDate().year(),QDate::currentDate().month(),1);
-            start = targetStart.toString("yyyy-MM-dd");
-        }
-        else
-            qDebug() << "Database::periodTotal. Something wrong with default period!";
-
         QSqlQuery query;
-        query.prepare("SELECT SUM(finalAmount) FROM expenses WHERE data >= '" + start + "'");
+        query.prepare(queryText);
 
         if(query.exec())
         {
@@ -222,13 +276,14 @@ double Database::periodTotal(QString period){
         }
         else
         {
-            qDebug() << "Database::getTotals error:"
+            qDebug() << "Database::periodTot error:"
                      << query.lastError();
+            return 0;
         }
         while (query.next()) {
-            qDebug() << "Total for this period: " << query.value(0).toDouble();
             return query.value(0).toDouble();
         }
     }
-
 }
+
+//End of functions working together

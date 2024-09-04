@@ -4,7 +4,9 @@
 #include <QString>
 struct Periods
 {
-    QString weekly = "week";
-    QString monthly = "month";
+    static const QString weekly;// = "week";
+    static const QString monthly;// = "month";
+    static const QString overall;
 };
+
 #endif // PERIODS_H

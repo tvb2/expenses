@@ -24,15 +24,23 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void catAVG(double avg);
+
     /**
      * @brief average expenses for the default period
      * @param avg
      */
-    void updateAVG(double avg);
+    void periodRegAVG(double avg);
 
-    void updateCatAv(double avg);
+    void periodRegTotal(double tot);
+
+    void periodNonRegTotal(double tot);
+
+    void periodNonRegAVG(double avg);
 
     void periodTotal(double tot);
+
+    void overallTotal(double tot);
 
 public slots:
     /**

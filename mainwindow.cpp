@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->date->setDate(QDate::currentDate());
     ui->date->setEnabled(false);
+    emit requestAVG(ui->cbCategory->currentText());
+
 }
 
 MainWindow::~MainWindow()
@@ -20,29 +22,64 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::updateAVG(double avg){
-    QString periodAVG =
-        QString::number(avg) + " " +
-        setBundle.general.value("currency").toString() + " avg " +
-        setBundle.general.value("period").toString();
-    ui->lbPeriodAVG->setText(periodAVG);
-}
+void MainWindow::catAVG(double avg){
 
-void MainWindow::updateCatAv(double avg){
     QString catAVG =
-        QString::number(avg) + " " +
-        setBundle.general.value("currency").toString() + " avg " +
+        ui->cbCategory->currentText() + " " +
+        QString::number(avg, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " avg/" +
         setBundle.general.value("period").toString();
     ui->lbCatAvg->setText(catAVG);
 }
 
-void MainWindow::periodTotal(double tot){
+void MainWindow::periodRegTotal(double tot){
     QString periodTot =
-        QString::number(tot) + " " +
+        QString::number(tot, 'f', 1) + " " +
         setBundle.general.value("currency").toString() + " total this " +
         setBundle.general.value("period").toString();
 
     ui->lbperiodTotal->setText(periodTot);
+}
+
+void MainWindow::periodRegAVG(double avg){
+    QString periodAVG =
+        QString::number(avg, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " avg/" +
+        setBundle.general.value("period").toString();
+    ui->lbPeriodRegAVG->setText(periodAVG);
+}
+
+void MainWindow::periodNonRegTotal(double tot){
+    QString periodTot =
+        QString::number(tot, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " total this " +
+        setBundle.general.value("period").toString();
+
+    ui->lbperiodNonRegTot->setText(periodTot);
+}
+
+void MainWindow::periodNonRegAVG(double avg){
+    QString periodAVG =
+        QString::number(avg, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " avg/" +
+        setBundle.general.value("period").toString();
+    ui->lbperiodNonRegAVG->setText(periodAVG);
+}
+
+void MainWindow::periodTotal(double tot){
+    QString periodTot =
+        QString::number(tot, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " total this " +
+        setBundle.general.value("period").toString();
+
+    ui->lbPeriodTotal->setText(periodTot);
+}
+
+void MainWindow::overallTotal(double tot){
+    QString periodTot =
+        QString::number(tot, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " overall total ";
+    ui->lbOverallTotal->setText(periodTot);
 }
 
 void MainWindow::on_pbOK_clicked(){
@@ -83,6 +120,7 @@ void MainWindow::populateLists(SettingsBunlde const &settings){
     }
     ui->cbNonRegCat->addItems(nonR);
     ui->lbRate->setText(this->setBundle.exchRates.value( ui->cbCurrency->currentText()).toString());
+    ui->lbThisPeriodName->setText("This " + this->setBundle.general["period"].toString());
 }
 
 void MainWindow::populateRecords(QVector<Record> const & lastRecords){
@@ -117,6 +155,7 @@ void MainWindow::on_chboxReg_stateChanged(int arg1)
         ui->cbNonRegCat->setEditable(true);
         ui->cbCategory->setVisible(false);
         ui->lbCategory->setVisible(false);
+        ui->lbCatAvg->setVisible(false);
         ui->pbAddCat->setVisible(false);
     }
     if (!ui->chboxReg->checkState()){

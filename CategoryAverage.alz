@@ -6,12 +6,12 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node w="232000" x="-694612" y="-321952" h="75000" index="0">
+  <node w="232000" x="-694611" y="-321951" h="75000" index="0">
    <text>MainWindow::requestAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-86323" y="-322970" h="75000" index="1">
+  <node w="200000" x="-86322" y="-322970" h="75000" index="1">
    <text>Dispatch::startMainW</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -21,13 +21,13 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="575761" y="-110130" h="75000" index="3">
+  <node w="200000" x="84456" y="11609" h="75000" index="3">
    <text>Statistics::catAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="238000" x="612224" y="-439285" h="75000" index="4">
-   <text>MainWindown::updateAVG</text>
+  <node w="263000" x="639760" y="-414647" h="75000" index="4">
+   <text>MainWindown::periodRegAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -36,38 +36,53 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="209000" x="-221838" y="-640947" h="75000" index="6">
+  <node w="209000" x="-221837" y="-640947" h="75000" index="6">
    <text>Dispatch::updateTotals</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="-220617" y="-490076" h="75000" index="7">
+  <node w="200000" x="-220616" y="-490076" h="75000" index="7">
    <text>Settings::getRegCats</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="348452" y="-640591" h="75000" index="8">
+  <node w="200000" x="348451" y="-640591" h="75000" index="8">
    <text>Database::getTotals</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="883504" y="-638529" h="75000" index="9">
+  <node w="200000" x="883504" y="-638528" h="75000" index="9">
    <text>Disptach::setProfile</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="884111" y="-500115" h="75000" index="10">
+  <node w="200000" x="884110" y="-500115" h="75000" index="10">
    <text>Statistics::addTot</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="80898" y="-115028" h="75000" index="11">
+  <node w="200000" x="80897" y="-115028" h="75000" index="11">
    <text>Statistics::avg</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="264000" x="619101" y="-234129" h="75000" index="12">
-   <text>MainWindown::updateCatAVG</text>
+  <node w="207000" x="619100" y="-315288" h="75000" index="12">
+   <text>MainWindown::catAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="259000" x="643478" y="-207065" h="75000" index="13">
+   <text>MainWindow::periodRegTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="278000" x="646376" y="-66485" h="75000" index="14">
+   <text>MainWindow::periodNonRegTot</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="285000" x="646376" y="61050" h="75000" index="15">
+   <text>MainWindow::periodNonRegAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -88,6 +103,15 @@
   </edge>
   <edge index0="2" index1="12" reversed="0" arrow-mode="0">
    <text>2</text>
+  </edge>
+  <edge index0="2" index1="13" reversed="0" arrow-mode="0">
+   <text>2</text>
+  </edge>
+  <edge index0="2" index1="14" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="15" reversed="0" arrow-mode="0">
+   <text></text>
   </edge>
   <edge index0="5" index1="6" reversed="0" arrow-mode="0">
    <text></text>

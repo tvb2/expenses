@@ -55,6 +55,7 @@ void Dispatch::selectProfile()  {
 
 void Dispatch::updateTotals(){
     QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
+    QObject::connect(this->db, &Database::totalNonReg, stats, &Statistics::setTotalNonReg);
     QVariantList cats = this->settings->getRegCats();
     foreach (auto cat, cats) {
         this->db->getTotals(cat.toString());
@@ -66,13 +67,11 @@ void Dispatch::startMainW(){
     QObject::connect(this->settings, &Settings::transmitSettings, mW, &MainWindow::populateLists);
     QObject::connect(mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
     QObject::connect(mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
-    QObject::connect(this->db, &Database::getLatest, mW, &MainWindow::populateRecords);
+    QObject::connect(this->db, &Database::latestRecords, mW, &MainWindow::populateRecords);
     QObject::connect(mW, &MainWindow::requestAVG, this, &Dispatch::averages);
 
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
-    this->averages(this->settings->getRegCats()[0].toString());
-    this->db->periodTotal("monthly");
 
     this->mW->show();
 }
@@ -90,7 +89,7 @@ void Dispatch::newRecordRequest(Record const &record){
     qDebug("Dispatch::newRecordRequest recieved signal");
     QObject::connect(this->db, &Database::updateStartDate, this->settings, &Settings::setStartDate);
     QObject::connect(this->db, &Database::updateStartDate, this->stats, &Statistics::startDate);
-    QObject::connect(this->db, &Database::getLatest, this->mW, &MainWindow::populateRecords);
+    QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
     QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
 
     this->db->addRecord(record);
@@ -104,7 +103,18 @@ void Dispatch::editCurrency(SettingsBunlde const &bundle){
 }
 
 void Dispatch::averages(QString const &cat){
-    this->mW->updateAVG(this->stats->avg(this->settings->getDefaultPeriod()));
-    this->mW->updateCatAv(this->stats->catAVG(cat,this->settings->getDefaultPeriod()));
-    this->mW->periodTotal(this->db->periodTotal(this->settings->getDefaultPeriod()));
+    QString period = this->settings->getDefaultPeriod();
+
+    this->mW->catAVG(this->stats->catAVG(cat,period));
+
+    this->mW->periodRegTotal(this->db->periodRegTotal(period));
+    this->mW->periodRegAVG(this->stats->avg(period));
+
+    this->mW->periodNonRegTotal(this->db->periodNonRegTotal(period));
+    this->mW->periodNonRegAVG(this->stats->catAVG("non-regular", period));
+
+    this->mW->periodTotal(this->db->periodTotal(period));
+    this->mW->overallTotal(this->db->periodTotal(Periods::overall));
+
+
 }

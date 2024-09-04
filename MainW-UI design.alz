@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<design version="1.18.0">
+ <color g="189" r="186" b="182"/>
+ <edge-color g="0" r="0" b="0"/>
+ <edge-width>2000</edge-width>
+ <text-size>11000</text-size>
+ <corner-radius>5000</corner-radius>
+ <graph>
+  <node w="200000" x="0" y="0" h="75000" index="0">
+   <text>Regular</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-854" y="109401" h="75000" index="1">
+   <text>Non-regular</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="700000" y="-4273" h="75000" index="2">
+   <text>Cat avg val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="358119" y="117094" h="75000" index="3">
+   <text>this period val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="357264" y="-3418" h="75000" index="4">
+   <text>this period avg val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="702564" y="112820" h="75000" index="5">
+   <text>Non-reg avg val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-4273" y="344444" h="75000" index="6">
+   <text>Income</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="356410" y="339316" h="75000" index="7">
+   <text>this period val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="854" y="214529" h="75000" index="8">
+   <text>Total</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="356410" y="216239" h="75000" index="9">
+   <text>this period total val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="704273" y="213675" h="75000" index="10">
+   <text>All time total val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="360683" y="-165811" h="75000" index="11">
+   <text>this period</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="700000" y="-162393" h="75000" index="12">
+   <text>Overall</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="700854" y="345299" h="75000" index="13">
+   <text>Total val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-9401" y="470940" h="75000" index="14">
+   <text>Balance</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="348717" y="466666" h="75000" index="15">
+   <text>this period val</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="699065" y="457943" h="75000" index="16">
+   <text>Total balance</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+ </graph>
+</design>

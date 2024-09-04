@@ -7,6 +7,7 @@
 #include <QCloseEvent>
 #include <QStandardPaths>
 #include <QDate>
+#include "Periods.h"
 
 namespace Ui {
 class CreateProfile;
@@ -18,7 +19,8 @@ class CreateProfile : public QDialog
 private:
     Ui::CreateProfile *ui;
     QStringList existing = {""}; //existing profile names
-    QStringList periods = { "monthly", "weekly"};//default averaging period
+    // QStringList periods = { "monthly", "weekly"};//default averaging period
+    QStringList periods = {Periods::monthly, Periods::weekly};//default averaging period
 
 public:
     explicit CreateProfile(QStringList const &e = {""}, QWidget *parent = nullptr);

@@ -9,6 +9,7 @@
 #include "settings.h"
 #include "database.h"
 #include "settingsbundle.h"
+#include "Periods.h"
 
 class Statistics : public QObject
 {
@@ -30,8 +31,13 @@ signals:
 public slots:
     void addTot(QString const & category, double val);
 
+    void setTotalNonReg(double val){
+        this->nonRegCat = val;
+    }
+
 private:
-    std::map<QString, double> cat;
+    std::map<QString, double> regCat;
+    double nonRegCat;
     QDate sDate;
 
     void setTotals(QVariantList const &cats, QVariantList const &tots);

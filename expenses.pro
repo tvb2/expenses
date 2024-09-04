@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     database.cpp \
+    periods.cpp \
     profile.cpp \
     settings.cpp \
     createprofile.cpp \
