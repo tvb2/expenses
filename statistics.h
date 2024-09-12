@@ -21,7 +21,9 @@ public:
 
     double avg(QString period);
 
-    double periodTotal();
+    double catOverall(QString const &category);
+
+    double overallBalance();
 
     void startDate(QDate const & sDate){
         this->sDate = sDate;
@@ -35,6 +37,9 @@ public slots:
         this->nonRegCat = val;
     }
 
+    void addNonReg(double val){
+        this->nonRegCat += val;
+    }
 private:
     std::map<QString, double> regCat;
     double nonRegCat;

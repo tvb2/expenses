@@ -26,13 +26,13 @@ public:
 
     void catAVG(double avg);
 
+    void periodRegTotal(double tot);
+
     /**
      * @brief average expenses for the default period
      * @param avg
      */
     void periodRegAVG(double avg);
-
-    void periodRegTotal(double tot);
 
     void periodNonRegTotal(double tot);
 
@@ -41,6 +41,14 @@ public:
     void periodTotal(double tot);
 
     void overallTotal(double tot);
+
+    void periodIncomeTotal(double tot);
+
+    void incomeOverallTotal(double tot);
+
+    void periodBalance(double tot);
+
+    void balanceOverall(double tot);
 
 public slots:
     /**

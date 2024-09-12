@@ -95,6 +95,8 @@ bool Database::addRecord(Record const &record)
     }
     if (record.reg)
         emit total(record.cat,record.finalAmnt);
+    else
+        emit nonReg(record.finalAmnt);
     return success;
 }
 
@@ -158,18 +160,19 @@ void Database::getLatestN(int N){
             this->latest[this->latest.size() - 1].rate = query.value(4).toDouble();
             this->latest[this->latest.size() - 1].finalAmnt = query.value(5).toDouble();
             this->latest[this->latest.size() - 1].chngDate = query.value(7).toString();
-            qDebug() << "Latest transactions: \n"
+           /* qDebug() << "Latest transactions: \n"
                     << this->latest[this->latest.size() - 1].date << " " << this->latest[this->latest.size() - 1].cat << " "
                      <<this->latest[this->latest.size() - 1].amount << " " << this->latest[this->latest.size() - 1].currency << " "
                      <<this->latest[this->latest.size() - 1].rate << " " << this->latest[this->latest.size() - 1].finalAmnt << " "
                      <<this->latest[this->latest.size() - 1].chngDate;
+            */
         }
     }
     if (!this->latest.empty())
         emit latestRecords(this->latest);
 }
 
-void Database::getTotals(QString const & cat){
+void Database::getRegTotals(QString const & cat){
     bool success = false;
     // you should check if args are ok first...
     if (!this->db.open())
@@ -179,7 +182,9 @@ void Database::getTotals(QString const & cat){
     else{
         //regular categories
         QSqlQuery query;
-        query.prepare("SELECT SUM(finalAmount) FROM expenses WHERE category = '" + cat + "'");
+        query.prepare("SELECT SUM(finalAmount) FROM expenses WHERE"
+                      " category = '" + cat + "'" +
+                      " AND reg = 1");
 
         if(query.exec())
         {
@@ -194,7 +199,11 @@ void Database::getTotals(QString const & cat){
             qDebug() << "Cat: " << cat << " total = " << query.value(0).toDouble();
             emit total(cat, query.value(0).toDouble());
         }
-        success = false;
+    }
+}
+
+void Database::getNonRegTotals(){
+        bool success = false;
         //non-regular categories
         QSqlQuery queryNonReg;
         queryNonReg.prepare("SELECT SUM(finalAmount) FROM expenses WHERE reg = 0");
@@ -210,9 +219,7 @@ void Database::getTotals(QString const & cat){
         while (queryNonReg.next()) {
             emit totalNonReg(queryNonReg.value(0).toDouble());
         }
-    }
 }
-
 
 //Following functions work together
 
@@ -239,7 +246,8 @@ QString Database::startDate(QString period){
 double Database::periodRegTotal(QString period){
         QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE "
                             "data >= '" + startDate(period) + "'" +
-                      " AND reg = 1";
+                      " AND reg = 1" +
+                      " AND category != 'Income'";
         return periodTot(queryText);
 }
 
@@ -251,10 +259,27 @@ double Database::periodNonRegTotal(QString period){
         return periodTot(queryText);
 }
 
+double Database::periodIncomeTotal(QString period){
+    QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE"
+                        " data >= '" + startDate(period) + "'" +
+                        " AND category = 'Income'";
+    return periodTot(queryText);
+}
+
+double Database::periodBalance(QString period){
+    double balance{0};
+    balance +=
+        periodIncomeTotal(period) -
+        periodRegTotal(period) -
+        periodNonRegTotal(period);
+    return balance;
+}
+
 double Database::periodTotal(QString period){
 
     QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE"
-                        " data >= '" + startDate(period) + "'";
+                        " data >= '" + startDate(period) + "'" +
+                        " AND category != 'Income'";
     return periodTot(queryText);
 }
 

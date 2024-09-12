@@ -35,8 +35,7 @@ void MainWindow::catAVG(double avg){
 void MainWindow::periodRegTotal(double tot){
     QString periodTot =
         QString::number(tot, 'f', 1) + " " +
-        setBundle.general.value("currency").toString() + " total this " +
-        setBundle.general.value("period").toString();
+        setBundle.general.value("currency").toString();
 
     ui->lbperiodTotal->setText(periodTot);
 }
@@ -44,16 +43,14 @@ void MainWindow::periodRegTotal(double tot){
 void MainWindow::periodRegAVG(double avg){
     QString periodAVG =
         QString::number(avg, 'f', 1) + " " +
-        setBundle.general.value("currency").toString() + " avg/" +
-        setBundle.general.value("period").toString();
+        setBundle.general.value("currency").toString() + " avg";
     ui->lbPeriodRegAVG->setText(periodAVG);
 }
 
 void MainWindow::periodNonRegTotal(double tot){
     QString periodTot =
         QString::number(tot, 'f', 1) + " " +
-        setBundle.general.value("currency").toString() + " total this " +
-        setBundle.general.value("period").toString();
+        setBundle.general.value("currency").toString();
 
     ui->lbperiodNonRegTot->setText(periodTot);
 }
@@ -61,16 +58,14 @@ void MainWindow::periodNonRegTotal(double tot){
 void MainWindow::periodNonRegAVG(double avg){
     QString periodAVG =
         QString::number(avg, 'f', 1) + " " +
-        setBundle.general.value("currency").toString() + " avg/" +
-        setBundle.general.value("period").toString();
+        setBundle.general.value("currency").toString() + " avg";
     ui->lbperiodNonRegAVG->setText(periodAVG);
 }
 
 void MainWindow::periodTotal(double tot){
     QString periodTot =
         QString::number(tot, 'f', 1) + " " +
-        setBundle.general.value("currency").toString() + " total this " +
-        setBundle.general.value("period").toString();
+        setBundle.general.value("currency").toString();
 
     ui->lbPeriodTotal->setText(periodTot);
 }
@@ -78,8 +73,38 @@ void MainWindow::periodTotal(double tot){
 void MainWindow::overallTotal(double tot){
     QString periodTot =
         QString::number(tot, 'f', 1) + " " +
-        setBundle.general.value("currency").toString() + " overall total ";
+        setBundle.general.value("currency").toString() + " tot";
     ui->lbOverallTotal->setText(periodTot);
+}
+
+void MainWindow::periodIncomeTotal(double tot){
+    QString periodTot =
+        QString::number(tot, 'f', 1) + " " +
+        setBundle.general.value("currency").toString();
+
+    ui->lbPeriodIncomeTotal->setText(periodTot);
+}
+
+void MainWindow::incomeOverallTotal(double tot){
+    QString periodTot =
+        QString::number(tot, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " tot";
+    ui->lbIncomeOverallTotal->setText(periodTot);
+}
+
+void MainWindow::periodBalance(double tot){
+    QString periodTot =
+        QString::number(tot, 'f', 1) + " " +
+        setBundle.general.value("currency").toString();
+
+    ui->lbPeriodBalance->setText(periodTot);
+}
+
+void MainWindow::balanceOverall(double tot){
+    QString periodTot =
+        QString::number(tot, 'f', 1) + " " +
+        setBundle.general.value("currency").toString() + " tot";
+    ui->lbBalanceOverall->setText(periodTot);
 }
 
 void MainWindow::on_pbOK_clicked(){
@@ -103,6 +128,8 @@ void MainWindow::on_pB_Submit_clicked()
 
     qDebug("MainW: Submit button pressed");
     ui->pB_Submit->setEnabled(false);
+    ui->leAmount->clear();
+    ui->cbNonRegCat->clear();
 }
 
 void MainWindow::populateLists(SettingsBunlde const &settings){

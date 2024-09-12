@@ -6,7 +6,7 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node w="232000" x="-694611" y="-321951" h="75000" index="0">
+  <node w="232000" x="-694610" y="-321951" h="75000" index="0">
    <text>MainWindow::requestAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -21,12 +21,12 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="84456" y="11609" h="75000" index="3">
+  <node w="200000" x="84456" y="11608" h="75000" index="3">
    <text>Statistics::catAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="263000" x="639760" y="-414647" h="75000" index="4">
+  <node w="263000" x="642575" y="-372392" h="75000" index="4">
    <text>MainWindown::periodRegAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -36,7 +36,7 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="209000" x="-221837" y="-640947" h="75000" index="6">
+  <node w="209000" x="-221836" y="-640947" h="75000" index="6">
    <text>Dispatch::updateTotals</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -46,17 +46,17 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="348451" y="-640591" h="75000" index="8">
-   <text>Database::getTotals</text>
+  <node w="215000" x="348451" y="-788091" h="75000" index="8">
+   <text>Database::getRegTotals</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="883504" y="-638528" h="75000" index="9">
-   <text>Disptach::setProfile</text>
+  <node w="209000" x="883504" y="-638528" h="75000" index="9">
+   <text>Disptach::updateTotals</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="884110" y="-500115" h="75000" index="10">
+  <node w="200000" x="1286926" y="-804340" h="75000" index="10">
    <text>Statistics::addTot</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -66,23 +66,118 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="207000" x="619100" y="-315288" h="75000" index="12">
+  <node w="207000" x="609240" y="-518104" h="75000" index="12">
    <text>MainWindown::catAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="259000" x="643478" y="-207065" h="75000" index="13">
+  <node w="259000" x="643475" y="-207062" h="75000" index="13">
    <text>MainWindow::periodRegTotal</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="278000" x="646376" y="-66485" h="75000" index="14">
+  <node w="278000" x="646375" y="-66483" h="75000" index="14">
    <text>MainWindow::periodNonRegTot</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="285000" x="646376" y="61050" h="75000" index="15">
+  <node w="285000" x="646375" y="61048" h="75000" index="15">
    <text>MainWindow::periodNonRegAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1020870" y="-519102" h="75000" index="16">
+   <text>Statistics::catAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="231000" x="1039393" y="-207194" h="75000" index="17">
+   <text>Database::periodRegTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1021055" y="-368672" h="75000" index="18">
+   <text>Statistics::avg</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="263000" x="1044442" y="-69694" h="75000" index="19">
+   <text>Database::periodNonRegTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1046462" y="57575" h="75000" index="20">
+   <text>Statistics::catAVG</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="229000" x="622471" y="189466" h="75000" index="21">
+   <text>MainWindow::periodTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="231000" x="625841" y="318677" h="75000" index="22">
+   <text>MainWindow::overallTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1048314" y="185393" h="75000" index="23">
+   <text>Database::periodTot</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1046067" y="319100" h="75000" index="24">
+   <text>Database::periodTot</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="247000" x="337500" y="-558750" h="75000" index="25">
+   <text>Database::getNonRegTotals</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="234000" x="1298591" y="-538028" h="75000" index="26">
+   <text>Statistics::setTotalNonReg</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="290000" x="655737" y="596926" h="75000" index="27">
+   <text>MainWindow::incomeOverallTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1050819" y="593442" h="75000" index="29">
+   <text>Statistics::catOverall</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="288000" x="659016" y="459221" h="75000" index="30">
+   <text>MainWindow::periodIncomeTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="260000" x="1062295" y="454303" h="75000" index="31">
+   <text>Database::periodIncomeTotal</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="249000" x="639344" y="744467" h="75000" index="32">
+   <text>MainWindow::periodBalance</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="221000" x="1060655" y="746106" h="75000" index="33">
+   <text>Database::periodBalance</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="263000" x="614754" y="892008" h="75000" index="34">
+   <text>MainWindown::balanceOverall</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="220000" x="1063934" y="893442" h="75000" index="35">
+   <text>Statistics::overallBalance</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -113,6 +208,24 @@
   <edge index0="2" index1="15" reversed="0" arrow-mode="0">
    <text></text>
   </edge>
+  <edge index0="2" index1="21" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="22" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="27" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="30" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="32" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="34" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
   <edge index0="5" index1="6" reversed="0" arrow-mode="0">
    <text></text>
   </edge>
@@ -123,10 +236,52 @@
    <text>2
 loop for all categories</text>
   </edge>
+  <edge index0="6" index1="25" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
   <edge index0="8" index1="9" reversed="0" arrow-mode="0">
-   <text>signal getTotal</text>
+   <text>signal total</text>
   </edge>
   <edge index0="9" index1="10" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="9" index1="26" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="12" index1="16" reversed="1" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="13" index1="17" reversed="1" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="18" index1="4" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="19" index1="14" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="20" index1="15" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="23" index1="21" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="24" index1="22" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="25" index1="9" reversed="0" arrow-mode="0">
+   <text>signal totalNonReg</text>
+  </edge>
+  <edge index0="29" index1="27" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="30" index1="31" reversed="1" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="32" index1="33" reversed="1" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="35" index1="34" reversed="0" arrow-mode="0">
    <text></text>
   </edge>
  </graph>

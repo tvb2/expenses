@@ -56,9 +56,11 @@ void Dispatch::selectProfile()  {
 void Dispatch::updateTotals(){
     QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
     QObject::connect(this->db, &Database::totalNonReg, stats, &Statistics::setTotalNonReg);
+    QObject::connect(this->db, &Database::nonReg, stats, &Statistics::addNonReg);
     QVariantList cats = this->settings->getRegCats();
     foreach (auto cat, cats) {
-        this->db->getTotals(cat.toString());
+        this->db->getRegTotals(cat.toString());
+        this->db->getNonRegTotals();
     }
 }
 
@@ -90,7 +92,6 @@ void Dispatch::newRecordRequest(Record const &record){
     QObject::connect(this->db, &Database::updateStartDate, this->settings, &Settings::setStartDate);
     QObject::connect(this->db, &Database::updateStartDate, this->stats, &Statistics::startDate);
     QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
-    QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
 
     this->db->addRecord(record);
     this->db->getLatestN(5);
@@ -116,5 +117,9 @@ void Dispatch::averages(QString const &cat){
     this->mW->periodTotal(this->db->periodTotal(period));
     this->mW->overallTotal(this->db->periodTotal(Periods::overall));
 
+    this->mW->periodIncomeTotal(this->db->periodIncomeTotal(period));
+    this->mW->incomeOverallTotal(this->stats->catOverall("Income"));
 
+    this->mW->periodBalance(this->db->periodBalance(period));
+    this->mW->balanceOverall(this->stats->overallBalance());
 }

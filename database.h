@@ -47,7 +47,13 @@ public:
      * @brief For transmitted category return total amount spent since sDate (start Date)
      * @param category
      */
-    void getTotals(QString const & cat);
+    void getRegTotals(QString const & cat);
+
+    /**
+     * @brief return total amount spent since sDate (start Date) for non-Regular categories
+     * @param category
+     */
+    void getNonRegTotals();
 
     /**
      * @brief Regular expenses total amount spent for the given period (month, week etc)
@@ -62,6 +68,22 @@ public:
      * @return
      */
     double periodNonRegTotal(QString period);
+
+    /**
+     * @brief Income total during current period
+     * @param period
+     * @return
+     */
+    double periodIncomeTotal(QString period);
+
+    /**
+     * @brief expense balance.
+     * Positive when income > expenses
+     * Negative when income < expenses
+     * @param period
+     * @return
+     */
+    double periodBalance(QString period);
 
     /**
      * @brief total (Reg + NonReg) amount spent during the specified period (month, week etc)
@@ -84,6 +106,8 @@ signals:
      * @param tot
      */
     void total(QString const & cat, double tot);
+
+    void nonReg(double val);
 
     /**
      * @brief send total expense amount for all non-regular expenses

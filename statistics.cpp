@@ -9,7 +9,6 @@ void Statistics::setTotals(QVariantList const &cats, QVariantList const &tots){
 }
 
 void Statistics::addTot(QString const &category, double val){
-    // this->cat.emplace(category, val);
     this->regCat[category] += val;
 }
 
@@ -34,8 +33,10 @@ double Statistics::catAVG(QString const &category, QString period){
 double Statistics::avg(QString period){
     double total{0};
     foreach (auto c, this->regCat) {
-        total += c.second;
+        if (c.first != "Income")
+            total += c.second;
     }
+    qDebug() << "Total: " << total;
     QDate today = QDate::currentDate();
     double factor{0.0};
     if (period == Periods::weekly){
@@ -47,9 +48,22 @@ double Statistics::avg(QString period){
     else
         qDebug() << "Statistics::avg. Something wrong with default period!";
     double periods = this->sDate.daysTo(today)*factor;
+    qDebug() << "Total/periods: " << total/periods;
     return total/periods;
 }
 
-double Statistics::periodTotal(){
-    return 0;
+double Statistics::catOverall(QString const &category){
+    return this->regCat[category];
+}
+
+double Statistics::overallBalance(){
+    double total{0};
+    foreach (auto c, this->regCat) {
+        if (c.first == "Income")
+            total += c.second;
+        else
+            total -= c.second;
+    }
+        total -= this->nonRegCat;
+    return total;
 }
