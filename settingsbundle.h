@@ -5,7 +5,7 @@
 #include "QVariant"
 #include <QDate>
 
-struct SettingsBunlde
+struct SettingsBundle
 {
     QJsonObject settings; //all json fields to be written to file
 

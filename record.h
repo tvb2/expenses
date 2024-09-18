@@ -4,6 +4,7 @@
 #include <QDAte>
 
 struct Record{
+    int64_t  id{0};
     QString date;
     QString cat;
     double amount;

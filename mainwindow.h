@@ -11,6 +11,7 @@
 #include "record.h"
 #include "settingsbundle.h"
 #include "Periods.h"
+#include "editrecord.h"
 
 namespace Ui {
 class MainWindow;
@@ -50,11 +51,13 @@ public:
 
     void balanceOverall(double tot);
 
+    void editRecord(Record const &rec);
+
 public slots:
     /**
      * populate drop-down lists
      */
-    void populateLists(SettingsBunlde const &settings);
+    void populateLists(SettingsBundle const &settings);
 
     /**
      * @brief overload populate last records added
@@ -84,17 +87,23 @@ private slots:
 
     void on_cbCategory_currentTextChanged(const QString &arg1);
 
+    void on_pbEditRecord_clicked();
+
+    void on_tableWidget_cellClicked(int row, int column);
+
 signals:
     void newRecordAvailable(Record const &record);
 
-    void editCurrencyPBclicked(SettingsBunlde const &bundle);
+    void editCurrencyPBclicked(SettingsBundle const &bundle);
 
     void requestAVG(const QString cat);
+
+    void requestRecord(int64_t rowid);
 
 private:
     Ui::MainWindow *ui;
     Record record;
-    SettingsBunlde setBundle;
+    SettingsBundle setBundle;
 };
 
 #endif // MAINWINDOW_H

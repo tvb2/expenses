@@ -10,11 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->cbNonRegCat->setEnabled(false);
     ui->leAmount->setValidator(new Validator);
     ui->pB_Submit->setEnabled(false);
+    ui->pbEditRecord->setEnabled(false);
 
     ui->date->setDate(QDate::currentDate());
     ui->date->setEnabled(false);
     emit requestAVG(ui->cbCategory->currentText());
-
 }
 
 MainWindow::~MainWindow()
@@ -107,6 +107,14 @@ void MainWindow::balanceOverall(double tot){
     ui->lbBalanceOverall->setText(periodTot);
 }
 
+void MainWindow::editRecord(Record const & rec){
+    EditRecord *editRec = new EditRecord;
+    editRec->populateLists(this->setBundle);
+    editRec->populateValues(rec);
+
+    editRec->show();
+}
+
 void MainWindow::on_pbOK_clicked(){
     qDebug("MainW: OK pressed");
 }
@@ -132,7 +140,7 @@ void MainWindow::on_pB_Submit_clicked()
     ui->cbNonRegCat->clear();
 }
 
-void MainWindow::populateLists(SettingsBunlde const &settings){
+void MainWindow::populateLists(SettingsBundle const &settings){
     this->setBundle = settings;
     QStringList regC;
     foreach (auto i, this->setBundle.regCat) {
@@ -160,8 +168,9 @@ void MainWindow::populateRecords(QVector<Record> const & lastRecords){
         itemList.append(QString::number(rec->amount));
         itemList.append(rec->currency);
         itemList.append(QString::number(rec->finalAmnt));
+        itemList.append(QString::number(rec->id));
         auto itemListIt = itemList.begin();
-        for( int column = 0; column < 5; column++ ){
+        for( int column = 0; column < itemList.size(); column++ ){
             QString item = QString(itemListIt->data());
             QVariant oVariant(item);
             ++itemListIt;
@@ -173,6 +182,8 @@ void MainWindow::populateRecords(QVector<Record> const & lastRecords){
         ++rec;
     }
     }
+    //hide column containing rowid. It will be used to access record for edit/delete
+    ui->tableWidget->hideColumn(ui->tableWidget->columnCount() - 1);
     }
 
 void MainWindow::on_chboxReg_stateChanged(int arg1)
@@ -240,3 +251,17 @@ void MainWindow::on_cbCategory_currentTextChanged(const QString &arg1)
 {
     emit requestAVG(arg1);
 }
+
+void MainWindow::on_pbEditRecord_clicked()
+{
+    int64_t rowid = ui->tableWidget->item(ui->tableWidget->currentRow(),ui->tableWidget->columnCount() - 1)->text().toInt();
+    qDebug() << "Selected record rowid is: " << rowid;
+
+    emit requestRecord(rowid);
+}
+
+void MainWindow::on_tableWidget_cellClicked(int row, int column)
+{
+    ui->pbEditRecord->setEnabled(true);
+}
+

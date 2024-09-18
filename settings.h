@@ -19,7 +19,7 @@ class Settings : public QObject, public BaseComponent
 {
     Q_OBJECT
 private:
-    std::map<QString, SettingsBunlde> accounts;
+    std::map<QString, SettingsBundle> accounts;
 
     QString fullpath;//full path
     QString name;
@@ -106,7 +106,7 @@ signals:
     /**
      * data to populate MainW
      */
-    void transmitSettings(SettingsBunlde const &settings);
+    void transmitSettings(SettingsBundle const &settings);
 
 public slots:
 

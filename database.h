@@ -37,6 +37,8 @@ public:
 
     bool addRecord(Record const &record);
 
+    void getRecord(Record &record, int64_t id);
+
     /**
      * @brief get latest N records submitted or modified
      * @return vector of Records

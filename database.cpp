@@ -24,14 +24,16 @@ void Database::createDB(QString const &name){
     {
         QSqlQuery databaseQuery(this->db);
         databaseQuery.exec("CREATE TABLE expenses "
-                           "(data date,"
+                           "(id int NOT NULL PRIMARY KEY,"
+                           "data date,"
                            "category text, "
                            "amount float, "
                            "currency text, "
                            "exchRate float, "
                            "finalAmount float, "
                            "reg int, "
-                           "lastChangeDateTime text)");
+                           "lastChangeDateTime text,"
+                           ")");
         qDebug() << "Database::createDB. DB created: " << this->path;
     }
 }
@@ -90,7 +92,7 @@ bool Database::addRecord(Record const &record)
     }
     else
     {
-        qDebug() << "addExpense error:"
+        qDebug() << "Database::addExpense error:"
                  << query.lastError();
     }
     if (record.reg)
@@ -98,6 +100,43 @@ bool Database::addRecord(Record const &record)
     else
         emit nonReg(record.finalAmnt);
     return success;
+}
+
+void Database::getRecord(Record &record, int64_t id){
+    bool success = false;
+    // you should check if args are ok first...
+    if (!this->db.open())
+    {
+        qDebug() << "Database::getRecord. Error: connection with database failed";
+    }
+    else{
+        QSqlQuery query;
+        QString rowID = QString::number(id);
+        query.prepare("SELECT "
+                      "rowid, data, category, amount, currency, exchRate, finalAmount, lastChangeDateTime "
+                      "FROM expenses "
+                      "WHERE rowid = " + rowID);
+
+        if(query.exec())
+        {
+            success = true;
+        }
+        else
+        {
+            qDebug() << "Database::getRecord error:"
+                     << query.lastError();
+        }
+        while (query.next()) {
+            record.id = query.value(0).toInt();
+            record.date = query.value(1).toString();
+            record.cat = query.value(2).toString();
+            record.amount = query.value(3).toDouble();
+            record.currency = query.value(4).toString();
+            record.rate = query.value(5).toDouble();
+            record.finalAmnt = query.value(6).toDouble();
+            record.chngDate = query.value(7).toString();
+        }
+    }
 }
 
 void Database::printExpenses(){
@@ -140,7 +179,7 @@ void Database::getLatestN(int N){
     else{
         QString an = QString::number(N);
         QSqlQuery query;
-        query.prepare("SELECT * FROM expenses ORDER BY lastChangeDateTime DESC LIMIT " + an);
+        query.prepare("SELECT rowid, data, category, amount, currency, exchRate, finalAmount, lastChangeDateTime FROM expenses ORDER BY lastChangeDateTime DESC LIMIT " + an);
 
         if(query.exec())
         {
@@ -153,12 +192,13 @@ void Database::getLatestN(int N){
         }
         while (query.next()) {
             this->latest.append(record);
-            this->latest[this->latest.size() - 1].date = query.value(0).toString();
-            this->latest[this->latest.size() - 1].cat = query.value(1).toString();
-            this->latest[this->latest.size() - 1].amount = query.value(2).toDouble();
-            this->latest[this->latest.size() - 1].currency = query.value(3).toString();
-            this->latest[this->latest.size() - 1].rate = query.value(4).toDouble();
-            this->latest[this->latest.size() - 1].finalAmnt = query.value(5).toDouble();
+            this->latest[this->latest.size() - 1].id = query.value(0).toInt();
+            this->latest[this->latest.size() - 1].date = query.value(1).toString();
+            this->latest[this->latest.size() - 1].cat = query.value(2).toString();
+            this->latest[this->latest.size() - 1].amount = query.value(3).toDouble();
+            this->latest[this->latest.size() - 1].currency = query.value(4).toString();
+            this->latest[this->latest.size() - 1].rate = query.value(5).toDouble();
+            this->latest[this->latest.size() - 1].finalAmnt = query.value(6).toDouble();
             this->latest[this->latest.size() - 1].chngDate = query.value(7).toString();
            /* qDebug() << "Latest transactions: \n"
                     << this->latest[this->latest.size() - 1].date << " " << this->latest[this->latest.size() - 1].cat << " "

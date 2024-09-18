@@ -1,13 +1,11 @@
 {
     "ExchRates": {
-        "CAD": 1,
-        "RUB": 0.042,
-        "UAH": 0.09,
-        "USD": 3.67
+        "CAD": 1
     },
     "General": {
         "currency": "CAD",
-        "period": "monthly"
+        "period": "month",
+        "startDate": "2024-01-03"
     },
     "Regular": [
         "Grocery",
@@ -26,6 +24,7 @@
         "Hygiene",
         "Detergents",
         "Clothes",
-        "Presents"
+        "Presents",
+        "Income"
     ]
 }

@@ -12,6 +12,7 @@ SOURCES += \
     basecomponent.cpp \
     dispatch.cpp \
     editcurrency.cpp \
+    editrecord.cpp \
     main.cpp \
     mainwindow.cpp \
     database.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     basecomponent.h \
     dispatch.h \
     editcurrency.h \
+    editrecord.h \
     mainwindow.h \
     database.h \
     profile.h \
@@ -42,6 +44,7 @@ HEADERS += \
 FORMS += \
     createprofile.ui \
     editcurrency.ui \
+    editrecord.ui \
     mainwindow.ui \
     selectprofile.ui
 

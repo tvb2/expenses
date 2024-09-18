@@ -14,7 +14,7 @@ EditCurrency::~EditCurrency()
     delete ui;
 }
 
-void EditCurrency::populate(SettingsBunlde const & bundle){
+void EditCurrency::populate(SettingsBundle const & bundle){
     this->bndl = bundle;
     // qDebug() << "EditCurrency:construct. Default currency: " << bundle.general["currency"].toString();
     ui->cbCurrency->addItems(this->bndl.exchRates.keys());

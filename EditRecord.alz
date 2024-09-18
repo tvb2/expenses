@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<design version="1.18.0">
+ <color g="189" r="186" b="182"/>
+ <edge-color g="0" r="0" b="0"/>
+ <edge-width>2000</edge-width>
+ <text-size>11000</text-size>
+ <corner-radius>5000</corner-radius>
+ <graph>
+  <node w="336000" x="-615384" y="-316239" h="75000" index="0">
+   <text>MainWindow::on_pbEditRecord_clicked</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-74358" y="-316132" h="75000" index="1">
+   <text>Dispatch::startMainW</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="219000" x="-73504" y="-137500" h="75000" index="2">
+   <text>Dispatch::recordRequest</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="377777" y="-138354" h="75000" index="3">
+   <text>Database::getRecord</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="223000" x="-70940" y="72756" h="75000" index="4">
+   <text>MainWindow::editRecord</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <edge index0="0" index1="1" reversed="0" arrow-mode="0">
+   <text>signal requestRecord
+param rowid</text>
+  </edge>
+  <edge index0="1" index1="2" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="2" index1="3" reversed="0" arrow-mode="1">
+   <text>record,
+rowid</text>
+  </edge>
+  <edge index0="2" index1="4" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+ </graph>
+</design>

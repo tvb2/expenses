@@ -71,6 +71,7 @@ void Dispatch::startMainW(){
     QObject::connect(mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
     QObject::connect(this->db, &Database::latestRecords, mW, &MainWindow::populateRecords);
     QObject::connect(mW, &MainWindow::requestAVG, this, &Dispatch::averages);
+    QObject::connect(mW, &MainWindow::requestRecord, this, &Dispatch::recordRequest);
 
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
@@ -97,7 +98,13 @@ void Dispatch::newRecordRequest(Record const &record){
     this->db->getLatestN(5);
 }
 
-void Dispatch::editCurrency(SettingsBunlde const &bundle){
+void Dispatch::recordRequest(int64_t rowid){
+    Record rec;
+    this->db->getRecord(rec, rowid);
+    this->mW->editRecord(rec);
+}
+
+void Dispatch::editCurrency(SettingsBundle const &bundle){
     EditCurrency *ec = new EditCurrency;
     ec->populate(bundle);
     ec->show();
@@ -123,3 +130,4 @@ void Dispatch::averages(QString const &cat){
     this->mW->periodBalance(this->db->periodBalance(period));
     this->mW->balanceOverall(this->stats->overallBalance());
 }
+

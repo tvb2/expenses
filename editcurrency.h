@@ -21,7 +21,7 @@ public:
     /**
      * populate drop-down lists
      */
-    void populate(SettingsBunlde const &settings);
+    void populate(SettingsBundle const &settings);
 
 private slots:
     void on_cbCurrency_currentTextChanged(const QString &arg1);
@@ -30,7 +30,7 @@ private slots:
 
 private:
     Ui::EditCurrency *ui;
-    SettingsBunlde bndl;
+    SettingsBundle bndl;
 };
 
 #endif // EDITCURRENCY_H

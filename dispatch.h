@@ -76,9 +76,11 @@ public slots:
     */
     void startMainW();
 
-    void editCurrency(SettingsBunlde const &bundle);
+    void editCurrency(SettingsBundle const &bundle);
 
     void newRecordRequest(Record const &record);
+
+    void recordRequest(int64_t rowid);
 
     void averages(QString const &cat);
 };
