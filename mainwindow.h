@@ -51,7 +51,9 @@ public:
 
     void balanceOverall(double tot);
 
-    void editRecord(Record const &rec);
+    void editRecord(Record &rec);
+
+    QString getCurrentCat();
 
 public slots:
     /**
@@ -96,9 +98,9 @@ signals:
 
     void editCurrencyPBclicked(SettingsBundle const &bundle);
 
-    void requestAVG(const QString cat);
+    void requestAVG();
 
-    void requestRecord(int64_t rowid);
+    void recordByID(int64_t rowid);
 
 private:
     Ui::MainWindow *ui;

@@ -14,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->date->setDate(QDate::currentDate());
     ui->date->setEnabled(false);
-    emit requestAVG(ui->cbCategory->currentText());
+    ui->date->setMaximumDate(QDate::currentDate());
+    emit requestAVG();
 }
 
 MainWindow::~MainWindow()
@@ -107,17 +108,21 @@ void MainWindow::balanceOverall(double tot){
     ui->lbBalanceOverall->setText(periodTot);
 }
 
-void MainWindow::editRecord(Record const & rec){
-    EditRecord *editRec = new EditRecord;
-    editRec->populateLists(this->setBundle);
-    editRec->populateValues(rec);
+void MainWindow::editRecord(Record &rec){
+    EditRecord *editRec = new EditRecord(rec, this->setBundle);
+    editRec->updateRecord();
+    editRec->exec();
+}
 
-    editRec->show();
+
+QString MainWindow::getCurrentCat(){
+    return ui->cbCategory->currentText();
 }
 
 void MainWindow::on_pbOK_clicked(){
     qDebug("MainW: OK pressed");
 }
+
 
 void MainWindow::on_pB_Submit_clicked()
 {
@@ -132,13 +137,14 @@ void MainWindow::on_pB_Submit_clicked()
     this->record.finalAmnt = this->record.amount*ui->lbRate->text().toDouble();
 
     emit newRecordAvailable(this->record);
-    emit requestAVG(this->record.cat);
+    emit requestAVG();
 
     qDebug("MainW: Submit button pressed");
     ui->pB_Submit->setEnabled(false);
     ui->leAmount->clear();
     ui->cbNonRegCat->clear();
 }
+
 
 void MainWindow::populateLists(SettingsBundle const &settings){
     this->setBundle = settings;
@@ -149,6 +155,7 @@ void MainWindow::populateLists(SettingsBundle const &settings){
     ui->cbCategory->addItems(regC);
 
     ui->cbCurrency->addItems(this->setBundle.exchRates.keys());
+    ui->cbCurrency->setCurrentText(this->setBundle.general["currency"].toString());
     QStringList nonR;
     foreach (auto i, this->setBundle.nonRegCat) {
         nonR.append(i.toStringList());
@@ -179,6 +186,7 @@ void MainWindow::populateRecords(QVector<Record> const & lastRecords){
             poItem->setData( Qt::DisplayRole, oVariant );
             ui->tableWidget->setItem( row, column, poItem );
         }
+        ui->lbFinalAmount->setText("final amount");
         ++rec;
     }
     }
@@ -217,6 +225,8 @@ void MainWindow::on_leAmount_textChanged(const QString &arg1)
         ui->pB_Submit->setEnabled(true);
         ui->lbAmountEntered->setText("resulting value: " + eval.toString());
         this->record.amount = eval.toNumber();
+        double rt = this->setBundle.exchRates[ui->cbCurrency->currentText()].toDouble();
+        ui->lbFinalAmount->setText(QString::number(this->record.amount*rt));
     }
 }
 
@@ -239,6 +249,8 @@ void MainWindow::on_pbAddCat_clicked()
 void MainWindow::on_cbCurrency_currentTextChanged(const QString &arg1)
 {
     ui->lbRate->setText(this->setBundle.exchRates.value( ui->cbCurrency->currentText()).toString());
+    double rt = this->setBundle.exchRates[ui->cbCurrency->currentText()].toDouble();
+    ui->lbFinalAmount->setText(QString::number(this->record.amount*rt));
 
 }
 
@@ -249,7 +261,7 @@ void MainWindow::on_pbEditCurrency_clicked()
 
 void MainWindow::on_cbCategory_currentTextChanged(const QString &arg1)
 {
-    emit requestAVG(arg1);
+    emit requestAVG();
 }
 
 void MainWindow::on_pbEditRecord_clicked()
@@ -257,7 +269,7 @@ void MainWindow::on_pbEditRecord_clicked()
     int64_t rowid = ui->tableWidget->item(ui->tableWidget->currentRow(),ui->tableWidget->columnCount() - 1)->text().toInt();
     qDebug() << "Selected record rowid is: " << rowid;
 
-    emit requestRecord(rowid);
+    emit recordByID(rowid);
 }
 
 void MainWindow::on_tableWidget_cellClicked(int row, int column)

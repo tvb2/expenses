@@ -5,6 +5,7 @@
 #include <QJSEngine>
 #include "record.h"
 #include "settingsbundle.h"
+#include "validator.h"
 
 namespace Ui {
 class EditRecord;
@@ -15,12 +16,12 @@ class EditRecord : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditRecord(QWidget *parent = nullptr);
+    explicit EditRecord(Record &rec, SettingsBundle const &settings, QWidget *parent = nullptr);
     ~EditRecord();
 
-    void populateLists(SettingsBundle const &settings);
+    void populate();
 
-    void populateValues(Record const &record);
+    void updateRecord();
 
 private slots:
     void on_pbOK_clicked();
@@ -31,11 +32,15 @@ private slots:
 
     void on_leAmount_textChanged(const QString &arg1);
 
+signals:
+    void closeWindow();
 private:
     Ui::EditRecord *ui;
         int64_t id;
-    Record record;
+    Record &record;
         SettingsBundle setBundle;
+
 };
+
 
 #endif // EDITRECORD_H

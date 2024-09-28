@@ -29,6 +29,10 @@ public:
         this->sDate = sDate;
     }
 
+    void clearAll(){
+        this->regCat.clear();
+        this->nonRegCat = 0;
+    }
 signals:
 public slots:
     void addTot(QString const & category, double val);

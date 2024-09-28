@@ -54,9 +54,8 @@ void Dispatch::selectProfile()  {
 }
 
 void Dispatch::updateTotals(){
-    QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
-    QObject::connect(this->db, &Database::totalNonReg, stats, &Statistics::setTotalNonReg);
-    QObject::connect(this->db, &Database::nonReg, stats, &Statistics::addNonReg);
+
+    this->stats->clearAll();
     QVariantList cats = this->settings->getRegCats();
     foreach (auto cat, cats) {
         this->db->getRegTotals(cat.toString());
@@ -66,12 +65,12 @@ void Dispatch::updateTotals(){
 
 void Dispatch::startMainW(){
     this->mW = new MainWindow;
-    QObject::connect(this->settings, &Settings::transmitSettings, mW, &MainWindow::populateLists);
-    QObject::connect(mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
-    QObject::connect(mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
-    QObject::connect(this->db, &Database::latestRecords, mW, &MainWindow::populateRecords);
-    QObject::connect(mW, &MainWindow::requestAVG, this, &Dispatch::averages);
-    QObject::connect(mW, &MainWindow::requestRecord, this, &Dispatch::recordRequest);
+    QObject::connect(this->settings, &Settings::transmitSettings, this->mW, &MainWindow::populateLists);
+    QObject::connect(this->mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
+    QObject::connect(this->mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
+    QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
+    QObject::connect(this->mW, &MainWindow::requestAVG, this, &Dispatch::averages);
+    QObject::connect(this->mW, &MainWindow::recordByID, this, &Dispatch::updateRecord);
 
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
@@ -90,18 +89,22 @@ void Dispatch::newProfileCreated(QString const &name, QVariantMap const &setting
 
 void Dispatch::newRecordRequest(Record const &record){
     qDebug("Dispatch::newRecordRequest recieved signal");
-    QObject::connect(this->db, &Database::updateStartDate, this->settings, &Settings::setStartDate);
-    QObject::connect(this->db, &Database::updateStartDate, this->stats, &Statistics::startDate);
-    QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
+
 
     this->db->addRecord(record);
     this->db->getLatestN(5);
 }
 
-void Dispatch::recordRequest(int64_t rowid){
+void Dispatch::updateRecord(int64_t rowid){
     Record rec;
     this->db->getRecord(rec, rowid);
+    qDebug() << "Record final amount before update: " << rec.finalAmnt;
     this->mW->editRecord(rec);
+    qDebug() << "Record final amount after update: " << rec.finalAmnt;
+    this->db->updateRecord(rec);
+    updateTotals();
+    averages();
+    this->db->getLatestN(5);
 }
 
 void Dispatch::editCurrency(SettingsBundle const &bundle){
@@ -110,10 +113,10 @@ void Dispatch::editCurrency(SettingsBundle const &bundle){
     ec->show();
 }
 
-void Dispatch::averages(QString const &cat){
+void Dispatch::averages(){
     QString period = this->settings->getDefaultPeriod();
 
-    this->mW->catAVG(this->stats->catAVG(cat,period));
+    this->mW->catAVG(this->stats->catAVG(this->mW->getCurrentCat(),period));
 
     this->mW->periodRegTotal(this->db->periodRegTotal(period));
     this->mW->periodRegAVG(this->stats->avg(period));
@@ -130,4 +133,3 @@ void Dispatch::averages(QString const &cat){
     this->mW->periodBalance(this->db->periodBalance(period));
     this->mW->balanceOverall(this->stats->overallBalance());
 }
-

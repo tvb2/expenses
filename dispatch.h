@@ -36,6 +36,13 @@ public:
         , stats(statistics)
     {
 
+
+        QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
+        QObject::connect(this->db, &Database::totalNonReg, stats, &Statistics::setTotalNonReg);
+        QObject::connect(this->db, &Database::nonReg, stats, &Statistics::addNonReg);
+
+        QObject::connect(this->db, &Database::updateStartDate, this->settings, &Settings::setStartDate);
+        QObject::connect(this->db, &Database::updateStartDate, this->stats, &Statistics::startDate);
     }
 
 /**
@@ -80,9 +87,11 @@ public slots:
 
     void newRecordRequest(Record const &record);
 
-    void recordRequest(int64_t rowid);
+    void updateRecord(int64_t rowid);
 
-    void averages(QString const &cat);
+    void averages();
+
+    // void updateRecord(Record const &record);
 };
 
 #endif // DISPATCH_H

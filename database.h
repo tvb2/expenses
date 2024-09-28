@@ -98,6 +98,7 @@ public:
         this->sDate = sDate;
     }
 
+    void updateRecord(Record const &record);
 signals:
 
     void latestRecords(QVector<Record> & latestRecords);
@@ -118,7 +119,7 @@ signals:
      */
     void totalNonReg(double tot);
 
-    void getStartDate(QDate const & startDate);
+    // void getStartDate(QDate const & startDate);
 
     void updateStartDate(QDate const & sDate);
 
@@ -143,7 +144,7 @@ private:
      * @param queryText
      * @return
      */
-    double periodTot(QString queryText);
+    double executeQuery(QString queryText);
 };
 
 #endif // DATABASE_H

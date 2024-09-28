@@ -1,11 +1,16 @@
 #include "editrecord.h"
 #include "ui_editrecord.h"
 
-EditRecord::EditRecord(QWidget *parent)
+EditRecord::EditRecord(Record &rec, SettingsBundle const &settings, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::EditRecord)
+    , record (rec)
+    , setBundle(settings)
 {
     ui->setupUi(this);
+    ui->leAmount->setValidator(new Validator);
+    ui->date->setMaximumDate(QDate::currentDate());
+
 }
 
 EditRecord::~EditRecord()
@@ -16,75 +21,72 @@ EditRecord::~EditRecord()
 void EditRecord::on_pbOK_clicked()
 {
 
-    this->record.date = ui->deDate->date().toString("yyyy-MM-dd");
+    this->record.date = ui->date->date().toString("yyyy-MM-dd");
+    this->record.cat= ui->cbCategory->currentText();
     this->record.currency = ui->cbCurrency->currentText();
     this->record.amount = ui->leAmount->text().toDouble();
+    QString currency = ui->cbCurrency->currentText();
+    QString rt = this->setBundle.exchRates.value(currency).toString();
+    this->record.rate = this->setBundle.exchRates.value(ui->cbCurrency->currentText()).toDouble();
     this->record.finalAmnt = this->record.amount*this->record.rate;
-
-    // emit newRecordAvailable(this->record);
-    // emit requestAVG(this->record.cat);
 
     // qDebug("MainW: Submit button pressed");
     // ui->pB_Submit->setEnabled(false);
     // ui->leAmount->clear();
     // ui->cbNonRegCat->clear();
+    this->close();
+    emit closeWindow();
 }
-
 
 void EditRecord::on_pbCancel_clicked()
 {
     this->close();
 }
 
-void EditRecord::populateLists(SettingsBundle const &settings){
+void EditRecord::populate(){
 
-    this->setBundle = settings;
     QStringList regC;
-    foreach (auto i, settings.regCat) {
+    foreach (auto i, this->setBundle.regCat) {
         regC.append(i.toStringList());
     }
     ui->cbCategory->addItems(regC);
+    qDebug() << "EditRecord::populate. category: " << ui->cbCategory->currentText();
 
     QStringList exchR;
-    for (auto i = settings.exchRates.begin(); i != settings.exchRates.end(); ++i) {
+    for (auto i = this->setBundle.exchRates.begin(); i != this->setBundle.exchRates.end(); ++i) {
         exchR.append(i.key());
     }
     ui->cbCurrency->addItems(exchR);
-    // ui->cbCurrency->addItems(settings.exchRates.keys());
-    QStringList nonR;
-    foreach (auto i, settings.nonRegCat) {
-        nonR.append(i.toStringList());
-    }
-    // ui->cbNonRegCat->addItems(nonR);
+    qDebug() << "EditRecord::populate. currency: " << ui->cbCurrency->currentText();
+
+    if (ui->cbCurrency->findText(this->record.currency))
+        ui->cbCurrency->setCurrentText(this->record.currency);
+    else
+        qDebug() << "EditRecord::populate: no currency matched";
+    QDate date = QDate::fromString(this->record.date,"yyyy-MM-dd");
+    ui->date->setDate(date);
+
+    if (ui->cbCategory->findText(this->record.cat))
+        ui->cbCategory->setCurrentText(this->record.cat);
+    else
+        qDebug() << "EditRecord::populate: no category matched";
+
+    ui->leAmount->setText(QString::number(this->record.amount));
+
+    double finalAmount = this->record.amount*this->record.rate;
+    ui->lbFinalAmount->setText(QString::number(finalAmount, 'f', 1));
+
+    this->id = this->record.id;
 }
 
-void EditRecord::populateValues(Record const &record){
-    this->record = record;
-    QDate date = QDate::fromString(record.date,"yyyy-MM-dd");
-    ui->deDate->setDate(date);
-
-    if (ui->cbCategory->findText(record.cat))
-        ui->cbCategory->setCurrentText(record.cat);
-    else
-        qDebug() << "EditRecord::populateValues: no category matched";
-
-    ui->leAmount->setText(QString::number(record.amount));
-
-    if (ui->cbCurrency->findText(record.currency))
-        ui->cbCurrency->setCurrentText(record.currency);
-    else
-        qDebug() << "EditRecord::populateValues: no currency matched";
-    double finalAmount = record.amount*record.rate;
-    ui->lbFinalAmount->setText(QString::number(finalAmount));
-
-    this->id = record.id;
+void EditRecord::updateRecord(){
+    populate();
 }
 
 void EditRecord::on_cbCurrency_currentTextChanged(const QString &arg1)
 {
-    this->record.rate = this->setBundle.exchRates.value( ui->cbCurrency->currentText()).toString().toDouble();
-    ui->lbFinalAmount->setText(QString::number(this->record.amount*this->record.rate));
-
+    double rt = this->setBundle.exchRates.value(arg1).toDouble();
+    ui->lbFinalAmount->setText(QString::number(this->record.amount*rt, 'f', 1));
 }
 
 void EditRecord::on_leAmount_textChanged(const QString &arg1)
@@ -98,7 +100,8 @@ void EditRecord::on_leAmount_textChanged(const QString &arg1)
         ui->pbOK->setEnabled(true);
         this->record.amount = eval.toNumber();
         this->record.finalAmnt = this->record.amount*this->record.rate;
-        ui->lbFinalAmount->setText(QString::number(record.finalAmnt));
+        double rt = this->setBundle.exchRates.value(ui->cbCurrency->currentText()).toDouble();
+        ui->lbFinalAmount->setText(QString::number(this->record.amount*rt, 'f', 1));
     }
 }
 

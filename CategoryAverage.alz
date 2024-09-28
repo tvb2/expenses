@@ -26,7 +26,7 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="263000" x="642575" y="-372392" h="75000" index="4">
+  <node w="263000" x="642575" y="-372391" h="75000" index="4">
    <text>MainWindown::periodRegAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -56,7 +56,7 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1286926" y="-804340" h="75000" index="10">
+  <node w="200000" x="1286925" y="-804340" h="75000" index="10">
    <text>Statistics::addTot</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -86,17 +86,17 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1020870" y="-519102" h="75000" index="16">
+  <node w="200000" x="1020870" y="-519101" h="75000" index="16">
    <text>Statistics::catAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="231000" x="1039393" y="-207194" h="75000" index="17">
+  <node w="231000" x="1039393" y="-207193" h="75000" index="17">
    <text>Database::periodRegTotal</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1021055" y="-368672" h="75000" index="18">
+  <node w="200000" x="1021054" y="-368672" h="75000" index="18">
    <text>Statistics::avg</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -106,7 +106,7 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1046462" y="57575" h="75000" index="20">
+  <node w="200000" x="1046461" y="57575" h="75000" index="20">
    <text>Statistics::catAVG</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -136,37 +136,37 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="234000" x="1298591" y="-538028" h="75000" index="26">
+  <node w="234000" x="1298590" y="-538028" h="75000" index="26">
    <text>Statistics::setTotalNonReg</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="290000" x="655737" y="596926" h="75000" index="27">
+  <node w="290000" x="655736" y="596926" h="75000" index="27">
    <text>MainWindow::incomeOverallTotal</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1050819" y="593442" h="75000" index="29">
+  <node w="200000" x="1050818" y="593442" h="75000" index="29">
    <text>Statistics::catOverall</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="288000" x="659016" y="459221" h="75000" index="30">
+  <node w="288000" x="659015" y="459221" h="75000" index="30">
    <text>MainWindow::periodIncomeTotal</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="260000" x="1062295" y="454303" h="75000" index="31">
+  <node w="260000" x="1062295" y="454302" h="75000" index="31">
    <text>Database::periodIncomeTotal</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="249000" x="639344" y="744467" h="75000" index="32">
+  <node w="249000" x="639344" y="744466" h="75000" index="32">
    <text>MainWindow::periodBalance</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="221000" x="1060655" y="746106" h="75000" index="33">
+  <node w="221000" x="1060654" y="746105" h="75000" index="33">
    <text>Database::periodBalance</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -176,7 +176,7 @@
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="220000" x="1063934" y="893442" h="75000" index="35">
+  <node w="220000" x="1063933" y="893442" h="75000" index="35">
    <text>Statistics::overallBalance</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>

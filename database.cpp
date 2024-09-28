@@ -288,7 +288,7 @@ double Database::periodRegTotal(QString period){
                             "data >= '" + startDate(period) + "'" +
                       " AND reg = 1" +
                       " AND category != 'Income'";
-        return periodTot(queryText);
+        return executeQuery(queryText);
 }
 
 double Database::periodNonRegTotal(QString period){
@@ -296,14 +296,14 @@ double Database::periodNonRegTotal(QString period){
         QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE"
                         " data >= '" + startDate(period) + "'" +
                       " AND reg = 0";
-        return periodTot(queryText);
+        return executeQuery(queryText);
 }
 
 double Database::periodIncomeTotal(QString period){
     QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE"
                         " data >= '" + startDate(period) + "'" +
                         " AND category = 'Income'";
-    return periodTot(queryText);
+    return executeQuery(queryText);
 }
 
 double Database::periodBalance(QString period){
@@ -320,15 +320,15 @@ double Database::periodTotal(QString period){
     QString queryText = "SELECT SUM(finalAmount) FROM expenses WHERE"
                         " data >= '" + startDate(period) + "'" +
                         " AND category != 'Income'";
-    return periodTot(queryText);
+    return executeQuery(queryText);
 }
 
 //private
-double Database::periodTot(QString queryText){
+double Database::executeQuery(QString queryText){
     bool success = false;
     if (!this->db.open())
     {
-        qDebug() << "Database::periodTotal. Error: connection with database failed";
+        qDebug() << "Database::periodTot. Error: connection with database failed";
         return 0;
     }
     else{
@@ -341,7 +341,7 @@ double Database::periodTot(QString queryText){
         }
         else
         {
-            qDebug() << "Database::periodTot error:"
+            qDebug() << "Database::executeQuery error:"
                      << query.lastError();
             return 0;
         }
@@ -352,3 +352,21 @@ double Database::periodTot(QString queryText){
 }
 
 //End of functions working together
+
+
+void Database::updateRecord(Record const &record){
+    QString date = record.date;
+    QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));//2024-08-25T10:30:51
+
+    QString queryText = "UPDATE expenses SET "
+                        "data = \"" + date + "\", "
+                        "category = \"" + record.cat + "\", " +
+                        "amount = " + QString::number(record.amount) + ", " +
+                        "currency = \"" + record.currency + "\", " +
+                        "exchRate = " + QString::number(record.rate) + ", " +
+                        "finalAmount = " + QString::number(record.finalAmnt) + ", " +
+                        "lastChangeDateTime = \"" + dateNow + "\" " +
+                        "WHERE rowid = " + QString::number(record.id);
+
+    executeQuery(queryText);
+}
