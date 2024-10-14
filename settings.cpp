@@ -164,8 +164,9 @@ void Settings::setCurrentSettings(QString const &newName){
     }
 }
 
-void Settings::setStartDate(QDate const & sDate){
+void Settings::setStartDate(QDate const &sDate, int64_t row){
     this->accounts[this->name].general["startDate"] = sDate.toString("yyyy-MM-dd");
+    this->accounts[this->name].general["startDateRow"] = row;
     this->accounts[this->name].settings.insert(
         "General",
         QJsonObject::fromVariantMap(this->accounts[this->name].general));

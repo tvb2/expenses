@@ -35,8 +35,6 @@ public:
         , settings(st)
         , stats(statistics)
     {
-
-
         QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
         QObject::connect(this->db, &Database::totalNonReg, stats, &Statistics::setTotalNonReg);
         QObject::connect(this->db, &Database::nonReg, stats, &Statistics::addNonReg);

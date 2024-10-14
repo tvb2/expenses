@@ -121,7 +121,7 @@ signals:
 
     // void getStartDate(QDate const & startDate);
 
-    void updateStartDate(QDate const & sDate);
+    void updateStartDate(QDate const & d, int64_t id);
 
 private:
     QSqlDatabase db;
@@ -129,7 +129,7 @@ private:
     QString path;
     QVector<Record> latest;
     QDate sDate;
-    long int index;
+    int64_t index;
 
     /**
      * @brief calculate start Date for the given period (month, week etc)
@@ -138,6 +138,19 @@ private:
      * @return
      */
     QString startDate(QString period);
+
+    /**
+     * @brief check if expense date is earlier than current sDate (start Date),
+     * then update sDate with the expense date;
+     * @param newStartDate
+     */
+    void startDateCheck(QDate newStartDate, int64_t row);
+
+    /**
+     * @brief parse DB and identify earliest date and row of the record
+     *
+     */
+    void startDateUpdate();
 
     /**
      * @brief using supplied queryText establish connections to DB and execute query

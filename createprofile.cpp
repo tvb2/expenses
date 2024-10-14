@@ -53,6 +53,7 @@ void CreateProfile::on_pbCreateProfile_clicked()
             settings["currency"] = currency;
             settings["period"] = period;
             settings["startDate"] = QDate::currentDate();
+            settings["startDateRow"] = "1";
 
             emit profileCreated(name, settings);
             this->close();

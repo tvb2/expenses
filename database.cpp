@@ -64,11 +64,7 @@ bool Database::addRecord(Record const &record)
     qDebug() << record.reg << " regular recieved";
 
     //check if expense date is before global startDate, then update global startDate
-    if (QDate::fromString(record.date,"yyyy-MM-dd") < this->sDate){
-        QDate newStartDate = QDate::fromString(record.date,"yyyy-MM-dd");
-        startDate(newStartDate);
-        emit updateStartDate(this->sDate);
-    }
+    startDateCheck(QDate::fromString(record.date,"yyyy-MM-dd"), record.id);
 
     QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));//2024-08-25T10:30:51
     bool success = false;
@@ -356,6 +352,7 @@ double Database::executeQuery(QString queryText){
 
 void Database::updateRecord(Record const &record){
     QString date = record.date;
+    startDateCheck(QDate::fromString(record.date,"yyyy-MM-dd"),record.id);
     QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));//2024-08-25T10:30:51
 
     QString queryText = "UPDATE expenses SET "
@@ -369,4 +366,47 @@ void Database::updateRecord(Record const &record){
                         "WHERE rowid = " + QString::number(record.id);
 
     executeQuery(queryText);
+}
+
+
+//private
+void Database::startDateCheck(QDate newStartDate, int64_t row){
+    //check if expense date is before global startDate, then update global startDate
+    if (newStartDate < this->sDate){
+        startDate(newStartDate);
+        this->index = row;
+        emit updateStartDate(this->sDate, this->index);
+    }
+    //if row is the same as start date and the date is different as sDate, new sDate needed
+    else if (row == this->index && newStartDate != this->sDate){
+        startDateUpdate();
+    }
+}
+
+//private
+void Database::startDateUpdate(){
+
+    QSqlQuery query;
+    QDate date;
+    bool success = false;
+    int64_t row = 0;
+    query.prepare("SELECT date, rowid FROM expenses "
+                  "ORDER BY date ASC "
+                  "LIMIT 1");
+
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "Database::startDateUpdate error:"
+                 << query.lastError();
+    }
+    while (query.next()) {
+        date = QDate::fromString(query.value(0).toString());
+        // QDate d = QDate::fromString(date,"yyyy-MM-dd")
+        row = query.value(1).toInt();
+    }
+    emit updateStartDate(date, row);
 }

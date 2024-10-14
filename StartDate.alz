@@ -6,7 +6,7 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node w="379000" x="-2060" y="-137111" h="75000" index="0">
+  <node w="379000" x="-2060" y="-137110" h="75000" index="0">
    <text>CreateProfile::on_pbCreateProfile_clicked()
 settings["startDate"] = QDate::currentDate()</text>
    <color g="255" r="255" b="255"/>
@@ -28,7 +28,7 @@ write settings to JSON and to file</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1040155" y="45963" h="75000" index="4">
+  <node w="200000" x="1040154" y="45963" h="75000" index="4">
    <text>Database::startDate</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -43,8 +43,8 @@ write settings to JSON and to file</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="390000" x="1045452" y="310550" h="94000" index="7">
-   <text>Database::addRecord
+  <node w="390000" x="1045451" y="310550" h="94000" index="7">
+   <text>Database::addRecord -> startDateCheck()
 check if expense date is before startDate then
 setStartDate</text>
    <color g="255" r="255" b="255"/>
@@ -61,7 +61,7 @@ update file</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1378377" y="46283" h="75000" index="10">
+  <node w="200000" x="1378376" y="46283" h="75000" index="10">
    <text>Statistics::startDate</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>

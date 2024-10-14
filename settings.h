@@ -121,7 +121,7 @@ public slots:
     void readSettings(QString const &newName);
 
     //overload
-    void setStartDate(QDate const &sDate);
+    void setStartDate(QDate const &sDate, int64_t row);
 };
 
 #endif // SETTINGS_H

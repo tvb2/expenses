@@ -25,7 +25,8 @@ public:
 
     double overallBalance();
 
-    void startDate(QDate const & sDate){
+    //overload
+    void startDate(QDate const & sDate, int64_t row){
         this->sDate = sDate;
     }
 
