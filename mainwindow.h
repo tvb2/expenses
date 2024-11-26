@@ -12,6 +12,7 @@
 #include "settingsbundle.h"
 #include "Periods.h"
 #include "editrecord.h"
+#include "allexpenses.h"
 
 namespace Ui {
 class MainWindow;
@@ -93,6 +94,8 @@ private slots:
 
     void on_tableWidget_cellClicked(int row, int column);
 
+    void on_pb_ShowMoreExpenses_clicked();
+
 signals:
     void newRecordAvailable(Record const &record);
 
@@ -101,6 +104,8 @@ signals:
     void requestAVG();
 
     void recordByID(int64_t rowid);
+
+    void getAllExpenses();
 
 private:
     Ui::MainWindow *ui;

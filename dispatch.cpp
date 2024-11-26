@@ -71,6 +71,7 @@ void Dispatch::startMainW(){
     QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
     QObject::connect(this->mW, &MainWindow::requestAVG, this, &Dispatch::averages);
     QObject::connect(this->mW, &MainWindow::recordByID, this, &Dispatch::updateRecord);
+    QObject::connect(this->mW, &MainWindow::getAllExpenses, this, &Dispatch::allRecordsRequest);
 
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
@@ -132,4 +133,8 @@ void Dispatch::averages(){
 
     this->mW->periodBalance(this->db->periodBalance(period));
     this->mW->balanceOverall(this->stats->overallBalance());
+}
+
+void Dispatch::allRecordsRequest(){
+    this->db->getLatestN(-1);
 }

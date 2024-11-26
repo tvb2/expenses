@@ -89,7 +89,8 @@ public slots:
 
     void averages();
 
-    // void updateRecord(Record const &record);
+    void allRecordsRequest();
+
 };
 
 #endif // DISPATCH_H

@@ -20,7 +20,7 @@
       <x>11</x>
       <y>6</y>
       <width>471</width>
-      <height>601</height>
+      <height>607</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -354,7 +354,7 @@
      <item>
       <widget class="QTableWidget" name="tableWidget">
        <property name="editTriggers">
-        <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+        <set>QAbstractItemView::NoEditTriggers</set>
        </property>
        <property name="showGrid">
         <bool>false</bool>
@@ -423,6 +423,13 @@
       <widget class="QPushButton" name="pbEditRecord">
        <property name="text">
         <string>Edit record</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_ShowMoreExpenses">
+       <property name="text">
+        <string>Show more expenses</string>
        </property>
       </widget>
      </item>

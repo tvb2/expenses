@@ -40,7 +40,8 @@ public:
     void getRecord(Record &record, int64_t id);
 
     /**
-     * @brief get latest N records submitted or modified
+     * @brief get latest N records submitted or modified if N > 0
+     * if N == -1 then get all available records
      * @return vector of Records
      */
     void getLatestN(int N);

@@ -174,7 +174,16 @@ void Database::getLatestN(int N){
     else{
         QString an = QString::number(N);
         QSqlQuery query;
-        query.prepare("SELECT rowid, data, category, amount, currency, exchRate, finalAmount, lastChangeDateTime FROM expenses ORDER BY lastChangeDateTime DESC LIMIT " + an);
+        //if N > 0 return N records. Otherwise return all records
+        if (N > 0)
+            query.prepare("SELECT rowid, data, category, amount, currency, exchRate, finalAmount, lastChangeDateTime "
+                          "FROM expenses "
+                          "ORDER BY lastChangeDateTime "
+                          "DESC LIMIT " + an);
+        else if (N == -1)
+            query.prepare("SELECT rowid, data, category, amount, currency, exchRate, finalAmount, lastChangeDateTime "
+                          "FROM expenses "
+                          "ORDER BY lastChangeDateTime DESC");
 
         if(query.exec())
         {

@@ -167,31 +167,39 @@ void MainWindow::populateLists(SettingsBundle const &settings){
 
 void MainWindow::populateRecords(QVector<Record> const & lastRecords){
     if (!lastRecords.isEmpty()){
-    auto rec = lastRecords.begin();
-    for( int row = 0; row < lastRecords.size(); row++ ){
-        QStringList itemList;
-        itemList.append(rec->date);
-        itemList.append(rec->cat);
-        itemList.append(QString::number(rec->amount));
-        itemList.append(rec->currency);
-        itemList.append(QString::number(rec->finalAmnt));
-        itemList.append(QString::number(rec->id));
-        auto itemListIt = itemList.begin();
-        for( int column = 0; column < itemList.size(); column++ ){
-            QString item = QString(itemListIt->data());
-            QVariant oVariant(item);
-            ++itemListIt;
-            // allocate the widget item
-            QTableWidgetItem * poItem = new QTableWidgetItem();
-            poItem->setData( Qt::DisplayRole, oVariant );
-            ui->tableWidget->setItem( row, column, poItem );
+        if (lastRecords.size() <= 5){
+            auto rec = lastRecords.begin();
+            for( int row = 0; row < lastRecords.size(); row++ ){
+                QStringList itemList;
+                itemList.append(rec->date);
+                itemList.append(rec->cat);
+                itemList.append(QString::number(rec->amount));
+                itemList.append(rec->currency);
+                itemList.append(QString::number(rec->finalAmnt));
+                itemList.append(QString::number(rec->id));
+                auto itemListIt = itemList.begin();
+                for( int column = 0; column < itemList.size(); column++ ){
+                    QString item = QString(itemListIt->data());
+                    QVariant oVariant(item);
+                    ++itemListIt;
+                    // allocate the widget item
+                    QTableWidgetItem * poItem = new QTableWidgetItem();
+                    poItem->setData( Qt::DisplayRole, oVariant );
+                    ui->tableWidget->setItem( row, column, poItem );
+                }
+            ui->lbFinalAmount->setText("final amount");
+            ++rec;
+            }
+        //hide column containing rowid. It will be used to access record for edit/delete
+        ui->tableWidget->hideColumn(ui->tableWidget->columnCount() - 1);
         }
-        ui->lbFinalAmount->setText("final amount");
-        ++rec;
+        else{
+            AllExpenses *allExpenses = new AllExpenses();
+            allExpenses->populateRecords(lastRecords);
+            allExpenses->exec();
     }
     }
-    //hide column containing rowid. It will be used to access record for edit/delete
-    ui->tableWidget->hideColumn(ui->tableWidget->columnCount() - 1);
+
     }
 
 void MainWindow::on_chboxReg_stateChanged(int arg1)
@@ -275,5 +283,10 @@ void MainWindow::on_pbEditRecord_clicked()
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     ui->pbEditRecord->setEnabled(true);
+}
+
+void MainWindow::on_pb_ShowMoreExpenses_clicked()
+{
+    emit getAllExpenses();
 }
 

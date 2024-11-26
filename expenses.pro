@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    allexpenses.cpp \
     basecomponent.cpp \
     dispatch.cpp \
     editcurrency.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     Periods.h \
+    allexpenses.h \
     basecomponent.h \
     dispatch.h \
     editcurrency.h \
@@ -42,6 +44,7 @@ HEADERS += \
     validator.h
 
 FORMS += \
+    allexpenses.ui \
     createprofile.ui \
     editcurrency.ui \
     editrecord.ui \
