@@ -63,9 +63,6 @@ bool Database::addRecord(Record const &record)
     qDebug() << record.date << "date recieved";
     qDebug() << record.reg << " regular recieved";
 
-    //check if expense date is before global startDate, then update global startDate
-    startDateCheck(QDate::fromString(record.date,"yyyy-MM-dd"), record.id);
-
     QString dateNow=QDateTime::currentDateTime().toString(Qt::DateFormat(1));//2024-08-25T10:30:51
     bool success = false;
     // you should check if args are ok first...
@@ -85,6 +82,8 @@ bool Database::addRecord(Record const &record)
     if(query.exec())
     {
         success = true;
+        //check if expense date is before global startDate, then update global startDate
+        startDateCheck(QDate::fromString(record.date,"yyyy-MM-dd"), getLatestRowID());
     }
     else
     {
@@ -368,17 +367,21 @@ void Database::updateRecord(Record const &record){
     executeQuery(queryText);
 }
 
+int64_t Database::getLatestRowID(){
+    QString queryText = "SELECT rowid FROM expenses ORDER BY rowid DESC LIMIT 1";
+    return int64_t(executeQuery(queryText));
+}
 
 //private
 void Database::startDateCheck(QDate newStartDate, int64_t row){
     //check if expense date is before global startDate, then update global startDate
     if (newStartDate < this->sDate){
-        startDate(newStartDate);
-        this->index = row;
-        emit updateStartDate(this->sDate, this->index);
+        startDate(newStartDate, row);
+        emit updateStartDate(this->sDate, this->startRow);
     }
     //if row is the same as start date and the date is different as sDate, new sDate needed
-    else if (row == this->index && newStartDate != this->sDate){
+    else if (row != -1 && row == this->startRow && newStartDate != this->sDate){
+        this->sDate = newStartDate;
         startDateUpdate();
     }
 }
@@ -390,8 +393,10 @@ void Database::startDateUpdate(){
     QDate date;
     bool success = false;
     int64_t row = 0;
-    query.prepare("SELECT date, rowid FROM expenses "
-                  "ORDER BY date ASC "
+    query.prepare("SELECT data, rowid FROM expenses "
+                  "WHERE rowid != " + QString::number(this->startRow) +
+                  " "
+                  "ORDER BY data ASC "
                   "LIMIT 1");
 
     if(query.exec())
@@ -404,9 +409,12 @@ void Database::startDateUpdate(){
                  << query.lastError();
     }
     while (query.next()) {
-        date = QDate::fromString(query.value(0).toString());
+        date = QDate::fromString(query.value(0).toString(),"yyyy-MM-dd");
         // QDate d = QDate::fromString(date,"yyyy-MM-dd")
         row = query.value(1).toInt();
     }
-    emit updateStartDate(date, row);
+    if (date < this->sDate){
+        startDate(date, row);
+    }
+    emit updateStartDate(this->sDate, this->startRow);
 }

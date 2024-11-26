@@ -94,11 +94,25 @@ public:
      */
     double periodTotal(QString period);
 
-    void startDate(QDate const & sDate){
+    /**
+     * @brief set start Date and row of new start date
+     * @param sDate
+     * @param row
+     */
+    void startDate(QDate const & sDate,int64_t const & row){
         this->sDate = sDate;
+        this->startRow = row;
     }
 
     void updateRecord(Record const &record);
+
+    /**
+     * @brief get row id of the latest added/modified record
+     * based on the field lastChangeDateTime
+     * @return
+     */
+    int64_t getLatestRowID();
+
 signals:
 
     void latestRecords(QVector<Record> & latestRecords);
@@ -121,6 +135,11 @@ signals:
 
     // void getStartDate(QDate const & startDate);
 
+    /**
+     * @brief provide start date and corresponding row index
+     * @param d
+     * @param id
+     */
     void updateStartDate(QDate const & d, int64_t id);
 
 private:
@@ -129,7 +148,7 @@ private:
     QString path;
     QVector<Record> latest;
     QDate sDate;
-    int64_t index;
+    int64_t startRow;
 
     /**
      * @brief calculate start Date for the given period (month, week etc)

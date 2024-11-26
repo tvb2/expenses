@@ -37,8 +37,8 @@ void Dispatch::setProfile(QString const &name){
     this->settings->setCurrentSettings(name);
 
     qDebug() << "Start date: " << this->settings->startDate();
-    this->db->startDate(this->settings->startDate());
-    this->stats->startDate(this->settings->startDate(), 0);
+    this->db->startDate(this->settings->startDate(), this->settings->startDateRow());
+    this->stats->startDate(this->settings->startDate(), this->settings->startDateRow());
 
     updateTotals();
     qDebug() << "Dispatch::setProfile complete";

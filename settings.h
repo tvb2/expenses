@@ -102,6 +102,9 @@ public:
     QDate startDate(){
         return this->accounts[name].general["startDate"].toDate();
     }
+    int64_t startDateRow(){
+        return this->accounts[name].general["startDateRow"].toInt();
+    }
 signals:
     /**
      * data to populate MainW

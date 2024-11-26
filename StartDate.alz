@@ -17,9 +17,11 @@ settings["startDate"] = QDate::currentDate()</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="290000" x="654394" y="48731" h="75000" index="2">
+  <node w="290000" x="654394" y="48731" h="116000" index="2">
    <text>Settings::createSettings
-write settings to JSON and to file</text>
+write settings to JSON and to file
+(start date = current date,
+row = 1)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -28,7 +30,7 @@ write settings to JSON and to file</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1040154" y="45963" h="75000" index="4">
+  <node w="200000" x="1040153" y="45963" h="75000" index="4">
    <text>Database::startDate</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -61,13 +63,98 @@ update file</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="200000" x="1378376" y="46283" h="75000" index="10">
+  <node w="200000" x="1378375" y="46283" h="75000" index="10">
    <text>Statistics::startDate</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
   <node w="200000" x="1344047" y="731547" h="75000" index="11">
    <text>Statistics::startDate</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-1109321" y="285326" h="75000" index="12">
+   <text>Dispatch::setProfile</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-1106857" y="551592" h="75000" index="13">
+   <text>Settings::startDate()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-611485" y="288578" h="94000" index="14">
+   <text>Database::startDate
+this->sDate
+this->startRow</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="350000" x="-20895" y="932835" h="75000" index="15">
+   <text>MainWindow::on_pbEditRecord_clicked()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="209000" x="556716" y="932835" h="75000" index="16">
+   <text>Dispatch::startMainW()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="215000" x="555223" y="1122201" h="75000" index="17">
+   <text>Dispatch::updateRecord
+rowID</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="282000" x="911494" y="938362" h="75000" index="18">
+   <text>Database::getRecord(rec, rowid)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="332000" x="936781" y="1119971" h="75000" index="19">
+   <text>MainWindow::editRecord(Record &amp;rec)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="329000" x="1364367" y="1118821" h="75000" index="20">
+   <text>new EditRecord (rec, this->setBundle)
+EditRecord->updateRecord();</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="263000" x="912643" y="1332614" h="75000" index="22">
+   <text>Database::updateRecord(rec);</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="229000" x="557471" y="1336063" h="75000" index="23">
+   <text>Dispatch::updateTotals();</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="256321" y="1330316" h="75000" index="24">
+   <text>Dispatch::averages();</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="226000" x="257471" y="1123419" h="75000" index="25">
+   <text>Database::getLatestN(5);</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="506000" x="1436781" y="1333764" h="75000" index="26">
+   <text>Database::startDateCheck(QDate newStartDate, int64_t row)</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="253000" x="969182" y="1565281" h="75000" index="27">
+   <text>Database::startDateUpdate()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="1437113" y="1784149" h="75000" index="28">
+   <text>Settings::setStartDate
+Statistics::startDate</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -100,6 +187,54 @@ update file</text>
   </edge>
   <edge index0="8" index1="11" reversed="0" arrow-mode="0">
    <text></text>
+  </edge>
+  <edge index0="12" index1="13" reversed="0" arrow-mode="1">
+   <text>Settings return 
+Qdate sDate
+and
+int64_t row</text>
+  </edge>
+  <edge index0="12" index1="14" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="15" index1="16" reversed="0" arrow-mode="0">
+   <text>signal recordByID(rowid)</text>
+  </edge>
+  <edge index0="16" index1="17" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="17" index1="18" reversed="0" arrow-mode="0">
+   <text>1</text>
+  </edge>
+  <edge index0="17" index1="19" reversed="0" arrow-mode="0">
+   <text>2</text>
+  </edge>
+  <edge index0="17" index1="22" reversed="0" arrow-mode="0">
+   <text>3</text>
+  </edge>
+  <edge index0="17" index1="23" reversed="0" arrow-mode="0">
+   <text>4</text>
+  </edge>
+  <edge index0="17" index1="24" reversed="0" arrow-mode="0">
+   <text>5</text>
+  </edge>
+  <edge index0="17" index1="25" reversed="0" arrow-mode="0">
+   <text>6</text>
+  </edge>
+  <edge index0="19" index1="20" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="22" index1="26" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="26" index1="27" reversed="0" arrow-mode="0">
+   <text></text>
+  </edge>
+  <edge index0="26" index1="28" reversed="0" arrow-mode="0">
+   <text>signal updateStartDate(this->sDate, this->startRow);</text>
+  </edge>
+  <edge index0="27" index1="28" reversed="0" arrow-mode="0">
+   <text>signal updateStartDate(this->sDate, this->startRow)</text>
   </edge>
  </graph>
 </design>
