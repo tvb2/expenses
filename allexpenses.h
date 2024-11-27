@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QVector>
 #include "record.h"
+#include "editrecord.h"`
 
 namespace Ui {
 class AllExpenses;
@@ -17,9 +18,10 @@ public:
     explicit AllExpenses(QWidget *parent = nullptr);
     ~AllExpenses();
 
-    void populateRecords(QVector<Record> const & allExpenses){
+    void populateRecords(QVector<Record> const & allExpenses);
 
-    }
+private slots:
+    void on_pb_EditRecord_clicked();
 
 private:
     Ui::AllExpenses *ui;
