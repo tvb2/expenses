@@ -3,6 +3,6 @@
 3. edit/delete any record
 4. Edit currency
 5. Correct EditRecord issue: 
-	populate correct category, 
-	handle regular/non regular flag, 
-	handle 'Cancel' button pressed
+	done populate correct category, 
+	done handle regular/non regular flag, 
+	done handle 'Cancel' button pressed

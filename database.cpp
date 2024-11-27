@@ -108,7 +108,7 @@ void Database::getRecord(Record &record, int64_t id){
         QSqlQuery query;
         QString rowID = QString::number(id);
         query.prepare("SELECT "
-                      "rowid, data, category, amount, currency, exchRate, finalAmount, lastChangeDateTime "
+                      "rowid, data, category, amount, currency, exchRate, finalAmount, lastChangeDateTime, reg "
                       "FROM expenses "
                       "WHERE rowid = " + rowID);
 
@@ -130,6 +130,7 @@ void Database::getRecord(Record &record, int64_t id){
             record.rate = query.value(5).toDouble();
             record.finalAmnt = query.value(6).toDouble();
             record.chngDate = query.value(7).toString();
+            record.reg = query.value(8).toBool();
         }
     }
 }
@@ -370,6 +371,7 @@ void Database::updateRecord(Record const &record){
                         "currency = \"" + record.currency + "\", " +
                         "exchRate = " + QString::number(record.rate) + ", " +
                         "finalAmount = " + QString::number(record.finalAmnt) + ", " +
+                        "reg = " + QString::number(record.reg) + ", " +
                         "lastChangeDateTime = \"" + dateNow + "\" " +
                         "WHERE rowid = " + QString::number(record.id);
 

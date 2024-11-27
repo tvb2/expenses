@@ -37,6 +37,8 @@ private slots:
 
     void on_leAmount_textChanged(const QString &arg1);
 
+    void on_cbCategory_currentTextChanged(const QString &arg1);
+
 signals:
     void closeWindow();
 private:

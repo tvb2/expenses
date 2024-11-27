@@ -44,6 +44,9 @@ if (!allExpenses.isEmpty()){
 
 void AllExpenses::on_pb_EditRecord_clicked()
 {
+    int64_t rowid = ui->tableWidget->item(ui->tableWidget->currentRow(),ui->tableWidget->columnCount() - 1)->text().toInt();
+    qDebug() << "Selected record rowid is: " << rowid;
 
+    emit recordByID(rowid);
 }
 

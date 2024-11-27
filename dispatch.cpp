@@ -65,9 +65,10 @@ void Dispatch::updateTotals(){
 
 void Dispatch::startMainW(){
     this->mW = new MainWindow;
-    QObject::connect(this->mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
+
+    QObject::connect(this->settings, &Settings::transmitSettings, this->mW, &MainWindow::populateLists);
     QObject::connect(this->settings, &Settings::transmitSettings, this, &Dispatch::settBundle);
-    QObject::connect(this->settings, &Settings::transmitSettings, this, &MainWindow::populateLists);
+    QObject::connect(this->mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
     QObject::connect(this->mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
     QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
     QObject::connect(this->mW, &MainWindow::requestAVG, this, &Dispatch::averages);

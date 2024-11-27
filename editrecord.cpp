@@ -50,6 +50,9 @@ void EditRecord::populate(){
     foreach (auto i, this->setBundle.regCat) {
         regC.append(i.toStringList());
     }
+    if (!regC.contains(this->record.cat)){
+        regC.append(this->record.cat);
+    }
     ui->cbCategory->addItems(regC);
     ui->cbCategory->setCurrentText(this->record.cat);
     qDebug() << "EditRecord::populate. category: " << ui->cbCategory->currentText();
@@ -105,6 +108,18 @@ void EditRecord::on_leAmount_textChanged(const QString &arg1)
         this->record.finalAmnt = this->record.amount*this->record.rate;
         double rt = this->setBundle.exchRates.value(ui->cbCurrency->currentText()).toDouble();
         ui->lbFinalAmount->setText(QString::number(this->record.amount*rt, 'f', 1));
+    }
+}
+
+void EditRecord::on_cbCategory_currentTextChanged(const QString &arg1)
+{
+    if (!this->setBundle.regCat.contains(ui->cbCategory->currentText())){
+        ui->cbCategory->setEditable(true);
+        this->record.reg = false;
+    }
+    else{
+        ui->cbCategory->setEditable(false);
+        this->record.reg = true;
     }
 }
 

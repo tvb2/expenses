@@ -23,6 +23,9 @@ public:
 private slots:
     void on_pb_EditRecord_clicked();
 
+signals:
+    void recordByID(int64_t rowid);
+
 private:
     Ui::AllExpenses *ui;
 };
