@@ -18,6 +18,7 @@
 #include "record.h"
 #include "settingsbundle.h"
 #include "editcurrency.h"
+#include "editrecord.h"
 
 class Dispatch : public QObject
 {
@@ -28,6 +29,7 @@ public:
     Settings *settings;
     Statistics *stats;
     MainWindow *mW;
+    SettingsBundle setBundle;
 
     Dispatch(Profile *pr, Database *databs, Settings *st, Statistics *statistics)
         : profile(pr)
@@ -90,6 +92,8 @@ public slots:
     void averages();
 
     void allRecordsRequest();
+
+    void settBundle(SettingsBundle const &settings);
 
 };
 

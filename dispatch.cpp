@@ -65,8 +65,8 @@ void Dispatch::updateTotals(){
 
 void Dispatch::startMainW(){
     this->mW = new MainWindow;
-    QObject::connect(this->settings, &Settings::transmitSettings, this->mW, &MainWindow::populateLists);
     QObject::connect(this->mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
+    QObject::connect(this->settings, &Settings::transmitSettings, this, &Dispatch::settBundle);
     QObject::connect(this->mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
     QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
     QObject::connect(this->mW, &MainWindow::requestAVG, this, &Dispatch::averages);
@@ -100,7 +100,14 @@ void Dispatch::updateRecord(int64_t rowid){
     Record rec;
     this->db->getRecord(rec, rowid);
     qDebug() << "Record final amount before update: " << rec.finalAmnt;
-    this->mW->editRecord(rec);
+
+    //this->mW->editRecord(rec);
+    //instead of running EditRecord from MW, run it from Dispatch
+
+    EditRecord *editRec = new EditRecord(rec, this->setBundle);
+    editRec->updateRecord();
+    editRec->exec();
+
     qDebug() << "Record final amount after update: " << rec.finalAmnt;
     this->db->updateRecord(rec);
     updateTotals();
@@ -137,4 +144,8 @@ void Dispatch::averages(){
 
 void Dispatch::allRecordsRequest(){
     this->db->getLatestN(-1);
+}
+
+void Dispatch::settBundle(SettingsBundle const &settings){
+    this->setBundle = settings;
 }

@@ -35,7 +35,7 @@ void EditRecord::on_pbOK_clicked()
     // ui->leAmount->clear();
     // ui->cbNonRegCat->clear();
     this->close();
-    emit closeWindow();
+    // emit closeWindow();
 }
 
 void EditRecord::on_pbCancel_clicked()

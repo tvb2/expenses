@@ -108,11 +108,11 @@ void MainWindow::balanceOverall(double tot){
     ui->lbBalanceOverall->setText(periodTot);
 }
 
-void MainWindow::editRecord(Record &rec){
-    EditRecord *editRec = new EditRecord(rec, this->setBundle);
-    editRec->updateRecord();
-    editRec->exec();
-}
+// void MainWindow::editRecord(Record &rec){
+//     EditRecord *editRec = new EditRecord(rec, this->setBundle);
+//     editRec->updateRecord();
+//     editRec->exec();
+// }
 
 
 QString MainWindow::getCurrentCat(){

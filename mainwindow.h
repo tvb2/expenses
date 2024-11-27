@@ -52,7 +52,7 @@ public:
 
     void balanceOverall(double tot);
 
-    void editRecord(Record &rec);
+    // void editRecord(Record &rec);
 
     QString getCurrentCat();
 
