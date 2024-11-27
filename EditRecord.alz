@@ -6,7 +6,7 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node w="336000" x="-615384" y="-316238" h="75000" index="0">
+  <node w="336000" x="-615384" y="-316237" h="75000" index="0">
    <text>MainWindow::on_pbEditRecord_clicked</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -27,19 +27,28 @@ create Record record</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="223000" x="-70939" y="72756" h="75000" index="4">
-   <text>MainWindow::editRecord
-EditRecord *editRecord</text>
-   <color g="255" r="255" b="255"/>
-   <text-color g="0" r="0" b="0"/>
-  </node>
-  <node w="232000" x="444444" y="70191" h="75000" index="6">
+  <node w="232000" x="383814" y="77277" h="75000" index="6">
    <text>EditRecord::updateRecord</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="220000" x="-484615" y="-135790" h="75000" index="7">
+  <node w="220000" x="-72016" y="83895" h="75000" index="7">
    <text>Database::updateRecord</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="229000" x="-375590" y="79035" h="75000" index="8">
+   <text>Dispatch::updateTotals();</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-392913" y="-28838" h="75000" index="9">
+   <text>Dispatch::averages()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="274000" x="-422047" y="-135925" h="75000" index="10">
+   <text>Database::this->getLatestN(5);</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -53,14 +62,20 @@ param rowid</text>
   <edge index0="2" index1="3" reversed="0" arrow-mode="1">
    <text>1. &amp;record</text>
   </edge>
-  <edge index0="2" index1="4" reversed="0" arrow-mode="0">
-   <text>2. &amp;record</text>
-  </edge>
   <edge index0="2" index1="7" reversed="0" arrow-mode="0">
-   <text>4. &amp;record</text>
-  </edge>
-  <edge index0="4" index1="6" reversed="0" arrow-mode="1">
    <text>3. &amp;record</text>
+  </edge>
+  <edge index0="2" index1="6" reversed="0" arrow-mode="0">
+   <text>2</text>
+  </edge>
+  <edge index0="2" index1="8" reversed="0" arrow-mode="0">
+   <text>4</text>
+  </edge>
+  <edge index0="2" index1="9" reversed="0" arrow-mode="0">
+   <text>5</text>
+  </edge>
+  <edge index0="2" index1="10" reversed="0" arrow-mode="0">
+   <text>6</text>
   </edge>
  </graph>
 </design>

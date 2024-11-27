@@ -6,7 +6,7 @@
  <text-size>11000</text-size>
  <corner-radius>5000</corner-radius>
  <graph>
-  <node w="431000" x="-461538" y="-233333" h="75000" index="0">
+  <node w="431000" x="-461538" y="-233332" h="75000" index="0">
    <text>MainWindow::on_pb_ShowMoreExpenses_clicked()</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -22,8 +22,8 @@ where N = -1 (all records)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="270000" x="-355555" y="190705" h="75000" index="3">
-   <text>MainWindow::populateRecords</text>
+  <node w="263000" x="-354418" y="189568" h="75000" index="3">
+   <text>Dispatch::allRecordsRequest()</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
@@ -32,7 +32,7 @@ where N = -1 (all records)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="276000" x="-795876" y="192396" h="75000" index="5">
+  <node w="276000" x="-795875" y="192395" h="75000" index="5">
    <text>AllExpenses::populateRecords()</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -44,7 +44,7 @@ where N = -1 (all records)</text>
    <text></text>
   </edge>
   <edge index0="2" index1="3" reversed="0" arrow-mode="0">
-   <text>signal latestRecords(this->latest)</text>
+   <text>signal allRecords(this->latest)</text>
   </edge>
   <edge index0="3" index1="5" reversed="0" arrow-mode="0">
    <text></text>

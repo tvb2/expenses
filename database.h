@@ -118,6 +118,8 @@ signals:
 
     void latestRecords(QVector<Record> & latestRecords);
 
+    void allRecords(QVector<Record> & latestRecords);
+
     /**
      * @brief for category cat send total expense amount from start date sDate
      * @param cat

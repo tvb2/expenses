@@ -71,6 +71,7 @@ void Dispatch::startMainW(){
     QObject::connect(this->mW, &MainWindow::newRecordAvailable,this, &Dispatch::newRecordRequest);
     QObject::connect(this->mW, &MainWindow::editCurrencyPBclicked,this, &Dispatch::editCurrency);
     QObject::connect(this->db, &Database::latestRecords, this->mW, &MainWindow::populateRecords);
+    QObject::connect(this->db, &Database::allRecords, this, &Dispatch::allExpenses);
     QObject::connect(this->mW, &MainWindow::requestAVG, this, &Dispatch::averages);
     QObject::connect(this->mW, &MainWindow::recordByID, this, &Dispatch::updateRecord);
     QObject::connect(this->mW, &MainWindow::getAllExpenses, this, &Dispatch::allRecordsRequest);
@@ -102,9 +103,6 @@ void Dispatch::updateRecord(int64_t rowid){
     Record rec;
     this->db->getRecord(rec, rowid);
     qDebug() << "Record final amount before update: " << rec.finalAmnt;
-
-    //this->mW->editRecord(rec);
-    //instead of running EditRecord from MW, run it from Dispatch
 
     EditRecord *editRec = new EditRecord(rec, this->setBundle);
     editRec->updateRecord();
@@ -147,6 +145,12 @@ void Dispatch::averages(){
 
 void Dispatch::allRecordsRequest(){
     this->db->getLatestN(-1);
+}
+
+void Dispatch::allExpenses(QVector<Record> & allExp){
+    AllExpenses *allExpenses = new AllExpenses();
+    allExpenses->populateRecords(allExp);
+    allExpenses->exec();
 }
 
 void Dispatch::settBundle(SettingsBundle const &settings){

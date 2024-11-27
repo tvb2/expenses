@@ -108,13 +108,6 @@ void MainWindow::balanceOverall(double tot){
     ui->lbBalanceOverall->setText(periodTot);
 }
 
-// void MainWindow::editRecord(Record &rec){
-//     EditRecord *editRec = new EditRecord(rec, this->setBundle);
-//     editRec->updateRecord();
-//     editRec->exec();
-// }
-
-
 QString MainWindow::getCurrentCat(){
     return ui->cbCategory->currentText();
 }
@@ -122,7 +115,6 @@ QString MainWindow::getCurrentCat(){
 void MainWindow::on_pbOK_clicked(){
     qDebug("MainW: OK pressed");
 }
-
 
 void MainWindow::on_pB_Submit_clicked()
 {
@@ -145,7 +137,6 @@ void MainWindow::on_pB_Submit_clicked()
     ui->cbNonRegCat->clear();
 }
 
-
 void MainWindow::populateLists(SettingsBundle const &settings){
     this->setBundle = settings;
     QStringList regC;
@@ -166,41 +157,33 @@ void MainWindow::populateLists(SettingsBundle const &settings){
 }
 
 void MainWindow::populateRecords(QVector<Record> const & lastRecords){
-    if (!lastRecords.isEmpty()){
-        if (lastRecords.size() <= 5){
-            auto rec = lastRecords.begin();
-            for( int row = 0; row < lastRecords.size(); row++ ){
-                QStringList itemList;
-                itemList.append(rec->date);
-                itemList.append(rec->cat);
-                itemList.append(QString::number(rec->amount));
-                itemList.append(rec->currency);
-                itemList.append(QString::number(rec->finalAmnt));
-                itemList.append(QString::number(rec->id));
-                auto itemListIt = itemList.begin();
-                for( int column = 0; column < itemList.size(); column++ ){
-                    QString item = QString(itemListIt->data());
-                    QVariant oVariant(item);
-                    ++itemListIt;
-                    // allocate the widget item
-                    QTableWidgetItem * poItem = new QTableWidgetItem();
-                    poItem->setData( Qt::DisplayRole, oVariant );
-                    ui->tableWidget->setItem( row, column, poItem );
-                }
-            ui->lbFinalAmount->setText("final amount");
-            ++rec;
-            }
-        //hide column containing rowid. It will be used to access record for edit/delete
-        ui->tableWidget->hideColumn(ui->tableWidget->columnCount() - 1);
+if (!lastRecords.isEmpty()){
+    auto rec = lastRecords.begin();
+    for( int row = 0; row < lastRecords.size(); row++ ){
+        QStringList itemList;
+        itemList.append(rec->date);
+        itemList.append(rec->cat);
+        itemList.append(QString::number(rec->amount));
+        itemList.append(rec->currency);
+        itemList.append(QString::number(rec->finalAmnt));
+        itemList.append(QString::number(rec->id));
+        auto itemListIt = itemList.begin();
+        for( int column = 0; column < itemList.size(); column++ ){
+            QString item = QString(itemListIt->data());
+            QVariant oVariant(item);
+            ++itemListIt;
+            // allocate the widget item
+            QTableWidgetItem * poItem = new QTableWidgetItem();
+            poItem->setData( Qt::DisplayRole, oVariant );
+            ui->tableWidget->setItem( row, column, poItem );
         }
-        else{
-            AllExpenses *allExpenses = new AllExpenses();
-            allExpenses->populateRecords(lastRecords);
-            allExpenses->exec();
+    ui->lbFinalAmount->setText("final amount");
+    ++rec;
     }
+    //hide column containing rowid. It will be used to access record for edit/delete
+    ui->tableWidget->hideColumn(ui->tableWidget->columnCount() - 1);
     }
-
-    }
+}
 
 void MainWindow::on_chboxReg_stateChanged(int arg1)
 {

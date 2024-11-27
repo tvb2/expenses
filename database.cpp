@@ -213,8 +213,13 @@ void Database::getLatestN(int N){
             */
         }
     }
-    if (!this->latest.empty())
+    if (this->latest.empty()){
+        return;
+    }
+    if (N > 0)
         emit latestRecords(this->latest);
+    if (N == -1)
+        emit allRecords(this->latest);
 }
 
 void Database::getRegTotals(QString const & cat){
@@ -267,7 +272,6 @@ void Database::getNonRegTotals(){
 }
 
 //Following functions work together
-
 //private
 QString Database::startDate(QString period){
     QDate targetStart = QDate::currentDate();
@@ -355,7 +359,6 @@ double Database::executeQuery(QString queryText){
         }
     }
 }
-
 //End of functions working together
 
 

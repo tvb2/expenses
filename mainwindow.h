@@ -11,8 +11,6 @@
 #include "record.h"
 #include "settingsbundle.h"
 #include "Periods.h"
-#include "editrecord.h"
-#include "allexpenses.h"
 
 namespace Ui {
 class MainWindow;
@@ -51,8 +49,6 @@ public:
     void periodBalance(double tot);
 
     void balanceOverall(double tot);
-
-    // void editRecord(Record &rec);
 
     QString getCurrentCat();
 

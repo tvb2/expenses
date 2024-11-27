@@ -19,6 +19,7 @@
 #include "settingsbundle.h"
 #include "editcurrency.h"
 #include "editrecord.h"
+#include "allexpenses.h"
 
 class Dispatch : public QObject
 {
@@ -91,9 +92,12 @@ public slots:
 
     void averages();
 
+    //get all records to populate All Expenses window
     void allRecordsRequest();
 
     void settBundle(SettingsBundle const &settings);
+
+    void allExpenses(QVector<Record> & allExp);
 
 };
 
