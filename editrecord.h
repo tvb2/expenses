@@ -21,7 +21,12 @@ public:
 
     void populate();
 
-    void updateRecord();
+    bool updateRecord();
+
+    //let know if update was successful (true) or if it was cancelled (false)
+    bool isSuccess(){
+        return this->success;
+    }
 
 private slots:
     void on_pbOK_clicked();
@@ -36,9 +41,10 @@ signals:
     void closeWindow();
 private:
     Ui::EditRecord *ui;
-        int64_t id;
+    int64_t id;
     Record &record;
-        SettingsBundle setBundle;
+    SettingsBundle setBundle;
+    bool success = true;
 
 };
 

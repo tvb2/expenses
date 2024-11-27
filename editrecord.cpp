@@ -40,6 +40,7 @@ void EditRecord::on_pbOK_clicked()
 
 void EditRecord::on_pbCancel_clicked()
 {
+    this->success = false;
     this->close();
 }
 
@@ -50,6 +51,7 @@ void EditRecord::populate(){
         regC.append(i.toStringList());
     }
     ui->cbCategory->addItems(regC);
+    ui->cbCategory->setCurrentText(this->record.cat);
     qDebug() << "EditRecord::populate. category: " << ui->cbCategory->currentText();
 
     QStringList exchR;
@@ -79,8 +81,9 @@ void EditRecord::populate(){
     this->id = this->record.id;
 }
 
-void EditRecord::updateRecord(){
+bool EditRecord::updateRecord(){
     populate();
+    return true;
 }
 
 void EditRecord::on_cbCurrency_currentTextChanged(const QString &arg1)

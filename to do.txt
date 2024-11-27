@@ -2,3 +2,7 @@
 2. get all records
 3. edit/delete any record
 4. Edit currency
+5. Correct EditRecord issue: 
+	populate correct category, 
+	handle regular/non regular flag, 
+	handle 'Cancel' button pressed
