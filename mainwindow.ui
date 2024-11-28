@@ -20,7 +20,7 @@
       <x>11</x>
       <y>6</y>
       <width>471</width>
-      <height>607</height>
+      <height>616</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -420,11 +420,22 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbEditRecord">
-       <property name="text">
-        <string>Edit record</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pbEditRecord">
+         <property name="text">
+          <string>Edit record</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_DeleteRecord">
+         <property name="text">
+          <string>Delete record</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QPushButton" name="pb_ShowMoreExpenses">

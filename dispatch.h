@@ -48,6 +48,7 @@ public:
         QObject::connect(this->db, &Database::updateStartDate, this->stats, &Statistics::startDate);
 
         QObject::connect(this->allExp, &AllExpenses::recordByID, this, &Dispatch::updateRecord);
+        QObject::connect(this->allExp, &AllExpenses::deleteRecord, this, &Dispatch::deleteRecordRequest);
 
     }
 
@@ -108,6 +109,12 @@ public slots:
     void settBundle(SettingsBundle const &settings);
 
     void allExpenses(QVector<Record> & all);
+    /**
+     * @brief delete record with id=rowid in MainW or AllExp
+     * @param rowid - id of the record in database
+     * @param flag "Main" or "AllExp"
+     */
+    void deleteRecordRequest(int64_t rowid, QString flag);
 
 };
 

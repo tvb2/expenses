@@ -6,6 +6,9 @@ AllExpenses::AllExpenses(QWidget *parent)
     , ui(new Ui::AllExpenses)
 {
     ui->setupUi(this);
+    ui->pb_EditRecord->setEnabled(false);
+    ui->pb_DeleteRecord->setEnabled(false);
+
 }
 
 AllExpenses::~AllExpenses()
@@ -50,9 +53,29 @@ void AllExpenses::on_pb_EditRecord_clicked()
     emit recordByID(rowid, "AllExp");
 }
 
+void AllExpenses::on_tableWidget_cellClicked(int row, int column)
+{
+    ui->pb_EditRecord->setEnabled(true);
+    ui->pb_DeleteRecord->setEnabled(true);
+}
 
 void AllExpenses::on_pb_Close_clicked()
 {
     this->close();
+}
+
+
+void AllExpenses::on_pb_DeleteRecord_clicked()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Delete record?", "Delete record? This cannot be undone!",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        int64_t rowid = ui->tableWidget->item(ui->tableWidget->currentRow(),ui->tableWidget->columnCount() - 1)->text().toInt();
+        qDebug() << "Edit record rowid is: " << rowid;
+        emit deleteRecord(rowid, "AllExp");
+    } else {
+        qDebug() << "Delete Record canceled by user";
+    }
 }
 

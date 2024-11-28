@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->leAmount->setValidator(new Validator);
     ui->pB_Submit->setEnabled(false);
     ui->pbEditRecord->setEnabled(false);
+    ui->pb_DeleteRecord->setEnabled(false);
 
     ui->date->setDate(QDate::currentDate());
     ui->date->setEnabled(false);
@@ -258,7 +259,7 @@ void MainWindow::on_cbCategory_currentTextChanged(const QString &arg1)
 void MainWindow::on_pbEditRecord_clicked()
 {
     int64_t rowid = ui->tableWidget->item(ui->tableWidget->currentRow(),ui->tableWidget->columnCount() - 1)->text().toInt();
-    qDebug() << "Selected record rowid is: " << rowid;
+    qDebug() << "Edit record rowid is: " << rowid;
 
     emit recordByID(rowid, "Main");
 }
@@ -266,10 +267,25 @@ void MainWindow::on_pbEditRecord_clicked()
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     ui->pbEditRecord->setEnabled(true);
+    ui->pb_DeleteRecord->setEnabled(true);
 }
 
 void MainWindow::on_pb_ShowMoreExpenses_clicked()
 {
     emit getAllExpenses();
+}
+
+void MainWindow::on_pb_DeleteRecord_clicked()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Delete record?", "Delete record? This cannot be undone!",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        int64_t rowid = ui->tableWidget->item(ui->tableWidget->currentRow(),ui->tableWidget->columnCount() - 1)->text().toInt();
+        qDebug() << "Edit record rowid is: " << rowid;
+        emit deleteRecord(rowid, "Main");
+    } else {
+        qDebug() << "Delete Record canceled by user";
+    }
 }
 

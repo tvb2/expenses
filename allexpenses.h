@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QVector>
+#include <QMessageBox>
 #include "record.h"
 #include "editrecord.h"`
 
@@ -25,8 +26,14 @@ private slots:
 
     void on_pb_Close_clicked();
 
+    void on_tableWidget_cellClicked(int row, int column);
+
+    void on_pb_DeleteRecord_clicked();
+
 signals:
     void recordByID(int64_t rowid, QString flag);
+
+    void deleteRecord(int64_t rowid, QString flag);
 
 private:
     Ui::AllExpenses *ui;

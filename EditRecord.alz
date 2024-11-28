@@ -32,12 +32,12 @@ create Record record</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="220000" x="-72016" y="83895" h="75000" index="7">
+  <node w="220000" x="-72016" y="83894" h="75000" index="7">
    <text>Database::updateRecord</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="229000" x="-375590" y="79035" h="75000" index="8">
+  <node w="229000" x="-375588" y="79034" h="75000" index="8">
    <text>Dispatch::updateTotals();</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
@@ -52,9 +52,60 @@ create Record record</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
+  <node w="352000" x="-608432" y="254216" h="75000" index="11">
+   <text>AllExpenses::on_pb_EditRecord_clicked()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="201000" x="-68674" y="252860" h="75000" index="12">
+   <text>Dispatch:: constructor</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="229000" x="-68674" y="435992" h="75000" index="13">
+   <text>Dispatch::updateRecord()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="347826" y="426086" h="75000" index="15">
+   <text>Database::getRecord</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="232000" x="362318" y="602898" h="75000" index="16">
+   <text>EditRecord::updateRecord</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="220000" x="-69565" y="675362" h="75000" index="17">
+   <text>Database::updateRecord</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="229000" x="-414492" y="666666" h="75000" index="18">
+   <text>Dispatch::updateTotals();</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="200000" x="-411594" y="563768" h="75000" index="19">
+   <text>Dispatch::averages()</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="274000" x="-436231" y="462318" h="75000" index="20">
+   <text>Database::this->getLatestN(5);</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
+  <node w="281000" x="-443478" y="363768" h="75000" index="21">
+   <text>Database::this->getLatestN(-1);</text>
+   <color g="255" r="255" b="255"/>
+   <text-color g="0" r="0" b="0"/>
+  </node>
   <edge index0="0" index1="1" reversed="0" arrow-mode="0">
    <text>signal recordByID
-param rowid</text>
+param rowid,
+param "Main"</text>
   </edge>
   <edge index0="1" index1="2" reversed="0" arrow-mode="0">
    <text>rowid</text>
@@ -75,6 +126,32 @@ param rowid</text>
    <text>5</text>
   </edge>
   <edge index0="2" index1="10" reversed="0" arrow-mode="0">
+   <text>6</text>
+  </edge>
+  <edge index0="11" index1="12" reversed="0" arrow-mode="0">
+   <text>signal recordByID
+param rowid,
+param "Main"</text>
+  </edge>
+  <edge index0="12" index1="13" reversed="0" arrow-mode="0">
+   <text>rowid</text>
+  </edge>
+  <edge index0="13" index1="15" reversed="0" arrow-mode="0">
+   <text>1. &amp;record</text>
+  </edge>
+  <edge index0="13" index1="16" reversed="0" arrow-mode="0">
+   <text>2</text>
+  </edge>
+  <edge index0="13" index1="17" reversed="0" arrow-mode="0">
+   <text>3. &amp;record</text>
+  </edge>
+  <edge index0="13" index1="18" reversed="0" arrow-mode="0">
+   <text>4</text>
+  </edge>
+  <edge index0="13" index1="20" reversed="0" arrow-mode="0">
+   <text>5</text>
+  </edge>
+  <edge index0="13" index1="21" reversed="0" arrow-mode="0">
    <text>6</text>
   </edge>
  </graph>

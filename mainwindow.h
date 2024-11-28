@@ -7,6 +7,7 @@
 #include <QVariant>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QMessageBox>
 #include "validator.h"
 #include "record.h"
 #include "settingsbundle.h"
@@ -92,6 +93,8 @@ private slots:
 
     void on_pb_ShowMoreExpenses_clicked();
 
+    void on_pb_DeleteRecord_clicked();
+
 signals:
     void newRecordAvailable(Record const &record);
 
@@ -102,6 +105,8 @@ signals:
     void recordByID(int64_t rowid, QString flag);
 
     void getAllExpenses();
+
+    void deleteRecord(int64_t rowid, QString flag);
 
 private:
     Ui::MainWindow *ui;

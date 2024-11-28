@@ -1,5 +1,5 @@
 1. delete records
-2. get all records
+2. done get all records
 4. Edit currency
 5. Correct EditRecord issue: 
 	done populate correct category, 

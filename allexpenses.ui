@@ -92,12 +92,27 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pb_EditRecord">
-      <property name="text">
-       <string>Edit Record</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pb_EditRecord">
+       <property name="text">
+        <string>Edit Record</string>
+       </property>
+      </widget>
+     </item>
+
+        <item>
+         <widget class="QPushButton" name="pb_DeleteRecord">
+          <property name="text">
+           <string>Delete Record</string>
+          </property>
+         </widget>
+        </item>
+
+     </layout>
     </item>
+
+
     <item>
      <widget class="QPushButton" name="pb_Close">
       <property name="text">

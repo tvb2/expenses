@@ -107,6 +107,8 @@ public:
 
     void updateRecord(Record const &record);
 
+    void deleteRecord(int64_t rowid);
+
     /**
      * @brief get row id of the latest added/modified record
      * based on the field lastChangeDateTime

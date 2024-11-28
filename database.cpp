@@ -381,6 +381,21 @@ void Database::updateRecord(Record const &record){
     executeQuery(queryText);
 }
 
+void Database::deleteRecord(int64_t rowid){
+    //need to check if the deleted record is not the start date holder
+    Record record;
+    this->getRecord(record, rowid);
+    QDate dateNow=QDate::currentDate();//2024-08-25T10:30:51
+    //use today's date to ensure potential new start date is not from the deleted record
+    startDateCheck(dateNow,rowid);
+
+    QString queryText = "DELETE FROM expenses "
+                        "WHERE rowid = " + QString::number(rowid);
+
+    executeQuery(queryText);
+}
+
+
 int64_t Database::getLatestRowID(){
     QString queryText = "SELECT rowid FROM expenses ORDER BY rowid DESC LIMIT 1";
     return int64_t(executeQuery(queryText));

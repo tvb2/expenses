@@ -75,6 +75,7 @@ void Dispatch::startMainW(){
     QObject::connect(this->mW, &MainWindow::requestAVG, this, &Dispatch::averages);
     QObject::connect(this->mW, &MainWindow::recordByID, this, &Dispatch::updateRecord);
     QObject::connect(this->mW, &MainWindow::getAllExpenses, this, &Dispatch::allRecordsRequest);
+    QObject::connect(this->mW, &MainWindow::deleteRecord, this, &Dispatch::deleteRecordRequest);
 
     this->settings->readSettings(this->profile->getCurrentProfileName());
     this->db->getLatestN(5);
@@ -152,6 +153,17 @@ void Dispatch::allRecordsRequest(){
 void Dispatch::allExpenses(QVector<Record> & all){
     this->allExp->populateRecords(all);
     this->allExp->exec();
+}
+
+void Dispatch::deleteRecordRequest(int64_t rowid, QString flag){
+    Record rec;
+    this->db->deleteRecord(rowid);
+    qDebug() << "Dispatch::deleteRecordRequest. Record id to delete: " << rowid;
+    updateTotals();
+    averages();
+    this->db->getLatestN(5);
+    if (flag == "AllExp")
+        this->db->getLatestN(-1);
 }
 
 void Dispatch::settBundle(SettingsBundle const &settings){
