@@ -99,7 +99,7 @@ void Dispatch::newRecordRequest(Record const &record){
     this->db->getLatestN(5);
 }
 
-void Dispatch::updateRecord(int64_t rowid){
+void Dispatch::updateRecord(int64_t rowid, QString flag){
     Record rec;
     this->db->getRecord(rec, rowid);
     qDebug() << "Record final amount before update: " << rec.finalAmnt;
@@ -107,13 +107,15 @@ void Dispatch::updateRecord(int64_t rowid){
     EditRecord *editRec = new EditRecord(rec, this->setBundle);
     editRec->updateRecord();
     editRec->exec();
-    if (editRec->isSuccess()){
-        qDebug() << "Record final amount after update: " << rec.finalAmnt;
-        this->db->updateRecord(rec);
-        updateTotals();
-        averages();
+    if (!editRec->isSuccess())
+        return;
+    qDebug() << "Record final amount after update: " << rec.finalAmnt;
+    this->db->updateRecord(rec);
+    updateTotals();
+    averages();
         this->db->getLatestN(5);
-    }
+    if (flag == "AllExp")
+        this->db->getLatestN(-1);
 }
 
 void Dispatch::editCurrency(SettingsBundle const &bundle){
@@ -147,10 +149,9 @@ void Dispatch::allRecordsRequest(){
     this->db->getLatestN(-1);
 }
 
-void Dispatch::allExpenses(QVector<Record> & allExp){
-    AllExpenses *allExpenses = new AllExpenses();
-    allExpenses->populateRecords(allExp);
-    allExpenses->exec();
+void Dispatch::allExpenses(QVector<Record> & all){
+    this->allExp->populateRecords(all);
+    this->allExp->exec();
 }
 
 void Dispatch::settBundle(SettingsBundle const &settings){

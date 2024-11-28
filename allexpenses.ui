@@ -98,6 +98,13 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="pb_Close">
+      <property name="text">
+       <string>Close</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>

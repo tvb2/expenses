@@ -30,6 +30,7 @@ public:
     Settings *settings;
     Statistics *stats;
     MainWindow *mW;
+    AllExpenses *allExp;
     SettingsBundle setBundle;
 
     Dispatch(Profile *pr, Database *databs, Settings *st, Statistics *statistics)
@@ -38,12 +39,16 @@ public:
         , settings(st)
         , stats(statistics)
     {
+        this->allExp = new AllExpenses;
         QObject::connect(this->db, &Database::total, stats, &Statistics::addTot);
         QObject::connect(this->db, &Database::totalNonReg, stats, &Statistics::setTotalNonReg);
         QObject::connect(this->db, &Database::nonReg, stats, &Statistics::addNonReg);
 
         QObject::connect(this->db, &Database::updateStartDate, this->settings, &Settings::setStartDate);
         QObject::connect(this->db, &Database::updateStartDate, this->stats, &Statistics::startDate);
+
+        QObject::connect(this->allExp, &AllExpenses::recordByID, this, &Dispatch::updateRecord);
+
     }
 
 /**
@@ -88,7 +93,12 @@ public slots:
 
     void newRecordRequest(Record const &record);
 
-    void updateRecord(int64_t rowid);
+    /**
+     * @brief update record with id=rowid in MainW or AllExp
+     * @param rowid - id of the record in database
+     * @param flag "Main" or "AllExp"
+     */
+    void updateRecord(int64_t rowid, QString flag);
 
     void averages();
 
@@ -97,7 +107,7 @@ public slots:
 
     void settBundle(SettingsBundle const &settings);
 
-    void allExpenses(QVector<Record> & allExp);
+    void allExpenses(QVector<Record> & all);
 
 };
 

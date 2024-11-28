@@ -260,7 +260,7 @@ void MainWindow::on_pbEditRecord_clicked()
     int64_t rowid = ui->tableWidget->item(ui->tableWidget->currentRow(),ui->tableWidget->columnCount() - 1)->text().toInt();
     qDebug() << "Selected record rowid is: " << rowid;
 
-    emit recordByID(rowid);
+    emit recordByID(rowid, "Main");
 }
 
 void MainWindow::on_tableWidget_cellClicked(int row, int column)

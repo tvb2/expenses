@@ -99,7 +99,7 @@ signals:
 
     void requestAVG();
 
-    void recordByID(int64_t rowid);
+    void recordByID(int64_t rowid, QString flag);
 
     void getAllExpenses();
 

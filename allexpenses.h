@@ -23,8 +23,10 @@ public:
 private slots:
     void on_pb_EditRecord_clicked();
 
+    void on_pb_Close_clicked();
+
 signals:
-    void recordByID(int64_t rowid);
+    void recordByID(int64_t rowid, QString flag);
 
 private:
     Ui::AllExpenses *ui;

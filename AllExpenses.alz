@@ -22,8 +22,8 @@ where N = -1 (all records)</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
-  <node w="263000" x="-354418" y="189568" h="75000" index="3">
-   <text>Dispatch::allRecordsRequest()</text>
+  <node w="211000" x="-354418" y="189568" h="75000" index="3">
+   <text>Dispatch::allExpenses()</text>
    <color g="255" r="255" b="255"/>
    <text-color g="0" r="0" b="0"/>
   </node>
